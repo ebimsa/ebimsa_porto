@@ -2,7 +2,6 @@ import React from "react";
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { About } from "@/components/about";
-import { Skills } from "@/components/skills";
 import { Projects } from "@/components/projects";
 import { Experience } from "@/components/experience";
 import { Certifications } from "@/components/certifications";
@@ -22,9 +21,6 @@ export default function Home() {
 
         {/* About Section */}
         <About />
-
-        {/* Skills Section */}
-        <Skills />
 
         {/* Projects Section */}
         <Projects />

@@ -19,22 +19,22 @@ export function About() {
     {
       icon: Server,
       title: "Backend Systems",
-      desc: "Architecting high-throughput, low-latency APIs and serverless microservices. Specialized in Go, Rust, Node.js, and SQL/NoSQL databases.",
+      desc: "Architecting robust backend services, high-throughput REST/gRPC APIs, and SQL/NoSQL databases with Go and Node.js.",
     },
     {
       icon: Brain,
       title: "Artificial Intelligence",
-      desc: "Integrating machine learning models, designing Retrieval-Augmented Generation (RAG) pipelines, and orchestrating multi-agent LLM systems.",
+      desc: "Building Retrieval-Augmented Generation (RAG) pipelines, model integrations, and autonomous LLM agent networks.",
     },
     {
       icon: Code,
       title: "Full Stack Craft",
-      desc: "Creating pixel-perfect, accessible frontends using Next.js, React, and Tailwind CSS, coupled with robust server integrations.",
+      desc: "Designing responsive, accessible web interfaces using Next.js, React, and custom styling systems.",
     },
     {
       icon: Cpu,
       title: "Scalable Applications",
-      desc: "Utilizing modern cloud platforms, container orchestrators (Docker, Kubernetes), and queue engines (Redis, RabbitMQ) to handle heavy workloads.",
+      desc: "Deploying containerized environments, cloud microservices, and message queues under heavy workloads.",
     },
   ];
 
@@ -61,24 +61,21 @@ export function About() {
               />
             </div>
 
-            <div className="space-y-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+            <div className="space-y-3">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20">
                 Biography
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+              <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-foreground">
                 Engineering from first principles.
               </h2>
             </div>
 
             <div className="space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
               <p>
-                I am Enggal Bima Sakti (Ebimsa), a Computer Science student and Software Engineer based in Indonesia. My coding philosophy revolves around simplicity, clean architecture, and technical precision.
+                I am Enggal Bima Sakti (Ebimsa), a Computer Science student and Software Engineer at Universitas Indonesia. I write clean, performant, and thoroughly tested code.
               </p>
               <p>
-                Whether it&apos;s deploying high-performance distributed backend microservices or designing LLM applications, I focus on crafting scalable, well-documented, and thoroughly tested solutions.
-              </p>
-              <p>
-                I constantly push myself to learn new architectural patterns, system design trade-offs, and advanced machine learning concepts. I thrive on solving complex, multi-dimensional problems that require out-of-the-box product thinking.
+                Specializing in distributed systems, backend architectures, and LLM applications. Focused on engineering from first principles.
               </p>
             </div>
 

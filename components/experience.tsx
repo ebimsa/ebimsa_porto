@@ -101,15 +101,15 @@ export function Experience() {
     <section id="experience" className="py-24 relative overflow-hidden bg-dot-pattern border-t border-border/40">
       <div className="max-w-6xl mx-auto px-4 md:px-6">
         {/* Header */}
-        <div className="space-y-2 mb-16 text-center md:text-left">
-          <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+        <div className="space-y-3 mb-16 text-center md:text-left">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20">
             Timeline
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
-            Professional & Academic Experience
+          <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-foreground">
+            Professional Experience
           </h2>
-          <p className="text-sm sm:text-base text-muted-foreground max-w-xl">
-            A chronological record of engineering internships, teaching assistant roles, and leadership milestones.
+          <p className="text-base sm:text-lg text-muted-foreground max-w-xl">
+            A chronological record of software engineering internships, research fellowships, and academic leadership.
           </p>
         </div>
 

@@ -37,7 +37,7 @@ export function Contact() {
       url: "https://instagram.com/ebimsa",
       handle: "@ebimsa",
       icon: Instagram,
-      color: "hover:border-pink-500/30 hover:text-pink-500",
+      color: "hover:border-foreground/30 hover:text-foreground",
     },
     {
       name: "Resume",
@@ -54,15 +54,15 @@ export function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Heading and Email copy */}
           <div className="lg:col-span-6 space-y-8">
-            <div className="space-y-3">
-              <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+            <div className="space-y-4">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20">
                 Contact
               </span>
-              <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground leading-[1.1]">
+              <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-foreground leading-tight">
                 Let&apos;s build something intelligent together.
               </h2>
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                Whether you&apos;re looking to hire an intern, contract out a project, or talk shop about distributed networks and LLM agent chains, my inbox is open.
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+                Whether you&apos;re looking to hire an intern, collaborate on research, or discuss systems engineering and LLM agents, my inbox is always open.
               </p>
             </div>
 

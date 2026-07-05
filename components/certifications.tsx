@@ -59,14 +59,14 @@ export function Certifications() {
     <section id="certifications" className="py-24 relative bg-dot-pattern border-t border-border/40">
       <div className="max-w-6xl mx-auto px-4 md:px-6">
         {/* Header */}
-        <div className="space-y-2 mb-12 text-center md:text-left">
-          <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+        <div className="space-y-3 mb-16 text-center md:text-left">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20">
             Credentials
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+          <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-foreground">
             Professional Certifications
           </h2>
-          <p className="text-sm sm:text-base text-muted-foreground max-w-xl">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-xl">
             Verified expertise in cloud computing, machine learning modeling, and systems automation.
           </p>
         </div>

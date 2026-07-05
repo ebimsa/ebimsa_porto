@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ExternalLink, Github, X, Code, ShieldCheck, Cpu, GitBranch, Lightbulb } from "lucide-react";
+import { Search, ExternalLink, Github, X, Code, ShieldCheck, Cpu, GitBranch, Lightbulb, ArrowRight } from "lucide-react";
 
 type Project = {
   id: string;
@@ -28,36 +28,36 @@ const PROJECTS_DATA: Project[] = [
   {
     id: "lumina-ai",
     title: "LuminaAI",
-    tagline: "High-Performance Multi-Agent Orchestration & RAG Pipeline",
+    tagline: "Multi-Agent Orchestration & RAG Pipeline",
     coverImage: "/lumina_ai.png",
     category: "AI/ML",
     tags: ["FastAPI", "pgvector", "Qdrant", "LangChain", "Redis"],
-    overview: "LuminaAI is a production-grade Retrieval-Augmented Generation (RAG) platform that coordinates multiple specialized AI agents. It intelligently routes unstructured multi-format data, performs semantic chunking, indexes vectors into Qdrant, and runs automated reasoning pipelines for enterprises.",
-    problem: "Processing massive sets of unstructured files (PDFs, Markdown, PPTs) and orchestrating multiple LLM agents created high latency, high API costs, and context limits. Traditional single-prompt architectures couldn't handle complex, multi-step logical operations.",
-    solution: "Designed a distributed microservice architecture. A Go-based file processor performs semantic layout analysis. We built a custom multi-agent routing loop in Python using LangGraph. Relevant context is stored in pgvector and Qdrant, cached with Redis to reduce duplicate LLM requests.",
-    architecture: "Frontend built on Next.js 16 communicating via WebSockets. Backend consists of a Python FastAPI router, a Go worker queue, Qdrant as the main vector database, Redis for session cache, and PostgreSQL (pgvector) for metadata logging.",
+    overview: "A production-grade Retrieval-Augmented Generation (RAG) platform coordinating multiple specialized AI agents. It processes unstructured multi-format data, performs semantic chunking, and runs automated reasoning pipelines.",
+    problem: "Processing massive sets of unstructured files and orchestrating multiple LLM agents created high latency, high API costs, and context limits.",
+    solution: "Designed a distributed microservice architecture. A Go-based file processor performs semantic layout analysis. We built a custom multi-agent routing loop in Python using LangGraph.",
+    architecture: "Next.js frontend, Python FastAPI router, Go worker queue, Qdrant vector database, and Redis cache.",
     techStack: ["Next.js", "FastAPI", "Go", "Qdrant", "Redis", "pgvector", "Docker"],
-    process: "We started by benchmarking different semantic chunking strategies (fixed-size vs layout-aware). Then, we designed the routing orchestrator to decide whether a query needs semantic search, internet search, or direct execution. Finally, we set up load testing to optimize caching latency.",
-    challenges: "Handling agent loop divergence (where agents get stuck in infinite feedback loops). We resolved this by building a cycle-detection middleware and setting a token-sensitive budget limit per session.",
-    lessons: "Complex agent routing should be deterministic where possible. Hybrid search (keyword + semantic vector) yields 40% higher precision than raw vector searches alone.",
+    process: "Benchmarked semantic chunking strategies, built the routing orchestrator, and integrated load testing to optimize caching latency.",
+    challenges: "Handling agent loop divergence. Solved by building cycle-detection middleware and setting a token-sensitive session budget.",
+    lessons: "Hybrid search (keyword + semantic vector) yields 40% higher precision than raw vector searches alone.",
     githubUrl: "https://github.com/ebimsa/lumina-ai",
     demoUrl: "https://lumina.ebimsa.com",
   },
   {
     id: "nova-cloud",
     title: "NovaCloud",
-    tagline: "Distributed Serverless Event Broker & Task Scheduler",
+    tagline: "Distributed Serverless Event Broker & Scheduler",
     coverImage: "/nova_cloud.png",
     category: "Systems & Cloud",
     tags: ["Go", "gRPC", "Kubernetes", "Prometheus", "Consensus"],
-    overview: "NovaCloud is an event-driven pub/sub broker designed to handle millions of tasks. Built in Go, it guarantees at-least-once message delivery, partition rebalancing, and decentralized task scheduling with real-time health checks.",
-    problem: "When managing millions of scheduled background jobs, existing solutions suffered from thread starvation, partition loss during node failure, and lacked fine-grained metrics for queue congestion.",
-    solution: "Developed a custom log-structured merge-tree partition storage engine in Go. Integrated Raft consensus for leader election, allowing seamless partition rebalancing. Integrated Prometheus and Grafana for active load metrics.",
-    architecture: "NovaCloud deploys as a StatefulSet on Kubernetes. Communication between nodes uses highly optimized gRPC. Clients publish events over HTTP/2 or WebSockets. State consensus is monitored by HashiCorp Raft.",
+    overview: "An event-driven pub/sub broker designed in Go to handle millions of tasks. It guarantees at-least-once message delivery, partition rebalancing, and decentralized task scheduling.",
+    problem: "Managing millions of scheduled jobs suffered from thread starvation and partition loss during node failures.",
+    solution: "Developed a custom log-structured merge-tree partition storage engine in Go. Integrated Raft consensus for leader election and partition rebalancing.",
+    architecture: "NovaCloud deploys as a StatefulSet on Kubernetes. Communicates via optimized gRPC, state monitored by Raft.",
     techStack: ["Go", "gRPC", "Kubernetes", "Raft Consensus", "Prometheus", "Grafana"],
-    process: "Wrote the initial protocol buffer schemas, implemented the WAL (Write-Ahead Log) storage layer, built the cluster consensus layer, and then integrated Kubernetes horizontal autoscaling rules based on queue depth metrics.",
-    challenges: "Resolving network partitions (split-brain) during K8s node updates. We mitigated this by fine-tuning the Raft heartbeat interval and implementing graceful node termination protocols.",
-    lessons: "Simplicity in network protocols beats complex feature sets. Writing our own lightweight consensus binding in Go drastically reduced runtime overhead compared to external heavy message queues.",
+    process: "Wrote protobuf schemas, implemented WAL storage, built cluster consensus, and set up Kubernetes horizontal autoscaling.",
+    challenges: "Network partitions (split-brain) during updates. Mitigated by tuning heartbeat intervals and node termination protocols.",
+    lessons: "Writing lightweight consensus bindings in Go drastically reduced runtime overhead compared to external queues.",
     githubUrl: "https://github.com/ebimsa/nova-cloud",
     demoUrl: "https://nova.ebimsa.com",
   },
@@ -68,14 +68,14 @@ const PROJECTS_DATA: Project[] = [
     coverImage: "/synth_editor.png",
     category: "Full Stack",
     tags: ["Next.js", "Tailwind CSS", "Yjs", "WebSockets", "TipTap"],
-    overview: "SynthEditor is a premium, block-based collaborative workspace that mimics Notion's typing experience. It supports real-time editing, slash commands, multiplayer cursors, offline sync, and inline AI text generation.",
-    problem: "Synchronizing state changes across multiple concurrent users without central locks often results in editing conflicts, high server resource usage, or out-of-order layouts.",
-    solution: "Used Conflict-free Replicated Data Types (CRDTs) via Yjs. We built a custom WebSocket provider to sync binary document updates and integrated Tiptap for the block structure, rendering peer cursor locations in real-time.",
-    architecture: "A Next.js client component utilizes Tailwind CSS for styling. The server is a Node.js WebSocket hub with Redis Adapter to synchronize document states across multiple node instances, backed by a PostgreSQL database.",
+    overview: "A block-based collaborative workspace that mimics Notion's typing experience. It supports real-time editing, slash commands, multiplayer cursors, and offline sync.",
+    problem: "Synchronizing state changes across multiple concurrent users without central locks resulted in editing conflicts.",
+    solution: "Used Conflict-free Replicated Data Types (CRDTs) via Yjs. Built a custom WebSocket provider to sync binary document updates and cursor locations.",
+    architecture: "Next.js client using Tailwind CSS. Node.js WebSocket hub with Redis Adapter to synchronize document states, backed by PostgreSQL.",
     techStack: ["Next.js", "Tailwind CSS", "Yjs", "WebSockets", "Node.js", "PostgreSQL"],
-    process: "We researched CRDT vs Operational Transformation (OT), choosing Yjs for its performance. Built the rich text block schemas, integrated standard markdown shortcuts, and implemented the local-first caching strategy using IndexDB.",
-    challenges: "Handling rapid document editing on high-latency mobile networks. We resolved this by batching WebSocket packets and writing local-optimistic visual transitions.",
-    lessons: "Building local-first apps forces you to treat the server simply as a sync node. Caching states locally via IndexedDB makes the application feel instantaneous and robust against network drops.",
+    process: "Selected Yjs CRDT for performance, built rich text block schemas, and implemented local-first caching using IndexDB.",
+    challenges: "Rapid editing on high-latency networks. Resolved by batching WebSocket packets and writing local-optimistic UI updates.",
+    lessons: "Caching states locally via IndexedDB makes the application feel instantaneous and robust against network drops.",
     githubUrl: "https://github.com/ebimsa/synth-editor",
     demoUrl: "https://synth.ebimsa.com",
   },
@@ -104,15 +104,15 @@ export function Projects() {
     <section id="projects" className="py-24 relative border-t border-border/40">
       <div className="max-w-6xl mx-auto px-4 md:px-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div className="space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+          <div className="space-y-3">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20">
               Portfolio
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-foreground">
               Featured Projects
             </h2>
-            <p className="text-sm sm:text-base text-muted-foreground max-w-xl">
+            <p className="text-base sm:text-lg text-muted-foreground max-w-xl">
               Deep-dives into systems architecture, production codebases, and artificial intelligence models.
             </p>
           </div>
@@ -150,69 +150,126 @@ export function Projects() {
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Projects Stack */}
+        <div className="space-y-12">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                layoutId={`project-container-${project.id}`}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
-                whileHover={{ y: -6 }}
-                className="group cursor-pointer flex flex-col justify-between overflow-hidden rounded-3xl border border-border bg-card/50 hover:border-primary/20 hover:shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] transition-all squircle-lg"
-                onClick={() => setActiveProject(project)}
-              >
-                {/* Cover Image Container */}
-                <div className="relative w-full aspect-video overflow-hidden border-b border-border/40 bg-muted">
-                  <Image
-                    src={project.coverImage}
-                    alt={project.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    priority
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  {/* Category Badge overlay */}
-                  <span className="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-bold tracking-wider text-foreground bg-background/90 backdrop-blur-sm border border-border/40 rounded-full uppercase">
-                    {project.category}
-                  </span>
-                </div>
+            {filteredProjects.map((project, index) => {
+              const isEven = index % 2 === 0;
+              return (
+                <motion.div
+                  key={project.id}
+                  layoutId={`project-container-${project.id}`}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5 }}
+                  className="group rounded-[32px] border border-border bg-card/45 dark:bg-card/35 backdrop-blur-md overflow-hidden p-6 sm:p-8 lg:p-10 flex flex-col lg:flex-row gap-8 lg:gap-12 hover:border-primary/30 hover:shadow-[0_12px_45px_-12px_rgba(136,216,199,0.1)] dark:hover:shadow-[0_12px_45px_-12px_rgba(136,216,199,0.15)] transition-all duration-300"
+                >
+                  {/* Left Column: Details */}
+                  <div className={`flex-1 flex flex-col justify-between space-y-6 ${!isEven ? "lg:order-2" : ""}`}>
+                    <div className="space-y-4">
+                      {/* Category Badge */}
+                      <div>
+                        <span className="inline-flex px-2.5 py-0.5 text-[9px] font-bold tracking-widest text-primary border border-primary/20 bg-primary/10 rounded-full uppercase">
+                          {project.category}
+                        </span>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-foreground group-hover:text-foreground/90 transition-colors">
+                          {project.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm font-semibold text-primary tracking-wide">
+                          {project.tagline}
+                        </p>
+                      </div>
 
-                {/* Content */}
-                <div className="p-6 flex-1 flex flex-col justify-between">
-                  <div className="space-y-3">
-                    <h3 className="text-lg sm:text-xl font-bold tracking-tight text-foreground group-hover:text-foreground/80 transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 leading-relaxed">
-                      {project.tagline}
-                    </p>
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-xl">
+                        {project.overview}
+                      </p>
+
+                      {/* Technical stats summary */}
+                      <div className="grid grid-cols-2 gap-4 pt-2 max-w-md">
+                        <div className="border-l-2 border-border pl-3 space-y-0.5">
+                          <span className="text-[9px] text-muted-foreground uppercase font-bold tracking-wider block">The Challenge</span>
+                          <span className="text-xs text-foreground font-semibold line-clamp-1">{project.problem}</span>
+                        </div>
+                        <div className="border-l-2 border-border pl-3 space-y-0.5">
+                          <span className="text-[9px] text-muted-foreground uppercase font-bold tracking-wider block">The System</span>
+                          <span className="text-xs text-foreground font-semibold line-clamp-1">{project.solution}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Tech stack & Actions */}
+                    <div className="space-y-4 pt-4 border-t border-border/40">
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.tags.map((t) => (
+                          <span key={t} className="px-2.5 py-0.5 text-[10px] font-semibold bg-muted/65 border border-border text-muted-foreground rounded-md">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex flex-wrap items-center gap-2.5 pt-2">
+                        <button
+                          onClick={() => setActiveProject(project)}
+                          className="btn-logo-glossy px-4 py-2 rounded-xl font-bold text-xs focus-visible:outline-none"
+                        >
+                          Read Case Study
+                        </button>
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 text-primary hover:border-primary/40 font-bold text-xs transition-colors focus-visible:outline-none"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          Live Demo
+                        </a>
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-border bg-card/60 hover:bg-muted text-muted-foreground hover:text-foreground font-bold text-xs transition-colors focus-visible:outline-none"
+                        >
+                          <Github className="w-3.5 h-3.5" />
+                          Source
+                        </a>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Badges footer */}
-                  <div className="flex flex-wrap gap-1.5 pt-5 mt-auto">
-                    {project.tags.slice(0, 3).map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-0.5 text-[10px] font-medium border border-border/60 bg-muted/50 rounded-md text-muted-foreground"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                    {project.tags.length > 3 && (
-                      <span className="px-2 py-0.5 text-[10px] font-medium border border-border/60 bg-muted/50 rounded-md text-muted-foreground">
-                        +{project.tags.length - 3}
-                      </span>
-                    )}
+                  {/* Right Column: Browser Window Mockup */}
+                  <div className={`flex-1 relative aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-muted dark:bg-card/50 shadow-inner ${!isEven ? "lg:order-1" : ""}`}>
+                    {/* Browser Chrome Header */}
+                    <div className="absolute top-0 left-0 right-0 h-6 border-b border-border bg-muted/95 dark:bg-card/95 flex items-center justify-between px-3 z-10">
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-red-400" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                      </div>
+                      <span className="text-[8px] font-mono text-muted-foreground/80 select-none">{project.id}.ebimsa.com</span>
+                      <div className="w-6" /> {/* spacer */}
+                    </div>
+
+                    {/* Screenshot Container */}
+                    <div className="absolute inset-0 pt-6">
+                      <Image
+                        src={project.coverImage}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        priority
+                        className="object-cover group-hover:scale-[1.01] transition-transform duration-500"
+                      />
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
-        </motion.div>
+        </div>
 
         {/* Empty state */}
         {filteredProjects.length === 0 && (
