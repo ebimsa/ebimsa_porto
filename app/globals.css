@@ -54,9 +54,9 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 
   /* Custom brand colors */
-  --color-brand-blue: #88d8c7;
-  --color-brand-blue-glow: rgba(136, 216, 199, 0.15);
-  --color-brand-blue-glow-hover: rgba(136, 216, 199, 0.3);
+  --color-brand-blue: #0ea5e9;
+  --color-brand-blue-glow: rgba(14, 165, 233, 0.15);
+  --color-brand-blue-glow-hover: rgba(14, 165, 233, 0.3);
 
   /* Animation overrides or extensions */
   --animate-float: float 6s ease-in-out infinite;
@@ -73,10 +73,10 @@
   }
   @keyframes glow {
     from {
-      box-shadow: 0 0 10px rgba(136, 216, 199, 0.1), 0 0 20px rgba(136, 216, 199, 0.05);
+      box-shadow: 0 0 10px rgba(14, 165, 233, 0.1), 0 0 20px rgba(14, 165, 233, 0.05);
     }
     to {
-      box-shadow: 0 0 20px rgba(136, 216, 199, 0.25), 0 0 35px rgba(136, 216, 199, 0.15);
+      box-shadow: 0 0 20px rgba(14, 165, 233, 0.25), 0 0 35px rgba(14, 165, 233, 0.15);
     }
   }
 }
@@ -91,7 +91,7 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   
-  --primary: oklch(0.536 0.12 174); /* Accessible Salted Egg Green / Minty Teal #258F7B */
+  --primary: #0284c7; /* Accessible Sky Blue / Cyan (contrast compliant) */
   --primary-foreground: oklch(0.985 0 0);
   
   --secondary: oklch(0.96 0.005 240);
@@ -108,7 +108,7 @@
   
   --border: oklch(0.92 0.005 240);
   --input: oklch(0.92 0.005 240);
-  --ring: oklch(0.5 0.2 258.9);
+  --ring: #0284c7;
   
   --radius: 0.75rem; /* Base border radius */
   
@@ -125,7 +125,7 @@
   --popover: oklch(0.205 0.02 258.9);
   --popover-foreground: oklch(0.985 0 0);
   
-  --primary: oklch(0.812 0.098 174.62); /* Salted Egg Green / Pastel Turquoise #88D8C7 */
+  --primary: #38bdf8; /* Vibrant Sky Blue */
   --primary-foreground: oklch(0.182 0.025 258.9);
   
   --secondary: oklch(0.25 0.02 258.9);
@@ -142,7 +142,7 @@
   
   --border: oklch(0.28 0.02 258.9 / 40%);
   --input: oklch(0.28 0.02 258.9 / 60%);
-  --ring: oklch(0.585 0.22 258.9);
+  --ring: #38bdf8;
   
   --grid-color: rgba(255, 255, 255, 0.015);
 }
@@ -206,23 +206,23 @@
 /* Ebimsa Brand Logo-Inspired Gradients & Button styles */
 
 .bg-logo-gradient {
-  background: linear-gradient(135deg, #88d8c7 0%, #208a77 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
 }
 
 .text-logo-gradient {
-  background: linear-gradient(135deg, #88d8c7 0%, #208a77 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .btn-logo-glossy {
-  background: linear-gradient(135deg, #88d8c7 0%, #208a77 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
   color: #ffffff !important;
   box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
     0 1px 2px rgba(0, 0, 0, 0.1),
-    0 4px 14px rgba(32, 138, 119, 0.25);
-  border: 1px solid rgba(32, 138, 119, 0.4);
+    0 4px 14px rgba(2, 132, 199, 0.25);
+  border: 1px solid rgba(2, 132, 199, 0.4);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -230,15 +230,15 @@
   box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.25),
     0 1px 2px rgba(0, 0, 0, 0.2),
-    0 4px 20px rgba(136, 216, 199, 0.3);
-  border: 1px solid rgba(136, 216, 199, 0.4);
+    0 4px 20px rgba(14, 165, 233, 0.3);
+  border: 1px solid rgba(14, 165, 233, 0.4);
 }
 
 .btn-logo-glossy:hover {
   box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.4),
     0 2px 4px rgba(0, 0, 0, 0.15),
-    0 8px 24px rgba(136, 216, 199, 0.55);
+    0 8px 24px rgba(14, 165, 233, 0.55);
   transform: translateY(-1px);
   filter: brightness(1.05);
 }
