@@ -63,10 +63,11 @@ export function Navbar() {
 
         {/* Right: Controls Panel */}
         <div className="flex items-center gap-3">
+
           {/* Theme Switcher Toggle Button (Light/Dark only) */}
           <button
             onClick={toggleTheme}
-            className="p-1.5 rounded-full border border-border/80 bg-background/50 hover:bg-muted/80 text-muted-foreground hover:text-foreground focus-visible:outline-none transition-colors"
+            className="p-1.5 rounded-full border border-border/80 bg-background/50 hover:bg-muted/80 text-muted-foreground hover:text-foreground focus-visible:outline-none transition-colors cursor-pointer"
             aria-label="Toggle theme"
           >
             {!mounted ? (

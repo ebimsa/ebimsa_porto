@@ -7,6 +7,7 @@ import { About } from "@/components/about";
 import { Projects } from "@/components/projects";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
+import { StatusSection } from "@/components/status-section";
 import { LoadingScreen } from "@/components/loading-screen";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -39,6 +40,9 @@ export default function Home() {
 
               {/* Projects Section */}
               <Projects />
+
+              {/* Interactive Status Section */}
+              <StatusSection />
 
               {/* Contact Section */}
               <Contact />
