@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Mail, Github, Linkedin, Instagram, FileText, Check, Copy, ArrowUpRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function Contact() {
   const [copied, setCopied] = useState(false);
@@ -103,7 +104,7 @@ export function Contact() {
           </div>
 
           {/* Right Column: Social Links Cards */}
-          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+          <div className="lg:col-span-6 grid grid-cols-2 gap-3 sm:gap-4 w-full">
             {socials.map((soc) => {
               const Icon = soc.icon;
               return (
@@ -112,22 +113,25 @@ export function Contact() {
                   href={soc.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`group p-5 rounded-2xl border border-border bg-card/50 hover:bg-card hover:shadow-sm transition-all squircle-md flex items-center justify-between ${soc.color}`}
+                  className={cn(
+                    "group p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border border-border bg-card/50 hover:bg-card hover:shadow-sm transition-all squircle-md flex items-center justify-between",
+                    soc.color
+                  )}
                 >
-                  <div className="flex items-center gap-3 overflow-hidden">
-                    <div className="w-9 h-9 rounded-xl bg-muted/60 border border-border/80 flex items-center justify-center text-muted-foreground group-hover:text-inherit group-hover:bg-primary/5 dark:group-hover:bg-primary/10 transition-colors squircle-sm">
-                      <Icon className="w-4 h-4" />
+                  <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-muted/60 border border-border/80 flex items-center justify-center text-muted-foreground group-hover:text-inherit group-hover:bg-primary/5 dark:group-hover:bg-primary/10 transition-colors squircle-sm flex-shrink-0">
+                      <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </div>
                     <div className="overflow-hidden">
-                      <p className="text-sm font-bold text-foreground tracking-tight">
+                      <p className="text-xs sm:text-sm font-bold text-foreground tracking-tight truncate">
                         {soc.name}
                       </p>
-                      <p className="text-xs text-muted-foreground truncate max-w-[150px]">
+                      <p className="text-[10px] sm:text-xs text-muted-foreground truncate max-w-[80px] sm:max-w-[150px]">
                         {soc.handle}
                       </p>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-inherit group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all flex-shrink-0" />
+                  <ArrowUpRight className="w-3 h-3 sm:w-4 h-4 text-muted-foreground group-hover:text-inherit group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all flex-shrink-0" />
                 </a>
               );
             })}

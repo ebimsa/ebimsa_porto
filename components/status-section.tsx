@@ -547,31 +547,31 @@ export function StatusSection() {
   return (
     <section id="console" className="py-24 relative overflow-hidden border-t border-border/40 bg-dot-pattern transition-colors duration-500">
       
-      {/* Background Weather Simulation Overlay */}
+      {/* Background Weather Simulation Overlay (Viewport Full Page) */}
       <AnimatePresence>
         {activeWeatherEffect && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 pointer-events-none z-0 overflow-hidden"
+            className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden"
           >
             {/* Rain effect */}
             {activeWeatherEffect === "rain" && (
               <div className="absolute inset-0 flex justify-around opacity-45">
-                {Array.from({ length: 28 }).map((_, i) => (
+                {Array.from({ length: 65 }).map((_, i) => (
                   <motion.div
                     key={i}
                     initial={{ y: -60, opacity: 0 }}
-                    animate={{ y: "120%", opacity: [0, 0.7, 0.7, 0] }}
+                    animate={{ y: "120vh", opacity: [0, 0.7, 0.7, 0] }}
                     transition={{
                       repeat: Infinity,
-                      duration: 0.7 + Math.random() * 0.5,
-                      delay: Math.random() * 2,
+                      duration: 0.8 + Math.random() * 0.6,
+                      delay: Math.random() * 3,
                       ease: "linear",
                     }}
-                    style={{ left: `${(i / 28) * 100}%` }}
-                    className="absolute w-[1px] h-12 bg-sky-400/40 dark:bg-sky-400/30"
+                    style={{ left: `${(i / 65) * 100}%` }}
+                    className="absolute w-[1.2px] h-14 bg-sky-400/40 dark:bg-sky-400/30"
                   />
                 ))}
               </div>
@@ -581,19 +581,19 @@ export function StatusSection() {
             {activeWeatherEffect === "thunderstorm" && (
               <>
                 <div className="absolute inset-0 flex justify-around opacity-55">
-                  {Array.from({ length: 35 }).map((_, i) => (
+                  {Array.from({ length: 80 }).map((_, i) => (
                     <motion.div
                       key={i}
                       initial={{ y: -60, opacity: 0 }}
-                      animate={{ y: "120%", opacity: [0, 0.8, 0.8, 0] }}
+                      animate={{ y: "120vh", opacity: [0, 0.8, 0.8, 0] }}
                       transition={{
                         repeat: Infinity,
-                        duration: 0.5 + Math.random() * 0.4,
-                        delay: Math.random() * 2,
+                        duration: 0.6 + Math.random() * 0.5,
+                        delay: Math.random() * 3,
                         ease: "linear",
                       }}
-                      style={{ left: `${(i / 35) * 100}%` }}
-                      className="absolute w-[1px] h-14 bg-sky-300/40 dark:bg-sky-300/30"
+                      style={{ left: `${(i / 80) * 100}%` }}
+                      className="absolute w-[1.2px] h-16 bg-sky-300/40 dark:bg-sky-300/30"
                     />
                   ))}
                 </div>
@@ -602,7 +602,7 @@ export function StatusSection() {
                   animate={{ opacity: [0, 0.5, 0, 0.8, 0, 0, 0, 0.4, 0, 0] }}
                   transition={{
                     repeat: Infinity,
-                    duration: 5,
+                    duration: 6,
                     times: [0, 0.02, 0.04, 0.06, 0.08, 0.5, 0.52, 0.54, 0.56, 1],
                     ease: "easeInOut",
                   }}
@@ -614,19 +614,19 @@ export function StatusSection() {
             {/* Clear effect (warm sunbeams floating up) */}
             {activeWeatherEffect === "clear" && (
               <div className="absolute inset-0">
-                {Array.from({ length: 18 }).map((_, i) => (
+                {Array.from({ length: 30 }).map((_, i) => (
                   <motion.div
                     key={i}
-                    initial={{ y: "110%", opacity: 0, scale: 0.5 }}
-                    animate={{ y: "-10%", opacity: [0, 0.4, 0.4, 0], scale: [0.5, 1.3, 0.7] }}
+                    initial={{ y: "110vh", opacity: 0, scale: 0.5 }}
+                    animate={{ y: "-10vh", opacity: [0, 0.4, 0.4, 0], scale: [0.5, 1.4, 0.8] }}
                     transition={{
                       repeat: Infinity,
-                      duration: 7 + Math.random() * 5,
-                      delay: Math.random() * 4,
+                      duration: 8 + Math.random() * 6,
+                      delay: Math.random() * 5,
                       ease: "easeInOut",
                     }}
-                    style={{ left: `${10 + Math.random() * 80}%` }}
-                    className="absolute w-4 h-4 rounded-full bg-amber-400/8 dark:bg-amber-400/5 blur-[2.5px]"
+                    style={{ left: `${5 + Math.random() * 90}%` }}
+                    className="absolute w-5 h-5 rounded-full bg-amber-400/8 dark:bg-amber-400/5 blur-[3px]"
                   />
                 ))}
               </div>
@@ -635,18 +635,18 @@ export function StatusSection() {
             {/* Cloudy & Fog effect */}
             {(activeWeatherEffect === "cloudy" || activeWeatherEffect === "fog") && (
               <div className="absolute inset-0 opacity-60">
-                {Array.from({ length: 5 }).map((_, i) => (
+                {Array.from({ length: 8 }).map((_, i) => (
                   <motion.div
                     key={i}
-                    initial={{ x: "-40%", y: `${15 + i * 18}%`, opacity: 0 }}
+                    initial={{ x: "-40%", y: `${10 + i * 12}%`, opacity: 0 }}
                     animate={{ x: "120%", opacity: [0, 0.12, 0.12, 0] }}
                     transition={{
                       repeat: Infinity,
-                      duration: 30 + i * 8,
-                      delay: i * 4,
+                      duration: 35 + i * 10,
+                      delay: i * 5,
                       ease: "linear",
                     }}
-                    className="absolute w-80 h-40 rounded-full bg-zinc-300/10 dark:bg-zinc-700/5 blur-3xl"
+                    className="absolute w-96 h-48 rounded-full bg-zinc-300/10 dark:bg-zinc-700/5 blur-3xl"
                   />
                 ))}
               </div>
@@ -671,11 +671,11 @@ export function StatusSection() {
         </div>
 
         {/* Responsive Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           
           {/* WIDGET 1: Visitor Local Time */}
           <div className={cn(
-            "p-6 rounded-3xl border transition-all duration-300 squircle-lg flex flex-row items-center justify-between min-h-[170px] group relative overflow-hidden gap-6",
+            "col-span-2 md:col-span-1 p-4 sm:p-6 rounded-3xl border transition-all duration-300 squircle-lg flex flex-row items-center justify-between min-h-[170px] group relative overflow-hidden gap-6",
             getTimeCardClass()
           )}>
             {/* Tiny Twinkling Stars in Night Mode */}
@@ -781,27 +781,27 @@ export function StatusSection() {
           </div>
 
           {/* WIDGET 2: Visitor Device Info */}
-          <div className="p-6 rounded-3xl border border-border bg-card hover:border-primary/25 hover:shadow-[0_8px_30px_rgb(0,0,0,0.01)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] transition-all duration-300 squircle-lg flex flex-col justify-between min-h-[170px] group relative overflow-hidden">
+          <div className="col-span-1 p-4 sm:p-6 rounded-3xl border border-border bg-card hover:border-primary/25 hover:shadow-[0_8px_30px_rgb(0,0,0,0.01)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] transition-all duration-300 squircle-lg flex flex-col justify-between min-h-[170px] group relative overflow-hidden">
             <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm pointer-events-none" />
             <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
               <Laptop className="w-3.5 h-3.5 text-primary" />
               Sistem Perangkat
             </span>
             <div className="space-y-2.5 my-3">
-              <div className="flex items-center justify-between text-xs sm:text-sm">
-                <span className="text-muted-foreground font-medium">Sistem Operasi:</span>
-                <span className="font-bold text-foreground">{system.os}</span>
+              <div className="flex items-center justify-between text-[10px] sm:text-xs gap-1">
+                <span className="text-muted-foreground font-medium truncate">OS:</span>
+                <span className="font-bold text-foreground truncate">{system.os}</span>
               </div>
-              <div className="flex items-center justify-between text-xs sm:text-sm">
-                <span className="text-muted-foreground font-medium">Browser Web:</span>
-                <span className="font-bold text-foreground">{system.browser}</span>
+              <div className="flex items-center justify-between text-[10px] sm:text-xs gap-1">
+                <span className="text-muted-foreground font-medium truncate">Browser:</span>
+                <span className="font-bold text-foreground truncate">{system.browser}</span>
               </div>
             </div>
           </div>
 
           {/* WIDGET 3: Visitor Battery / Power Info */}
           <div className={cn(
-            "p-6 rounded-3xl border transition-all duration-300 squircle-lg flex flex-col justify-between min-h-[170px] group relative overflow-hidden",
+            "col-span-1 p-4 sm:p-6 rounded-3xl border transition-all duration-300 squircle-lg flex flex-col justify-between min-h-[170px] group relative overflow-hidden",
             getBatteryCardClass()
           )}>
             {/* Battery Charging Float Up Bubbles */}
@@ -839,11 +839,11 @@ export function StatusSection() {
                   <h4 className="text-3xl sm:text-4xl font-black text-foreground tracking-tight tabular-nums">
                     {battery.level}%
                   </h4>
-                  <p className="text-xs text-muted-foreground font-semibold mt-1">
-                    {battery.charging ? "Sedang Mengisi Daya (AC)" : "Menggunakan Daya Baterai"}
+                  <p className="text-[10px] sm:text-xs text-muted-foreground font-semibold mt-1">
+                    {battery.charging ? "Mengisi Daya" : "Daya Baterai"}
                   </p>
                   {/* Liquid battery bar */}
-                  <div className="relative w-full h-3 bg-muted/60 border border-border/80 rounded-full overflow-hidden flex items-center px-0.5 mt-2.5 shadow-inner">
+                  <div className="relative w-full h-3 bg-muted/60 border border-border/40 rounded-full overflow-hidden flex items-center px-0.5 mt-2 shadow-inner">
                     <motion.div
                       className={cn(
                         "h-1.5 rounded-full",
@@ -861,12 +861,12 @@ export function StatusSection() {
                 </div>
               ) : (
                 <div>
-                  <h4 className="text-base sm:text-lg font-bold text-foreground tracking-tight flex items-center gap-1.5 mt-1.5">
-                    <ShieldCheck className="w-5 h-5 text-emerald-500" />
-                    Terhubung Adaptor AC
+                  <h4 className="text-sm sm:text-base font-bold text-foreground tracking-tight flex items-center gap-1.5 mt-1">
+                    <ShieldCheck className="w-4.5 h-4.5 text-emerald-500" />
+                    Daya AC Stabil
                   </h4>
-                  <p className="text-xs text-muted-foreground font-semibold mt-1">
-                    Ketersediaan Daya Stabil
+                  <p className="text-[10px] text-muted-foreground font-semibold mt-0.5">
+                    Terhubung Adaptor
                   </p>
                 </div>
               )}
@@ -876,7 +876,7 @@ export function StatusSection() {
           {/* WIDGET 4: Weather Info */}
           <div
             className={cn(
-              "p-6 rounded-3xl border transition-all duration-300 squircle-lg flex flex-col justify-between min-h-[200px] group relative overflow-hidden select-none z-10",
+              "col-span-2 md:col-span-1 p-4 sm:p-6 rounded-3xl border transition-all duration-300 squircle-lg flex flex-col justify-between min-h-[200px] group relative overflow-hidden select-none z-10",
               getWeatherCardClass()
             )}
           >
@@ -941,7 +941,7 @@ export function StatusSection() {
           </div>
 
           {/* WIDGET 5: Network & Speed Test (Spans 2 columns on desktop) */}
-          <div className="p-6 rounded-3xl border border-border bg-card hover:border-primary/25 hover:shadow-[0_8px_30px_rgb(0,0,0,0.01)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] transition-all duration-300 squircle-lg flex flex-col justify-between min-h-[200px] md:col-span-2 group relative overflow-hidden">
+          <div className="col-span-2 md:col-span-2 p-4 sm:p-6 rounded-3xl border border-border bg-card hover:border-primary/25 hover:shadow-[0_8px_30px_rgb(0,0,0,0.01)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] transition-all duration-300 squircle-lg flex flex-col justify-between min-h-[200px] group relative overflow-hidden">
             <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm pointer-events-none" />
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">

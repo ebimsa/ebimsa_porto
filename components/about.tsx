@@ -93,7 +93,7 @@ export function About() {
           </motion.div>
 
           {/* Right Column: Engineering Pillars Grid */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="lg:col-span-7 grid grid-cols-2 gap-4 sm:gap-6">
             {pillars.map((pillar) => {
               const IconComponent = pillar.icon;
               return (
@@ -103,20 +103,20 @@ export function About() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-50px" }}
-                  className="group relative p-6 rounded-3xl border border-border bg-card hover:border-primary/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] transition-all duration-300 squircle-lg flex flex-col justify-between min-h-[220px]"
+                  className="group relative p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-border bg-card hover:border-primary/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] transition-all duration-300 squircle-lg flex flex-col justify-between min-h-[180px] sm:min-h-[220px]"
                 >
                   {/* Subtle Glowing Corner Decoration on Hover */}
                   <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm pointer-events-none" />
 
-                  <div className="space-y-4">
-                    <div className="w-10 h-10 rounded-xl bg-muted border border-border flex items-center justify-center text-foreground group-hover:text-primary group-hover:border-primary/25 transition-all duration-300 squircle-sm">
-                      <IconComponent className="w-5 h-5" />
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-muted border border-border flex items-center justify-center text-foreground group-hover:text-primary group-hover:border-primary/25 transition-all duration-300 squircle-sm">
+                      <IconComponent className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
-                    <div className="space-y-2">
-                      <h3 className="font-bold text-base sm:text-lg text-foreground tracking-tight">
+                    <div className="space-y-1 sm:space-y-2">
+                      <h3 className="font-bold text-xs sm:text-base md:text-lg text-foreground tracking-tight">
                         {pillar.title}
                       </h3>
-                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                      <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground leading-relaxed">
                         {pillar.desc}
                       </p>
                     </div>
