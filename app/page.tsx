@@ -9,6 +9,7 @@ import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
 import { StatusSection } from "@/components/status-section";
 import { LoadingScreen } from "@/components/loading-screen";
+import { Guestbook } from "@/components/guestbook";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
@@ -43,6 +44,9 @@ export default function Home() {
 
               {/* Interactive Status Section */}
               <StatusSection />
+
+              {/* Guestbook Section */}
+              <Guestbook />
 
               {/* Contact Section */}
               <Contact />
