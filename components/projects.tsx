@@ -28,54 +28,54 @@ const PROJECTS_DATA: Project[] = [
   {
     id: "lumina-ai",
     title: "LuminaAI",
-    tagline: "Multi-Agent Orchestration & RAG Pipeline",
+    tagline: "An experimental RAG pipeline exploring multi-agent routing",
     coverImage: "/lumina_ai.png",
     category: "AI/ML",
     tags: ["FastAPI", "pgvector", "Qdrant", "LangChain", "Redis"],
-    overview: "A production-grade Retrieval-Augmented Generation (RAG) platform coordinating multiple specialized AI agents. It processes unstructured multi-format data, performs semantic chunking, and runs automated reasoning pipelines.",
-    problem: "Processing massive sets of unstructured files and orchestrating multiple LLM agents created high latency, high API costs, and context limits.",
-    solution: "Designed a distributed microservice architecture. A Go-based file processor performs semantic layout analysis. We built a custom multi-agent routing loop in Python using LangGraph.",
-    architecture: "Next.js frontend, Python FastAPI router, Go worker queue, Qdrant vector database, and Redis cache.",
-    techStack: ["Next.js", "FastAPI", "Go", "Qdrant", "Redis", "pgvector", "Docker"],
-    process: "Benchmarked semantic chunking strategies, built the routing orchestrator, and integrated load testing to optimize caching latency.",
-    challenges: "Handling agent loop divergence. Solved by building cycle-detection middleware and setting a token-sensitive session budget.",
-    lessons: "Hybrid search (keyword + semantic vector) yields 40% higher precision than raw vector searches alone.",
+    overview: "A learning project built to understand Retrieval-Augmented Generation (RAG). It coordinates specialized AI agents to process documents and answer questions based on semantic search.",
+    problem: "Getting LLM agents to coordinate and fetch context reliably without hitting token limits or looping infinitely.",
+    solution: "Built a simple router in Python using LangGraph and integrated pgvector/Qdrant to perform vector similarity search on document chunks.",
+    architecture: "Next.js frontend, Python FastAPI router, Qdrant vector database, and Redis cache.",
+    techStack: ["Next.js", "FastAPI", "Python", "Qdrant", "Redis", "pgvector", "Docker"],
+    process: "Benchmarked semantic chunking strategies, built the routing orchestrator, and integrated basic load testing.",
+    challenges: "Preventing infinite loops in agent reasoning. Resolved by adding a basic cycle-detector and step limit in the routing logic.",
+    lessons: "Learned how chunking strategies and hybrid search affect the accuracy of the model's responses.",
     githubUrl: "https://github.com/ebimsa/lumina-ai",
     demoUrl: "https://lumina.ebimsa.com",
   },
   {
     id: "nova-cloud",
     title: "NovaCloud",
-    tagline: "Distributed Serverless Event Broker & Scheduler",
+    tagline: "A simplified event broker and job scheduler in Go",
     coverImage: "/nova_cloud.png",
     category: "Systems & Cloud",
     tags: ["Go", "gRPC", "Kubernetes", "Prometheus", "Consensus"],
-    overview: "An event-driven pub/sub broker designed in Go to handle millions of tasks. It guarantees at-least-once message delivery, partition rebalancing, and decentralized task scheduling.",
-    problem: "Managing millions of scheduled jobs suffered from thread starvation and partition loss during node failures.",
-    solution: "Developed a custom log-structured merge-tree partition storage engine in Go. Integrated Raft consensus for leader election and partition rebalancing.",
-    architecture: "NovaCloud deploys as a StatefulSet on Kubernetes. Communicates via optimized gRPC, state monitored by Raft.",
-    techStack: ["Go", "gRPC", "Kubernetes", "Raft Consensus", "Prometheus", "Grafana"],
-    process: "Wrote protobuf schemas, implemented WAL storage, built cluster consensus, and set up Kubernetes horizontal autoscaling.",
-    challenges: "Network partitions (split-brain) during updates. Mitigated by tuning heartbeat intervals and node termination protocols.",
-    lessons: "Writing lightweight consensus bindings in Go drastically reduced runtime overhead compared to external queues.",
+    overview: "A school/personal project designed in Go to study how message brokers queue and schedule background tasks using gRPC.",
+    problem: "Scheduling tasks reliably and handling node disconnects in a multi-worker setup.",
+    solution: "Implemented a basic worker coordinator in Go using gRPC for node communication and standard database transactions for task states.",
+    architecture: "NovaCloud worker node system communicating via gRPC with simple node replication.",
+    techStack: ["Go", "gRPC", "Kubernetes", "PostgreSQL", "Docker", "Prometheus"],
+    process: "Wrote protobuf schemas, implemented simple write-ahead logs, and set up Docker containers for simulation.",
+    challenges: "Handling race conditions when multiple workers attempt to fetch the same job. Mitigated by implementing row locking in the task queue database.",
+    lessons: "Gained hands-on experience with Go concurrency primitives, channels, and designing clear protobuf APIs.",
     githubUrl: "https://github.com/ebimsa/nova-cloud",
     demoUrl: "https://nova.ebimsa.com",
   },
   {
     id: "synth-editor",
     title: "SynthEditor",
-    tagline: "Block-Based Collaborative Editor with Real-Time Sync",
+    tagline: "A collaborative rich-text editor with real-time sync",
     coverImage: "/synth_editor.png",
     category: "Full Stack",
     tags: ["Next.js", "Tailwind CSS", "Yjs", "WebSockets", "TipTap"],
-    overview: "A block-based collaborative workspace that mimics Notion's typing experience. It supports real-time editing, slash commands, multiplayer cursors, and offline sync.",
-    problem: "Synchronizing state changes across multiple concurrent users without central locks resulted in editing conflicts.",
-    solution: "Used Conflict-free Replicated Data Types (CRDTs) via Yjs. Built a custom WebSocket provider to sync binary document updates and cursor locations.",
-    architecture: "Next.js client using Tailwind CSS. Node.js WebSocket hub with Redis Adapter to synchronize document states, backed by PostgreSQL.",
+    overview: "A collaborative block-based document editor. Built to explore CRDTs (Conflict-free Replicated Data Types) for real-time document editing.",
+    problem: "Syncing cursor positions and text edits between concurrent users without overwriting each other's work.",
+    solution: "Integrated Yjs and TipTap with a Node.js WebSocket backend to sync binary document updates and cursors.",
+    architecture: "Next.js client using Tailwind CSS. Node.js WebSocket hub with Redis Adapter to synchronize document states.",
     techStack: ["Next.js", "Tailwind CSS", "Yjs", "WebSockets", "Node.js", "PostgreSQL"],
     process: "Selected Yjs CRDT for performance, built rich text block schemas, and implemented local-first caching using IndexDB.",
-    challenges: "Rapid editing on high-latency networks. Resolved by batching WebSocket packets and writing local-optimistic UI updates.",
-    lessons: "Caching states locally via IndexedDB makes the application feel instantaneous and robust against network drops.",
+    challenges: "Handling WebSocket reconnection and local state persistence when network drops.",
+    lessons: "Learned the benefits of local-first architectures and caching document states using IndexedDB.",
     githubUrl: "https://github.com/ebimsa/synth-editor",
     demoUrl: "https://synth.ebimsa.com",
   },
@@ -113,7 +113,7 @@ export function Projects() {
               Featured Projects
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground max-w-xl">
-              Deep-dives into systems architecture, production codebases, and artificial intelligence models.
+              A selection of coding projects I built to learn new concepts, frameworks, and programming patterns.
             </p>
           </div>
 
@@ -436,7 +436,7 @@ export function Projects() {
                             className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-border bg-card hover:bg-muted text-foreground font-semibold text-sm transition-all hover:border-foreground/10"
                           >
                             <Github className="w-4 h-4" />
-                            Verify Codebase
+                            View Source Code
                           </a>
                         </div>
                       </div>

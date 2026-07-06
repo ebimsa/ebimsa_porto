@@ -18,23 +18,23 @@ export function About() {
   const pillars = [
     {
       icon: Server,
-      title: "Backend Systems",
-      desc: "Architecting robust backend services, high-throughput REST/gRPC APIs, and SQL/NoSQL databases with Go and Node.js.",
+      title: "Backend Development",
+      desc: "Learning to build API services, handle databases, and understand server logic using Go, Node.js, and SQL.",
     },
     {
       icon: Brain,
-      title: "Artificial Intelligence",
-      desc: "Building Retrieval-Augmented Generation (RAG) pipelines, model integrations, and autonomous LLM agent networks.",
+      title: "AI & LLM Integration",
+      desc: "Exploring how to connect LLMs with custom data sources (RAG) and building simple, helpful AI utilities.",
     },
     {
       icon: Code,
-      title: "Full Stack Craft",
-      desc: "Designing responsive, accessible web interfaces using Next.js, React, and custom styling systems.",
+      title: "Web Development",
+      desc: "Building responsive, modern user interfaces using Next.js, React, and standard CSS.",
     },
     {
       icon: Cpu,
-      title: "Scalable Applications",
-      desc: "Deploying containerized environments, cloud microservices, and message queues under heavy workloads.",
+      title: "Systems & Cloud",
+      desc: "Experimenting with containerized environments using Docker and learning about cloud-native basics.",
     },
   ];
 
@@ -66,28 +66,28 @@ export function About() {
                 Biography
               </span>
               <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-foreground">
-                Engineering from first principles.
+                Learning and building step by step.
               </h2>
             </div>
 
             <div className="space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
               <p>
-                I am Enggal Bima Sakti (Ebimsa), a Computer Science student and Software Engineer at Universitas Indonesia. I write clean, performant, and thoroughly tested code.
+                Hi! I am Enggal Bima Sakti, currently in my final year of studying Computer Science at Universitas Indonesia. I enjoy building things with code and exploring new technologies.
               </p>
               <p>
-                Specializing in distributed systems, backend architectures, and LLM applications. Focused on engineering from first principles.
+                I am particularly interested in backend engineering and artificial intelligence. I try my best to write clean, easy-to-understand code and learn from every project I work on.
               </p>
             </div>
 
-            {/* Quick Metrics */}
+            {/* Quick Info */}
             <div className="grid grid-cols-2 gap-4 pt-4 border-t border-border/60">
               <div>
-                <p className="text-3xl font-bold text-foreground">95+</p>
-                <p className="text-xs text-muted-foreground font-medium">Lighthouse Performance Target</p>
+                <p className="text-sm font-bold text-foreground">Education</p>
+                <p className="text-xs text-muted-foreground font-medium">CS Student, Universitas Indonesia</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-foreground">100%</p>
-                <p className="text-xs text-muted-foreground font-medium">Commitment to Clean Code</p>
+                <p className="text-sm font-bold text-foreground">Focus</p>
+                <p className="text-xs text-muted-foreground font-medium">Backend & Web Applications</p>
               </div>
             </div>
           </motion.div>

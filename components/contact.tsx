@@ -59,10 +59,10 @@ export function Contact() {
                 Contact
               </span>
               <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-foreground leading-tight">
-                Let&apos;s build something intelligent together.
+                Say Hello!
               </h2>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                Whether you&apos;re looking to hire an intern, collaborate on research, or discuss systems engineering and LLM agents, my inbox is always open.
+                I am always open to discussing new opportunities, collaborating on small projects, or just chatting about computer science and web development. Feel free to reach out!
               </p>
             </div>
 
@@ -72,7 +72,7 @@ export function Contact() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
               </span>
-              <span className="text-foreground">Open to internship & contract work</span>
+              <span className="text-foreground">Open to internships & entry-level roles</span>
             </div>
 
             {/* Direct Email Card */}

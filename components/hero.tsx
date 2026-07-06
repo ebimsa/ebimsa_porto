@@ -47,8 +47,7 @@ export function Hero() {
             variants={itemVariants}
             className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-none text-foreground"
           >
-            Building clean architecture. <br className="hidden sm:block" />
-            <span className="text-logo-gradient">Solving hard systems.</span>
+            Hi, I&apos;m <span className="text-logo-gradient">Enggal Bima Sakti.</span>
           </motion.h1>
 
           {/* Concise Paragraph */}
@@ -56,7 +55,7 @@ export function Hero() {
             variants={itemVariants}
             className="text-base sm:text-lg md:text-xl text-muted-foreground font-normal leading-relaxed max-w-2xl"
           >
-            Computer Science student at Universitas Indonesia. I build high-performance distributed engines, robust backends, and intelligent multi-agent LLM software.
+            I am a final-year Computer Science student at Universitas Indonesia. I enjoy building backend services, exploring AI, and crafting simple, functional web applications.
           </motion.p>
 
           {/* Action CTAs */}

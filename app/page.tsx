@@ -1,42 +1,54 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { About } from "@/components/about";
 import { Projects } from "@/components/projects";
-import { Experience } from "@/components/experience";
-import { Certifications } from "@/components/certifications";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
+import { LoadingScreen } from "@/components/loading-screen";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
+
   return (
     <>
-      {/* Sticky Blurred Glassmorphism Navigation */}
-      <Navbar />
+      <AnimatePresence mode="wait">
+        {loading ? (
+          <LoadingScreen key="loader" onComplete={() => setLoading(false)} />
+        ) : (
+          <motion.div
+            key="content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="min-h-screen flex flex-col"
+          >
+            {/* Sticky Blurred Glassmorphism Navigation */}
+            <Navbar />
 
-      {/* Main Single Page Content Flow */}
-      <main className="flex-1 w-full bg-background transition-colors duration-300">
-        {/* Hero Section */}
-        <Hero />
+            {/* Main Single Page Content Flow */}
+            <main className="flex-1 w-full bg-background transition-colors duration-300">
+              {/* Hero Section */}
+              <Hero />
 
-        {/* About Section */}
-        <About />
+              {/* About Section */}
+              <About />
 
-        {/* Projects Section */}
-        <Projects />
+              {/* Projects Section */}
+              <Projects />
 
-        {/* Experience Section */}
-        <Experience />
+              {/* Contact Section */}
+              <Contact />
+            </main>
 
-        {/* Certifications Section */}
-        <Certifications />
-
-        {/* Contact Section */}
-        <Contact />
-      </main>
-
-      {/* Footer Section */}
-      <Footer />
+            {/* Footer Section */}
+            <Footer />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

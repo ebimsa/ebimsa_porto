@@ -17,7 +17,7 @@ export function Footer() {
             &copy; {new Date().getFullYear()} Enggal Bima Sakti. All rights reserved.
           </p>
           <p className="text-[10px] text-muted-foreground/60 leading-none">
-            Designed and engineered from first principles in Indonesia.
+            Built with care in Indonesia.
           </p>
         </div>
 
