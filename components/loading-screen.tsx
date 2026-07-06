@@ -9,6 +9,7 @@ interface LoadingScreenProps {
 }
 
 export function LoadingScreen({ onComplete }: LoadingScreenProps) {
+  const [audioBlocked, setAudioBlocked] = useState(false);
   const [stage, setStage] = useState(0); // 0: enter/intro, 1: show full, 2: collapse others, 3: transform case & scale/glow, 4: exit
 
   const letters = [
@@ -32,18 +33,99 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
   ];
 
   useEffect(() => {
+    // 1. Initialize Audio objects
+    const voiceAudio = new Audio("/halo.mp3");
+    const bgMusic = new Audio("/music.mp3");
+
+    voiceAudio.volume = 0.55;
+    bgMusic.volume = 0.45;
+    bgMusic.loop = true;
+
+    let completed = false;
+    let isMounted = true;
+    let fadeTimer: NodeJS.Timeout;
+    let fadeInterval: NodeJS.Timeout;
+
+    // Fade out background music slowly after 4 seconds of successful playback (5.0s total audio run)
+    const startFadeTimer = () => {
+      fadeTimer = setTimeout(() => {
+        fadeInterval = setInterval(() => {
+          if (bgMusic.volume > 0.025) {
+            bgMusic.volume = Math.max(0, bgMusic.volume - 0.025);
+          } else {
+            clearInterval(fadeInterval);
+            bgMusic.pause();
+          }
+        }, 50);
+      }, 4000);
+    };
+
+    const cleanupListeners = () => {
+      window.removeEventListener("click", startOnInteraction);
+      window.removeEventListener("touchstart", startOnInteraction);
+      window.removeEventListener("keydown", startOnInteraction);
+    };
+
+    // Fallback play on interaction if blocked by autoplay policy
+    const startOnInteraction = async () => {
+      try {
+        await bgMusic.play();
+        await voiceAudio.play();
+        if (isMounted) {
+          setAudioBlocked(false);
+        }
+        cleanupListeners();
+        startFadeTimer();
+      } catch (e) {
+        console.error("Failed to play audio on gesture:", e);
+      }
+    };
+
+    const playAudios = async () => {
+      try {
+        await bgMusic.play();
+        await voiceAudio.play();
+        startFadeTimer();
+      } catch (err) {
+        console.warn("Audio autoplay blocked by browser policy, listening for gesture...");
+        if (isMounted) {
+          setAudioBlocked(true);
+        }
+        window.addEventListener("click", startOnInteraction);
+        window.addEventListener("touchstart", startOnInteraction);
+        window.addEventListener("keydown", startOnInteraction);
+      }
+    };
+
+    playAudios();
+
+    // 2. Stage Timers
     const t1 = setTimeout(() => setStage(1), 500);  // show full name quickly
     const t2 = setTimeout(() => setStage(2), 1200); // start collapse animation
     const t3 = setTimeout(() => setStage(3), 1950); // reveal logo and glow
     const t4 = setTimeout(() => setStage(4), 2650); // start exit fade out
-    const t5 = setTimeout(() => onComplete(), 3000); // trigger complete callback
+    const t5 = setTimeout(() => {
+      completed = true;
+      onComplete();
+    }, 3000); // trigger complete callback
 
     return () => {
+      isMounted = false;
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
       clearTimeout(t4);
       clearTimeout(t5);
+      
+      // If completed normally, we do NOT pause the audio or clear listeners.
+      // This allows the user to click the main dashboard to play the audio later!
+      if (!completed) {
+        clearTimeout(fadeTimer);
+        clearInterval(fadeInterval);
+        cleanupListeners();
+        voiceAudio.pause();
+        bgMusic.pause();
+      }
     };
   }, [onComplete]);
 
@@ -173,6 +255,36 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
           }}
         />
       </div>
+
+      {/* Ambient Audio Activation Hint */}
+      {audioBlocked && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="absolute bottom-10 left-0 right-0 z-20 flex items-center justify-center gap-2 text-muted-foreground/60 text-[10px] sm:text-xs font-semibold tracking-widest uppercase pointer-events-none"
+        >
+          <motion.div
+            animate={{ opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="flex items-center gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="w-3.5 h-3.5 animate-bounce"
+            >
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+            </svg>
+            Klik di mana saja untuk mengaktifkan suara
+          </motion.div>
+        </motion.div>
+      )}
     </motion.div>
   );
 }
