@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { ArrowUp, Eye, Users, ShieldCheck } from "lucide-react";
 
 export function Footer() {
-  const [pageViews, setPageViews] = useState(12842);
+  const [pageViews, setPageViews] = useState(1);
   const [activeUsers, setActiveUsers] = useState(4);
 
   useEffect(() => {
@@ -15,8 +15,7 @@ export function Footer() {
         if (response.ok) {
           const data = await response.json();
           if (data.success && typeof data.views === "number") {
-            // Offset view count by 12840 to retain a high-tech premium number base
-            setPageViews(12840 + data.views);
+            setPageViews(data.views);
           }
         } else {
           throw new Error("API responded with error");
@@ -29,9 +28,9 @@ export function Footer() {
           let currentViews = storedViews ? parseInt(storedViews, 10) : 0;
           currentViews += 1;
           localStorage.setItem("ebimsa_views", currentViews.toString());
-          setPageViews(12840 + currentViews);
+          setPageViews(currentViews);
         } catch {
-          setPageViews(12842);
+          setPageViews(1);
         }
       }
     };
