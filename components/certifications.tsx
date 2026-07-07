@@ -29,15 +29,15 @@ const CERTIFICATIONS_DATA: Certification[] = [
     topics: ["Cloud Architecture", "AWS IAM & Security", "EC2, S3, RDS, Lambda", "Pricing Models"],
   },
   {
-    id: "cert-dl",
-    title: "Deep Learning Specialization",
-    issuer: "DeepLearning.AI / Coursera",
-    issueDate: "May 2024",
-    credentialId: "COURSERA-DL-99381",
-    verifyUrl: "https://coursera.org/verify",
-    logo: "Brain",
-    description: "A comprehensive 5-course series covering foundational neural networks, hyperparameter tuning, structuring ML projects, Convolutional Neural Networks (CNNs), and Sequence Models (LSTMs, GRUs, Transformers).",
-    topics: ["Neural Networks", "Optimization Algorithms", "Convolutional Networks", "Sequence Models & Attention"],
+    id: "cert-docker",
+    title: "Docker Certified Associate",
+    issuer: "Mirantis / Docker",
+    issueDate: "June 2024",
+    credentialId: "DOCKER-DCA-99381",
+    verifyUrl: "https://docker.com/verification",
+    logo: "Layers",
+    description: "Validates technical expertise in container orchestration, image creation, registry management, storage configuration, networking implementation, and container security compliance.",
+    topics: ["Containerization", "Orchestration & Swarm", "Volume Management", "Network Configurations"],
   },
   {
     id: "cert-google-python",
@@ -67,7 +67,7 @@ export function Certifications() {
             Professional Certifications
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-xl">
-            Verified expertise in cloud computing, machine learning modeling, and systems automation.
+            Verified expertise in cloud computing, container virtualization, and systems automation.
           </p>
         </div>
 

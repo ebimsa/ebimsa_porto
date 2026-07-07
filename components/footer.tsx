@@ -230,74 +230,18 @@ export function Footer() {
     const y = 115 - (d.views / maxViews) * 80;
     return { x, y, label: d.label, val: d.views };
   });
-
-  const linePath = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
+const linePath = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
   const areaPath = `${linePath} L ${points[points.length - 1].x} 125 L ${points[0].x} 125 Z`;
 
   return (
-    <footer className="w-full py-10 border-t border-border/40 bg-card/10 mt-auto select-none">
-      <div className="max-w-6xl mx-auto px-4 md:px-6 space-y-6">
+    <footer className="w-full py-8 border-t border-border/40 bg-card/10 mt-auto select-none">
+      <div className="max-w-6xl mx-auto px-4 md:px-6">
         
-        {/* Visit Statistics Micro Dashboard */}
-        <div 
-          onClick={() => setIsStatsModalOpen(true)}
-          title="Click to view detailed visitor analytics"
-          className="grid grid-cols-2 gap-3 max-w-md cursor-pointer active:scale-[0.99] transition-all group"
-        >
-          {/* Card 1: Total Visits */}
-          <div className="p-3 rounded-2xl border border-border/50 bg-card/30 backdrop-blur-sm flex items-center gap-3 squircle-md group-hover:border-primary/40 group-hover:bg-card/45 transition-colors">
-            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
-              <Eye className="w-4 h-4" />
-            </div>
-            <div>
-              <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider leading-tight">
-                Total Visits
-              </p>
-              <p className="text-sm font-black text-foreground">
-                {pageViews.toLocaleString()}
-              </p>
-            </div>
-          </div>
-
-          {/* Card 2: Active Visitors */}
-          <div className="p-3 rounded-2xl border border-border/50 bg-card/30 backdrop-blur-sm flex items-center gap-3 squircle-md group-hover:border-emerald-500/40 group-hover:bg-card/45 transition-colors">
-            <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 flex-shrink-0 relative">
-              <span className="absolute top-2 right-2 flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
-              </span>
-              <Users className="w-4 h-4" />
-            </div>
-            <div>
-              <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider leading-tight">
-                Live Visitors
-              </p>
-              <p className="text-sm font-black text-foreground">
-                {activeUsers} Online
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="w-full h-[1px] bg-border/40" />
-
-        {/* Copyright and Metadata row */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          {/* Copyright details */}
-          <div className="space-y-1">
-            <p className="text-xs sm:text-sm text-muted-foreground font-medium">
-              &copy; {new Date().getFullYear()} Enggal Bima Sakti. All rights reserved.
-            </p>
-            <p className="text-[10px] text-muted-foreground/60 leading-none">
-              Built with care in Indonesia.
-            </p>
-          </div>
-
-          {/* Back to top & stack details */}
-          <div className="flex items-center gap-6">
-            <span className="text-[10px] sm:text-xs text-muted-foreground font-medium">
-              Next.js 16 • Tailwind CSS v4 • Framer Motion
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Left: Copyright & Top Button (Cleanly grouped) */}
+          <div className="flex items-center gap-4 text-center md:text-left">
+            <span className="text-xs sm:text-sm text-muted-foreground font-medium">
+              &copy; ebimsa 2026. All rights reserved.
             </span>
             <button
               onClick={scrollToTop}
@@ -307,6 +251,45 @@ export function Footer() {
               <span>Top</span>
               <ArrowUp className="w-3.5 h-3.5" />
             </button>
+          </div>
+
+          {/* Right: Visit Statistics Micro Dashboard */}
+          <div 
+            onClick={() => setIsStatsModalOpen(true)}
+            title="Click to view detailed visitor analytics"
+            className="grid grid-cols-2 gap-3 w-full md:w-auto max-w-md cursor-pointer active:scale-[0.99] transition-all group"
+          >
+            {/* Card 1: Total Visits */}
+            <div className="p-2 px-3 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm flex items-center gap-2.5 group-hover:border-primary/40 group-hover:bg-card/45 transition-colors">
+              <Eye className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+              <div>
+                <p className="text-[9px] text-muted-foreground uppercase font-bold tracking-wider leading-none">
+                  Visits
+                </p>
+                <p className="text-xs font-black text-foreground mt-0.5 leading-none">
+                  {pageViews.toLocaleString()}
+                </p>
+              </div>
+            </div>
+
+            {/* Card 2: Active Visitors */}
+            <div className="p-2 px-3 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm flex items-center gap-2.5 group-hover:border-emerald-500/40 group-hover:bg-card/45 transition-colors">
+              <div className="relative flex-shrink-0">
+                <span className="absolute -top-1.5 -right-1.5 flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                </span>
+                <Users className="w-3.5 h-3.5 text-emerald-500" />
+              </div>
+              <div>
+                <p className="text-[9px] text-muted-foreground uppercase font-bold tracking-wider leading-none">
+                  Online
+                </p>
+                <p className="text-xs font-black text-foreground mt-0.5 leading-none">
+                  {activeUsers}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
         

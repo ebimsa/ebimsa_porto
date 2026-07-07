@@ -26,58 +26,40 @@ type Project = {
 
 const PROJECTS_DATA: Project[] = [
   {
-    id: "lumina-ai",
-    title: "LuminaAI",
-    tagline: "An experimental RAG pipeline exploring multi-agent routing",
-    coverImage: "/lumina_ai.png",
-    category: "AI/ML",
-    tags: ["FastAPI", "pgvector", "Qdrant", "LangChain", "Redis"],
-    overview: "A learning project built to understand Retrieval-Augmented Generation (RAG). It coordinates specialized AI agents to process documents and answer questions based on semantic search.",
-    problem: "Getting LLM agents to coordinate and fetch context reliably without hitting token limits or looping infinitely.",
-    solution: "Built a simple router in Python using LangGraph and integrated pgvector/Qdrant to perform vector similarity search on document chunks.",
-    architecture: "Next.js frontend, Python FastAPI router, Qdrant vector database, and Redis cache.",
-    techStack: ["Next.js", "FastAPI", "Python", "Qdrant", "Redis", "pgvector", "Docker"],
-    process: "Benchmarked semantic chunking strategies, built the routing orchestrator, and integrated basic load testing.",
-    challenges: "Preventing infinite loops in agent reasoning. Resolved by adding a basic cycle-detector and step limit in the routing logic.",
-    lessons: "Learned how chunking strategies and hybrid search affect the accuracy of the model's responses.",
-    githubUrl: "https://github.com/ebimsa/lumina-ai",
-    demoUrl: "https://lumina.ebimsa.com",
-  },
-  {
-    id: "nova-cloud",
-    title: "NovaCloud",
-    tagline: "A simplified event broker and job scheduler in Go",
-    coverImage: "/nova_cloud.png",
-    category: "Systems & Cloud",
-    tags: ["Go", "gRPC", "Kubernetes", "Prometheus", "Consensus"],
-    overview: "A school/personal project designed in Go to study how message brokers queue and schedule background tasks using gRPC.",
-    problem: "Scheduling tasks reliably and handling node disconnects in a multi-worker setup.",
-    solution: "Implemented a basic worker coordinator in Go using gRPC for node communication and standard database transactions for task states.",
-    architecture: "NovaCloud worker node system communicating via gRPC with simple node replication.",
-    techStack: ["Go", "gRPC", "Kubernetes", "PostgreSQL", "Docker", "Prometheus"],
-    process: "Wrote protobuf schemas, implemented simple write-ahead logs, and set up Docker containers for simulation.",
-    challenges: "Handling race conditions when multiple workers attempt to fetch the same job. Mitigated by implementing row locking in the task queue database.",
-    lessons: "Gained hands-on experience with Go concurrency primitives, channels, and designing clear protobuf APIs.",
-    githubUrl: "https://github.com/ebimsa/nova-cloud",
-    demoUrl: "https://nova.ebimsa.com",
-  },
-  {
-    id: "synth-editor",
-    title: "SynthEditor",
-    tagline: "A collaborative rich-text editor with real-time sync",
-    coverImage: "/synth_editor.png",
+    id: "saidata",
+    title: "Saidata",
+    tagline: "Integrated administrative services hub and e-Government platform",
+    coverImage: "/saidata.png",
     category: "Full Stack",
-    tags: ["Next.js", "Tailwind CSS", "Yjs", "WebSockets", "TipTap"],
-    overview: "A collaborative block-based document editor. Built to explore CRDTs (Conflict-free Replicated Data Types) for real-time document editing.",
-    problem: "Syncing cursor positions and text edits between concurrent users without overwriting each other's work.",
-    solution: "Integrated Yjs and TipTap with a Node.js WebSocket backend to sync binary document updates and cursors.",
-    architecture: "Next.js client using Tailwind CSS. Node.js WebSocket hub with Redis Adapter to synchronize document states.",
-    techStack: ["Next.js", "Tailwind CSS", "Yjs", "WebSockets", "Node.js", "PostgreSQL"],
-    process: "Selected Yjs CRDT for performance, built rich text block schemas, and implemented local-first caching using IndexDB.",
-    challenges: "Handling WebSocket reconnection and local state persistence when network drops.",
-    lessons: "Learned the benefits of local-first architectures and caching document states using IndexedDB.",
-    githubUrl: "https://github.com/ebimsa/synth-editor",
-    demoUrl: "https://synth.ebimsa.com",
+    tags: ["React 19", "Laravel 12", "Octane", "PostgreSQL", "CAS SSO"],
+    overview: "An e-Government portal (e-ULT Unila) that automates administrative services, workflows, and document generation for all Lampung University divisions.",
+    problem: "Legacy academic databases were siloed and administrative approvals were slow, paper-heavy, and untrackable in real-time.",
+    solution: "Developed a unified administrative entrypoint with dynamic multi-stage workflow engines, automatic Word/PDF generators, and Telegram validator notifications.",
+    architecture: "React 19 client (Recharts/Quill), Laravel 12 + Laravel Octane (RoadRunner) backend, and a hybrid relational-document PostgreSQL schema.",
+    techStack: ["React 19", "Vite", "Tailwind CSS", "Laravel 12", "Octane", "RoadRunner", "PostgreSQL", "CAS SSO"],
+    process: "Mapped complex organizational approval chains, built dynamic PDF generators with verification QR codes, and integrated SSO CAS 2.0 authentication.",
+    challenges: "Synchronizing data across conflicting campus systems and bypassing Cloudflare. Solved by implementing Node.js + Playwright bypass microservices and GIN index optimizations.",
+    lessons: "Mastered stateful PHP architectures (Octane), CAS token single sign-on protocols, and indexing performance tuning on massive JSONB datasets.",
+    githubUrl: "https://github.com/enggalbima/saidata",
+    demoUrl: "https://saidata.unila.ac.id",
+  },
+  {
+    id: "doripay",
+    title: "DoriPay",
+    tagline: "PPOB billing and digital product payment platform",
+    coverImage: "/doripay.png",
+    category: "Full Stack",
+    tags: ["Go", "Fiber", "Svelte", "PostgreSQL", "Tripay", "Digiflazz"],
+    overview: "A full-stack PPOB payment system designed for secure, automated online billing and digital product transactions (credit, data packages, electricity tokens).",
+    problem: "Processing concurrent wallet transactions and avoiding race conditions on balance mutations during heavy customer traffic peaks.",
+    solution: "Implemented idempotent transaction requests with pessimistic row-locking in PostgreSQL, integrated with Tripay payment gateway and Digiflazz/Orkut PPOB provider APIs.",
+    architecture: "Svelte client dashboard (Svelte Stores), Golang Fiber backend structured in Clean Architecture, PostgreSQL database with high-performance pgx driver.",
+    techStack: ["Go", "Fiber", "Svelte", "PostgreSQL", "Tripay", "Digiflazz", "Orkut"],
+    process: "Implemented ACID-compliant wallet mutation logic, mapped tiered pricing systems for agents, designed granular RBAC controls, and established reliable webhook callbacks.",
+    challenges: "Managing double-spend attempts on instant wallet deductions. Mitigated by enforcing strict database locks and request idempotency validations.",
+    lessons: "Gained deep knowledge in secure financial ledger engineering, Svelte stores state synchronization, and integrating external payment gateway API endpoints.",
+    githubUrl: "https://github.com/enggalbima/doripay",
+    demoUrl: "https://doripay.com",
   },
 ];
 
@@ -86,7 +68,7 @@ export function Projects() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
-  const categories = ["all", "AI/ML", "Systems & Cloud", "Full Stack"];
+  const categories = ["all", "Full Stack"];
 
   const filteredProjects = PROJECTS_DATA.filter((project) => {
     const matchesSearch =
@@ -148,7 +130,7 @@ export function Projects() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
               <motion.div
@@ -181,7 +163,7 @@ export function Projects() {
                       <span className="inline-flex px-2 py-0.5 text-[8px] font-bold tracking-widest text-primary border border-primary/20 bg-primary/10 rounded-full uppercase">
                         {project.category}
                       </span>
-                      <span className="text-[10px] font-mono text-muted-foreground/60">{project.id}.ebimsa.com</span>
+                      <span className="text-[10px] font-mono text-muted-foreground/60">{project.demoUrl.replace("https://", "")}</span>
                     </div>
                     <h3 className="text-lg font-black tracking-tight text-foreground group-hover:text-primary transition-colors">
                       {project.title}
@@ -375,15 +357,6 @@ export function Projects() {
                           >
                             <ExternalLink className="w-4 h-4" />
                             Live Demonstration
-                          </a>
-                          <a
-                            href={activeProject.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-border bg-card hover:bg-muted text-foreground font-semibold text-sm transition-all hover:border-foreground/10"
-                          >
-                            <Github className="w-4 h-4" />
-                            View Source Code
                           </a>
                         </div>
                       </div>

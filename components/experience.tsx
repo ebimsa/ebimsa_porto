@@ -9,7 +9,7 @@ type ExperienceItem = {
   role: string;
   organization: string;
   period: string;
-  type: "Internship" | "Research" | "Teaching Assistant" | "Leadership" | "Competition";
+  type: "Internship" | "Research" | "Teaching Assistant" | "Leadership" | "Competition" | "Development";
   icon: React.ComponentType<{ className?: string }>;
   details: string[];
   tags: string[];
@@ -17,18 +17,18 @@ type ExperienceItem = {
 
 const EXPERIENCE_DATA: ExperienceItem[] = [
   {
-    id: "exp-research",
-    role: "Research Assistant",
-    organization: "Universitas Indonesia - Natural Language Processing Lab",
+    id: "exp-tik-unila",
+    role: "Lead Backend Developer",
+    organization: "Universitas Lampung - UPT TIK (ICT Center)",
     period: "Oct 2024 - Present",
-    type: "Research",
+    type: "Development",
     icon: Landmark,
     details: [
-      "Conducting research on resource-efficient fine-tuning of transformer models for low-resource languages.",
-      "Optimized tokenization pipelines and implemented LoRA adapters, reducing training hardware requirements by 30%.",
-      "Collaborating with senior researchers to publish findings in regional NLP conferences.",
+      "Designing and implementing integrated database architectures and microservices for the university data ecosystem.",
+      "Developed the official Lampung University data analysis platform (saidata.unila.ac.id), enabling centralized reporting across 8+ faculties.",
+      "Optimized backend REST API pipelines in Go, reducing processing latencies by 35% for high-concurrency requests.",
     ],
-    tags: ["Python", "PyTorch", "Hugging Face", "Transformers", "LoRA"],
+    tags: ["Go", "PostgreSQL", "Redis", "Docker", "REST API"],
   },
   {
     id: "exp-intern",
@@ -47,12 +47,12 @@ const EXPERIENCE_DATA: ExperienceItem[] = [
   {
     id: "exp-ta",
     role: "Teaching Assistant",
-    organization: "Universitas Indonesia - Faculty of Computer Science",
+    organization: "Universitas Lampung - Department of Computer Science",
     period: "Aug 2023 - Present",
     type: "Teaching Assistant",
     icon: BookOpen,
     details: [
-      "Lecturing undergraduate students on Data Structures & Algorithms and Database Systems.",
+      "Lecturing undergraduate students on Data Structures & Algorithms and Database Management Systems.",
       "Grading programming assignments (C++ & Java) and hosting weekly tutorials on runtime complexity.",
       "Designed automatic grading scripts using Python, reducing submission grading cycle time by 40%.",
     ],
@@ -60,29 +60,29 @@ const EXPERIENCE_DATA: ExperienceItem[] = [
   },
   {
     id: "exp-leadership",
-    role: "Head of Engineering",
-    organization: "Computer Science Student Association (BEM Fasilkom UI)",
+    role: "Head of Technology",
+    organization: "Himatika Universitas Lampung (Computer Science Association)",
     period: "Jan 2024 - Dec 2024",
     type: "Leadership",
     icon: Users,
     details: [
       "Directed a team of 15 software developers managing internal academic applications and event platforms.",
       "Enforced code reviews, TypeScript schemas, and consolidated CI/CD builds on GitHub Actions.",
-      "Successfully delivered 4 web apps serving over 2,000 active student users.",
+      "Successfully delivered 3 web apps serving over 1,500 active student users.",
     ],
     tags: ["Project Management", "React", "CI/CD", "TypeScript", "Next.js"],
   },
   {
     id: "exp-hackathon",
     role: "1st Place Winner",
-    organization: "National Informatics Hackathon (Informatics Expo)",
+    organization: "GEMASTIK (National Student Show in ICT)",
     period: "Mar 2024",
     type: "Competition",
     icon: Trophy,
     details: [
       "Developed a serverless supply chain distribution coordinator that matches logistics operators dynamically.",
       "Implemented a graph-theoretic shortest-path routing algorithm on AWS Lambda.",
-      "Pitched the final product architecture to industry leaders, winning first place out of 120 teams.",
+      "Pitched the final product architecture to industry leaders, winning first place out of 100+ teams.",
     ],
     tags: ["AWS Lambda", "Node.js", "Serverless", "Graph Algorithms", "Pitching"],
   },

@@ -77,7 +77,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
         cleanupListeners();
         startFadeTimer();
       } catch (e) {
-        console.error("Failed to play audio on gesture:", e);
+        console.warn("Audio playback on gesture failed (autoplay policy still active or document not unlocked):", e);
       }
     };
 

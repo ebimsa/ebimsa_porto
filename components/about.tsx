@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Server, Brain, Code, Cpu } from "lucide-react";
+import { Server, Database, Code, Cpu } from "lucide-react";
 
 export function About() {
   const cardVariants = {
@@ -21,9 +21,9 @@ export function About() {
       desc: "Building performant API services, optimizing database schemas, and handling distributed transaction states using Go, Redis, and PostgreSQL.",
     },
     {
-      icon: Brain,
-      title: "AI & LLM Integration",
-      desc: "Developing resource-efficient model fine-tuning pipelines (LoRA) and connecting agents with local knowledge bases (RAG).",
+      icon: Database,
+      title: "Database & Caching",
+      desc: "Designing clean relational structures, indexes, and strategic caching layers to ensure high data consistency and sub-millisecond query responses.",
     },
     {
       icon: Code,
@@ -61,10 +61,10 @@ export function About() {
 
             <div className="space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
               <p>
-                My approach to software engineering centers around simplicity, typesafety, and hardware efficiency. Rather than chasing trends, I focus on building reliable backend systems and integrating machine learning workflows pragmatically.
+                My approach to software engineering centers around simplicity, typesafety, and architectural scalability. Rather than chasing trends, I focus on building reliable backend systems, optimizing databases, and writing clean, maintainable code.
               </p>
               <p>
-                Whether it is reducing API latencies with structured caching layers or optimizing transformer tokenizers for local low-resource dialects, I enjoy exploring the boundary where systems engineering meets intelligent automation.
+                Whether it is reducing API latencies with caching strategies or containerizing web services for modern cloud deployment, I enjoy exploring the boundary where systems engineering meets clean product implementation.
               </p>
             </div>
 
@@ -72,11 +72,11 @@ export function About() {
             <div className="grid grid-cols-2 gap-4 pt-4 border-t border-border/60">
               <div>
                 <p className="text-sm font-bold text-foreground">Core Focus</p>
-                <p className="text-xs text-muted-foreground font-medium">Backend & ML Systems</p>
+                <p className="text-xs text-muted-foreground font-medium">Backend & Web Engineering</p>
               </div>
               <div>
                 <p className="text-sm font-bold text-foreground">Primary Stack</p>
-                <p className="text-xs text-muted-foreground font-medium">Golang, Python, Next.js</p>
+                <p className="text-xs text-muted-foreground font-medium">Golang, PostgreSQL, Next.js</p>
               </div>
             </div>
           </motion.div>

@@ -392,7 +392,7 @@ export function StatusSection() {
           barFillAirQuality: "bg-emerald-500",
           airQualityText: "text-emerald-400 font-black",
           analog: "border-zinc-800 bg-zinc-950/45 text-slate-100",
-          handHour: "bg-slate-205",
+          handHour: "bg-slate-200",
           handMin: "bg-slate-400",
           worldBox: "bg-zinc-950/20 border-zinc-800/70 text-slate-300",
           divide: "border-white/10",
@@ -418,7 +418,7 @@ export function StatusSection() {
         barFillAirQuality: "bg-emerald-500",
         airQualityText: "text-emerald-400 font-black",
         analog: "border-zinc-800 bg-zinc-950/45 text-slate-100",
-        handHour: "bg-slate-205",
+        handHour: "bg-slate-200",
         handMin: "bg-slate-400",
         worldBox: "bg-zinc-950/20 border-zinc-800/70 text-slate-300",
         divide: "border-white/10",
@@ -448,7 +448,7 @@ export function StatusSection() {
           barFillAirQuality: "bg-emerald-400 shadow-[0_0_6px_#34d399]",
           airQualityText: "text-emerald-400 font-black",
           analog: "border-slate-800/35 bg-black/20 text-slate-100",
-          handHour: "bg-slate-205",
+          handHour: "bg-slate-200",
           handMin: "bg-slate-400",
           worldBox: "bg-black/20 border-white/10 text-slate-200",
           divide: "border-white/10",
@@ -474,7 +474,7 @@ export function StatusSection() {
           barFillAirQuality: "bg-purple-500 shadow-[0_0_6px_#a855f7]",
           airQualityText: "text-purple-300 font-black",
           analog: "border-purple-900/40 bg-zinc-950/40 text-slate-100",
-          handHour: "bg-slate-205",
+          handHour: "bg-slate-200",
           handMin: "bg-slate-400",
           worldBox: "bg-black/30 border-purple-900/30 text-purple-300",
           divide: "border-white/10",
@@ -529,7 +529,7 @@ export function StatusSection() {
         handHour: "bg-[#010e1d]",
         handMin: "bg-[#021830]",
         worldBox: "bg-white/25 border-white/40 text-[#021830]",
-        divide: "border-blue-955/15",
+        divide: "border-blue-950/15",
         badge: "text-[#021830] bg-white/45 border-white/60",
         humidityText: "text-[#021830] font-extrabold",
         rain: false,
@@ -562,7 +562,7 @@ export function StatusSection() {
         worldBox: "bg-white/20 border-white/40 text-slate-900",
         divide: "border-slate-950/10",
         badge: "text-slate-900 bg-white/40 border-white/50",
-        humidityText: "text-slate-955 font-extrabold",
+        humidityText: "text-slate-900 font-extrabold",
         rain: isWet,
         stars: false,
         moon: false,
@@ -1070,7 +1070,7 @@ export function StatusSection() {
                     Enggal Bima Sakti
                   </h1>
                   <p className="text-[10px] md:text-xs text-muted-foreground font-semibold mt-0.5 md:mt-0">
-                    CS Student @ UI
+                    CS Student @ Unila
                   </p>
                 </div>
               </div>
@@ -1083,7 +1083,7 @@ export function StatusSection() {
 
             {/* Middle: Short Bio */}
             <p className="text-[11px] md:text-sm text-muted-foreground leading-relaxed font-medium my-3 md:my-4">
-              I build high-performance backend services, explore AI/ML, and design modern, responsive web applications. Final-year Computer Science student.
+              I build high-performance backend services, optimize databases, and design modern, responsive web applications. Final-year Computer Science student.
             </p>
 
             {/* Bottom Row: CTAs */}
