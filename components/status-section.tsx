@@ -1469,24 +1469,24 @@ export function StatusSection() {
 
                 {/* MODAL CONTENT: UNIFIED ATMOSPHERE & TIME */}
                 {activeModal === "atmosphere" && (
-                  <div className="space-y-4 md:space-y-6">
-                    <div className="flex items-center gap-2.5 border-b border-border/40 pb-3 md:pb-4">
-                      <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
-                        <Clock className="w-4.5 h-4.5 md:w-5 md:h-5 animate-pulse" />
+                  <div className="space-y-3.5 sm:space-y-6">
+                    <div className="flex items-center gap-2 border-b border-border/40 pb-2 md:pb-4">
+                      <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                        <Clock className="w-3.5 h-3.5 sm:w-5 sm:h-5 animate-pulse" />
                       </div>
                       <div>
-                        <h3 className="text-sm md:text-base font-extrabold text-foreground">Atmosphere & Chronology Diagnostics</h3>
-                        <p className="text-[9px] md:text-[10px] text-muted-foreground font-semibold">Unified Real-time Coordinates for Jakarta</p>
+                        <h3 className="text-xs sm:text-base font-extrabold text-foreground">Atmosphere & Chronology Diagnostics</h3>
+                        <p className="text-[7.5px] sm:text-[10px] text-muted-foreground font-semibold">Unified Real-time Coordinates for {weather.city}</p>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">
+                    <div className="grid grid-cols-2 gap-2.5 sm:gap-6 items-stretch">
                       
                       {/* Left: Clock & Chronology */}
-                      <div className="space-y-3 md:space-y-4 flex flex-col justify-between">
-                        <div className="flex flex-col items-center p-3 md:p-4 rounded-xl md:rounded-2xl border border-border/40 bg-muted/20">
-                          {/* LARGE SWEEPING ANALOG CLOCK FACE */}
-                          <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-full border border-border/80 bg-muted/25 dark:bg-black/25 flex items-center justify-center">
+                      <div className="space-y-3 sm:space-y-4 flex flex-col justify-between">
+                        <div className="flex flex-col items-center p-2 sm:p-4 rounded-xl border border-border/40 bg-muted/20">
+                          {/* SMALLER SWEEPING ANALOG CLOCK FACE */}
+                          <div className="relative w-16 h-16 sm:w-28 sm:h-28 md:w-36 md:h-36 rounded-full border border-border/80 bg-muted/25 dark:bg-black/25 flex items-center justify-center">
                             {/* Hour ticks */}
                             {Array.from({ length: 12 }).map((_, i) => (
                               <div
@@ -1495,10 +1495,10 @@ export function StatusSection() {
                                 className="absolute inset-0 flex justify-center"
                               >
                                 <div className={cn(
-                                  "w-[1.2px] rounded-full mt-1.5",
+                                  "rounded-full mt-0.5 sm:mt-1.5",
                                   i % 3 === 0 
-                                    ? "h-2 bg-foreground dark:bg-slate-205 bg-slate-800" 
-                                    : "h-1 bg-muted-foreground/35"
+                                    ? "w-[0.8px] sm:w-[1.2px] h-1 sm:h-2 bg-foreground dark:bg-slate-205 bg-slate-800" 
+                                    : "w-[0.5px] sm:w-[0.8px] h-0.5 sm:h-1 bg-muted-foreground/35"
                                 )} />
                               </div>
                             ))}
@@ -1509,7 +1509,7 @@ export function StatusSection() {
                               className="absolute inset-0 flex justify-center"
                             >
                               <div className={cn(
-                                "w-[2px] h-[30%] rounded-full mt-[20%] origin-bottom",
+                                "w-[1px] sm:w-[2px] h-[30%] rounded-full mt-[20%] origin-bottom",
                                 timeOfDay === "night" ? "bg-slate-200" : "bg-slate-800"
                               )} />
                             </div>
@@ -1520,7 +1520,7 @@ export function StatusSection() {
                               className="absolute inset-0 flex justify-center"
                             >
                               <div className={cn(
-                                "w-[1.2px] h-[40%] rounded-full mt-[10%] origin-bottom",
+                                "w-[0.6px] sm:w-[1.2px] h-[40%] rounded-full mt-[10%] origin-bottom",
                                 timeOfDay === "night" ? "bg-slate-300" : "bg-slate-700"
                               )} />
                             </div>
@@ -1530,84 +1530,86 @@ export function StatusSection() {
                               style={{ transform: `rotate(${hands.sec}deg)` }}
                               className="absolute inset-0 flex justify-center"
                             >
-                              <div className="w-[0.6px] h-[45%] bg-amber-500 dark:bg-sky-400 rounded-full mt-[5%] origin-bottom" />
+                              <div className="w-[0.4px] sm:w-[0.6px] h-[45%] bg-amber-500 dark:bg-sky-400 rounded-full mt-[5%] origin-bottom" />
                             </div>
 
                             {/* Center dot */}
-                            <div className="absolute w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-sky-400 z-20" />
+                            <div className="absolute w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-amber-500 dark:bg-sky-400 z-20" />
                           </div>
 
                           {/* Digital display */}
-                          <div className="text-center mt-3 md:mt-4">
-                            <h4 className="text-lg md:text-xl font-black tracking-tight tabular-nums text-foreground">
+                          <div className="text-center mt-1.5 sm:mt-4">
+                            <h4 className="text-xs sm:text-lg md:text-xl font-black tracking-tight tabular-nums text-foreground">
                               {formatVisitorTime()}
                             </h4>
-                            <p className="text-[8px] md:text-[9px] font-bold text-muted-foreground mt-0.5 md:mt-1">
+                            <p className="text-[7px] sm:text-[9px] font-bold text-muted-foreground mt-0.5">
                               {formatVisitorDate()}
                             </p>
                           </div>
                         </div>
 
                         {/* World clocks grid */}
-                        <div className="space-y-1 md:space-y-1.5">
-                          <h5 className="text-[8px] md:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Tech Hub Times</h5>
-                          <div className="grid grid-cols-2 gap-1 md:gap-1.5 text-[10px] md:text-xs font-semibold">
-                            <div className="flex justify-between items-center bg-card/65 p-1.5 md:p-2 rounded-xl border border-border/50">
-                              <span className="text-muted-foreground">Jakarta (WIB)</span>
-                              <span className="font-bold text-foreground tabular-nums">{formatVisitorTime().substring(0,5)}</span>
+                        <div className="space-y-1 sm:space-y-1.5">
+                          <h5 className="text-[7px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Tech Hub Times</h5>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-1.5 text-[8px] sm:text-xs font-semibold">
+                            <div className="flex justify-between items-center bg-card/65 p-1 sm:p-2 rounded-lg sm:rounded-xl border border-border/50">
+                              <span className="text-muted-foreground">{weather.city.split(',')[0]} (Local)</span>
+                              <span className="font-bold text-foreground tabular-nums text-[7px] sm:text-xs">{formatVisitorTime().substring(0,5)}</span>
                             </div>
-                            <div className="flex justify-between items-center bg-card/65 p-1.5 md:p-2 rounded-xl border border-border/50">
+                            <div className="flex justify-between items-center bg-card/65 p-1 sm:p-2 rounded-lg sm:rounded-xl border border-border/50">
                               <span className="text-muted-foreground">London (BST)</span>
-                              <span className="font-bold text-foreground tabular-nums">{getLondonTime()}</span>
+                              <span className="font-bold text-foreground tabular-nums text-[7px] sm:text-xs">{getLondonTime()}</span>
                             </div>
-                            <div className="flex justify-between items-center bg-card/65 p-1.5 md:p-2 rounded-xl border border-border/50">
+                            <div className="flex justify-between items-center bg-card/65 p-1 sm:p-2 rounded-lg sm:rounded-xl border border-border/50">
                               <span className="text-muted-foreground">Tokyo (JST)</span>
-                              <span className="font-bold text-foreground tabular-nums">{getTokyoTime()}</span>
+                              <span className="font-bold text-foreground tabular-nums text-[7px] sm:text-xs">{getTokyoTime()}</span>
                             </div>
-                            <div className="flex justify-between items-center bg-card/65 p-1.5 md:p-2 rounded-xl border border-border/50">
+                            <div className="flex justify-between items-center bg-card/65 p-1 sm:p-2 rounded-lg sm:rounded-xl border border-border/50">
                               <span className="text-muted-foreground">SFO (PDT)</span>
-                              <span className="font-bold text-foreground tabular-nums">{getSFOTime()}</span>
+                              <span className="font-bold text-foreground tabular-nums text-[7px] sm:text-xs">{getSFOTime()}</span>
                             </div>
                           </div>
                         </div>
                       </div>
 
                       {/* Right: Weather & Atmosphere */}
-                      <div className="space-y-3 md:space-y-4 flex flex-col justify-between">
+                      <div className="space-y-3 sm:space-y-4 flex flex-col justify-between">
                         {/* Big Temp Showcase */}
-                        <div className="flex items-center justify-between bg-muted/20 p-3 md:p-4 rounded-xl md:rounded-2xl border border-border/40">
-                          <div className="flex items-center gap-2 md:gap-3">
-                            <div className="p-1.5 bg-background border border-border/50 rounded-xl flex items-center justify-center shadow-sm shrink-0">
-                              <AnimatedWeatherIcon code={weather.weatherCode} isDay={weather.isDay} />
+                        <div className="flex items-center justify-between bg-muted/20 p-1.5 sm:p-4 rounded-xl border border-border/40">
+                          <div className="flex items-center gap-1.5 sm:gap-3">
+                            <div className="p-1 sm:p-1.5 bg-background border border-border/50 rounded-lg sm:rounded-xl flex items-center justify-center shadow-sm shrink-0">
+                              <div className="scale-75 sm:scale-100 origin-center flex items-center justify-center">
+                                <AnimatedWeatherIcon code={weather.weatherCode} isDay={weather.isDay} />
+                              </div>
                             </div>
                             <div>
-                              <h4 className="text-2xl md:text-3xl font-black text-foreground leading-none tabular-nums">
+                              <h4 className="text-sm sm:text-2xl md:text-3xl font-black text-foreground leading-none tabular-nums">
                                 {weather.temp}&deg;C
                               </h4>
-                              <p className="text-[10px] md:text-xs font-extrabold text-foreground mt-0.5">
+                              <p className="text-[7px] sm:text-[10px] md:text-xs font-extrabold text-foreground mt-0.5">
                                 {getWeatherDesc(weather.weatherCode)}
                               </p>
                             </div>
                           </div>
-                          <div className="text-right text-[9px] md:text-[10px] font-bold text-muted-foreground leading-relaxed">
+                          <div className="text-right text-[6.5px] sm:text-[9px] md:text-[10px] font-bold text-muted-foreground leading-normal shrink-0">
                             <div>Feels: <span className="text-foreground font-black">{weather.feelsLike}&deg;C</span></div>
                             <div>Wind: <span className="text-foreground font-black">{weather.windSpeed} km/h</span></div>
                           </div>
                         </div>
 
                         {/* Extra indicators */}
-                        <div className="space-y-1.5 md:space-y-2 text-[10px] md:text-xs font-semibold">
-                          <h5 className="text-[8px] md:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Atmospheric Indication</h5>
-                          <div className="space-y-1.5">
-                            <div className="flex justify-between items-center bg-card/60 p-2 md:p-2.5 rounded-xl border border-border/60">
+                        <div className="space-y-1 sm:space-y-2 text-[8px] sm:text-xs font-semibold">
+                          <h5 className="text-[7px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Atmospheric Indication</h5>
+                          <div className="space-y-1 sm:space-y-1.5">
+                            <div className="flex justify-between items-center bg-card/60 p-1 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
                               <span className="text-muted-foreground">Humidity Level</span>
                               <span className="font-bold text-foreground">{weather.humidity}%</span>
                             </div>
-                            <div className="flex justify-between items-center bg-card/60 p-2 md:p-2.5 rounded-xl border border-border/60">
-                              <span className="text-muted-foreground">Air Quality Index (AQI)</span>
+                            <div className="flex justify-between items-center bg-card/60 p-1 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
+                              <span className="text-muted-foreground">Air Quality</span>
                               <span className="font-bold text-emerald-500">42 (Good)</span>
                             </div>
-                            <div className="flex justify-between items-center bg-card/60 p-2 md:p-2.5 rounded-xl border border-border/60">
+                            <div className="flex justify-between items-center bg-card/60 p-1 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
                               <span className="text-muted-foreground">UV Sun Index</span>
                               <span className="font-bold text-amber-500">2 (Low)</span>
                             </div>
@@ -1615,15 +1617,15 @@ export function StatusSection() {
                         </div>
 
                         {/* Day progress indicator */}
-                        <div className="space-y-1 p-2.5 md:p-3 rounded-xl border border-border/60 bg-background/40">
-                          <div className="flex justify-between text-[8px] md:text-[9px] font-black text-muted-foreground">
-                            <span>DAY PROGRESSION</span>
-                            <span>{getDayProgress()}% Completed</span>
+                        <div className="space-y-1 p-1.5 sm:p-3 rounded-xl border border-border/60 bg-background/40">
+                          <div className="flex justify-between text-[7px] sm:text-[9px] font-black text-muted-foreground">
+                            <span>DAY PROGRESS</span>
+                            <span>{getDayProgress()}%</span>
                           </div>
-                          <div className="w-full h-1 bg-muted border border-border/40 rounded-full overflow-hidden">
+                          <div className="w-full h-0.5 sm:h-1 bg-muted border border-border/40 rounded-full overflow-hidden">
                             <div className="bg-logo-gradient h-full rounded-full" style={{ width: `${getDayProgress()}%` }} />
                           </div>
-                          <p className="text-[8px] md:text-[9px] text-muted-foreground leading-normal pt-0.5 font-semibold">
+                          <p className="text-[6.5px] sm:text-[9px] text-muted-foreground leading-normal pt-0.5 font-semibold line-clamp-1 sm:line-clamp-none">
                             {getTimePhaseMessage()}
                           </p>
                         </div>
@@ -1632,8 +1634,8 @@ export function StatusSection() {
                     </div>
 
                     {/* Explanatory text */}
-                    <p className="text-[8.5px] md:text-[9.5px] text-muted-foreground leading-normal md:leading-relaxed bg-primary/5 p-2.5 md:p-3 rounded-xl border border-primary/10">
-                      <strong>Dynamic Environmental Rendering:</strong> This module parses real-time weather codes and local chronology metrics. Background colors, sun/moon positions, and particle overlays (rain, storm lightning, clouds) adapt dynamically to show the active atmosphere.
+                    <p className="text-[7.5px] sm:text-[9.5px] text-muted-foreground leading-normal bg-primary/5 p-2 sm:p-3 rounded-xl border border-primary/10">
+                      <strong>Dynamic Environmental Rendering:</strong> Parsed real-time weather codes and local chronology metrics. Background, sun/moon positions, and particle overlays adapt dynamically.
                     </p>
                   </div>
                 )}
