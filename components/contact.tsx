@@ -29,7 +29,7 @@ type GuestMessage = {
 export function Contact() {
   // --- Contact Logic ---
   const [copied, setCopied] = useState(false);
-  const emailAddress = "contact@ebimsa.com";
+  const emailAddress = "enggalbimas8@gmail.com";
 
   const copyToClipboard = async () => {
     try {
@@ -275,19 +275,16 @@ export function Contact() {
                   <label htmlFor="guest-name" className="text-[9px] font-bold text-muted-foreground uppercase tracking-wider block">
                     Your Name
                   </label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground/80" />
-                    <input
-                      id="guest-name"
-                      type="text"
-                      required
-                      maxLength={50}
-                      placeholder="Your name/alias..."
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full pl-8.5 pr-3 py-2 rounded-lg border border-border bg-background text-xs text-foreground placeholder-muted-foreground/60 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all squircle-sm"
-                    />
-                  </div>
+                  <input
+                    id="guest-name"
+                    type="text"
+                    required
+                    maxLength={50}
+                    placeholder="Your name/alias..."
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full px-3 py-2 rounded-lg border border-border bg-background text-xs text-foreground placeholder-muted-foreground/60 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all squircle-sm"
+                  />
                 </div>
 
                 {/* Message Input */}
@@ -295,19 +292,16 @@ export function Contact() {
                   <label htmlFor="guest-message" className="text-[9px] font-bold text-muted-foreground uppercase tracking-wider block">
                     Your Message
                   </label>
-                  <div className="relative">
-                    <MessageSquare className="absolute left-3 top-3 w-3.5 h-3.5 text-muted-foreground/80" />
-                    <textarea
-                      id="guest-message"
-                      required
-                      maxLength={500}
-                      rows={4}
-                      placeholder="Write your message here..."
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      className="w-full pl-8.5 pr-3 py-2 rounded-lg border border-border bg-background text-xs text-foreground placeholder-muted-foreground/60 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all resize-none squircle-sm"
-                    />
-                  </div>
+                  <textarea
+                    id="guest-message"
+                    required
+                    maxLength={500}
+                    rows={4}
+                    placeholder="Write your message here..."
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="w-full px-3 py-2 rounded-lg border border-border bg-background text-xs text-foreground placeholder-muted-foreground/60 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all resize-none squircle-sm"
+                  />
                 </div>
 
                 {/* Error Banner */}
@@ -365,10 +359,16 @@ export function Contact() {
                     <AnimatePresence initial={false}>
                       {displayedMessages.map((msg) => {
                         const avatarColor = getAvatarColor(msg.name);
-                        const formattedDate = new Date(msg.created_at).toLocaleDateString("en-US", {
+                        const dateObj = new Date(msg.created_at);
+                        const formattedDate = dateObj.toLocaleDateString("en-US", {
                           day: "numeric",
                           month: "short",
                           year: "numeric",
+                        });
+                        const formattedTime = dateObj.toLocaleTimeString("en-US", {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: false,
                         });
 
                         return (
@@ -391,7 +391,7 @@ export function Contact() {
                                   {msg.name}
                                 </h4>
                                 <span className="text-[8px] text-muted-foreground font-semibold shrink-0">
-                                  {formattedDate}
+                                  {formattedDate} • {formattedTime}
                                 </span>
                               </div>
                               <p className="text-[11px] text-muted-foreground leading-relaxed break-words whitespace-pre-wrap select-text font-normal">
