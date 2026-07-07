@@ -332,7 +332,7 @@ export function StatusSection() {
           card: "bg-gradient-to-br from-[#03030a] via-[#070a1e] to-[#0e162d] border-t-white/10 border-l-white/5 border-b-black/60 border-r-black/50 text-slate-100 shadow-[0_15px_30px_rgba(0,0,0,0.55),_inset_0_1px_2px_rgba(255,255,255,0.15),_inset_0_-3px_5px_rgba(0,0,0,0.5)]",
           label: "text-slate-400 font-black",
           value: "text-white font-black tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]",
-          subtext: "text-slate-350 font-bold",
+          subtext: "text-slate-300 font-bold",
           barBg: "bg-black/45 border-zinc-900/60",
           barFill: "bg-sky-400 shadow-[0_0_8px_#38bdf8]",
           barFillHumidity: "bg-sky-400 shadow-[0_0_8px_#38bdf8]",
@@ -341,7 +341,7 @@ export function StatusSection() {
           analog: "border-zinc-800 bg-zinc-950/45 text-slate-100",
           handHour: "bg-slate-200",
           handMin: "bg-slate-400",
-          worldBox: "bg-zinc-950/20 border-zinc-800/70 text-slate-355",
+          worldBox: "bg-zinc-950/20 border-zinc-800/70 text-slate-300",
           divide: "border-white/10",
           badge: "text-slate-300 bg-black/35 border-slate-800/80",
           humidityText: "text-slate-200 font-extrabold",
@@ -360,7 +360,7 @@ export function StatusSection() {
           label: "text-purple-300 font-black",
           value: "text-white font-black tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]",
           subtext: "text-purple-200/90 font-bold",
-          barBg: "bg-black/50 border-purple-955/40",
+          barBg: "bg-black/50 border-purple-900/40",
           barFill: "bg-purple-500 shadow-[0_0_8px_#a855f7]",
           barFillHumidity: "bg-sky-400 shadow-[0_0_8px_#38bdf8]",
           barFillAirQuality: "bg-purple-500 shadow-[0_0_8px_#a855f7]",
@@ -368,7 +368,7 @@ export function StatusSection() {
           analog: "border-purple-900/40 bg-zinc-950/45 text-slate-100",
           handHour: "bg-slate-200",
           handMin: "bg-slate-400",
-          worldBox: "bg-black/30 border-purple-955/30 text-purple-300",
+          worldBox: "bg-black/30 border-purple-900/30 text-purple-300",
           divide: "border-white/10",
           badge: "text-purple-300 bg-black/40 border-purple-900/50",
           humidityText: "text-purple-200 font-extrabold",
@@ -385,16 +385,16 @@ export function StatusSection() {
           card: "bg-gradient-to-br from-[#090b14] via-[#121624] to-[#1e2436] border-t-white/10 border-l-white/5 border-b-black/50 border-r-black/40 text-slate-100 shadow-[0_20px_40px_rgba(0,0,0,0.5),_inset_0_1px_2px_rgba(255,255,255,0.15),_inset_0_-3px_5px_rgba(0,0,0,0.5)]",
           label: "text-slate-400 font-black",
           value: "text-white font-black tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]",
-          subtext: "text-slate-350 font-bold",
+          subtext: "text-slate-300 font-bold",
           barBg: "bg-black/40 border-zinc-900/50",
           barFill: "bg-sky-500",
           barFillHumidity: "bg-sky-500",
           barFillAirQuality: "bg-emerald-500",
           airQualityText: "text-emerald-400 font-black",
           analog: "border-zinc-800 bg-zinc-950/45 text-slate-100",
-          handHour: "bg-slate-200",
+          handHour: "bg-slate-205",
           handMin: "bg-slate-400",
-          worldBox: "bg-zinc-950/20 border-zinc-800/70 text-slate-355",
+          worldBox: "bg-zinc-950/20 border-zinc-800/70 text-slate-300",
           divide: "border-white/10",
           badge: "text-slate-300 bg-black/30 border-slate-800/80",
           humidityText: "text-slate-200 font-extrabold",
@@ -411,7 +411,7 @@ export function StatusSection() {
         card: "bg-gradient-to-br from-[#060614] via-[#0b0c24] to-[#15173c] border-t-white/10 border-l-white/5 border-b-black/60 border-r-black/50 text-slate-100 shadow-[0_20px_40px_rgba(0,0,0,0.55),_inset_0_1px_2px_rgba(255,255,255,0.15),_inset_0_-3px_5px_rgba(0,0,0,0.5)]",
         label: "text-slate-400 font-black",
         value: "text-white font-black tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]",
-        subtext: "text-slate-355 font-bold",
+        subtext: "text-slate-300 font-bold",
         barBg: "bg-black/45 border-zinc-900/60",
         barFill: "bg-primary shadow-[0_0_8px_var(--color-primary)]",
         barFillHumidity: "bg-sky-500",
@@ -420,7 +420,7 @@ export function StatusSection() {
         analog: "border-zinc-800 bg-zinc-950/45 text-slate-100",
         handHour: "bg-slate-205",
         handMin: "bg-slate-400",
-        worldBox: "bg-zinc-950/20 border-zinc-800/70 text-slate-355",
+        worldBox: "bg-zinc-950/20 border-zinc-800/70 text-slate-300",
         divide: "border-white/10",
         badge: "text-slate-300 bg-black/30 border-slate-800/80",
         humidityText: "text-slate-200 font-extrabold",
@@ -439,14 +439,14 @@ export function StatusSection() {
       if (weatherGroup === "rain") {
         return {
           card: "bg-gradient-to-br from-[#3b4b5e] via-[#4d5f73] to-[#62768c] border-t-white/35 border-l-white/25 border-b-black/25 border-r-black/20 text-slate-100 shadow-[0_15px_30px_rgba(0,0,0,0.25),_inset_0_2px_4px_rgba(255,255,255,0.4),_inset_0_-2px_4px_rgba(0,0,0,0.15)]",
-          label: "text-slate-250 font-black",
+          label: "text-slate-300 font-black",
           value: "text-white font-black tracking-tight drop-shadow-[0_1.5px_3px_rgba(0,0,0,0.25)]",
           subtext: "text-slate-200 font-bold",
           barBg: "bg-black/35 border-slate-900/40",
           barFill: "bg-sky-400 shadow-[0_0_6px_#38bdf8]",
           barFillHumidity: "bg-sky-400 shadow-[0_0_6px_#38bdf8]",
           barFillAirQuality: "bg-emerald-400 shadow-[0_0_6px_#34d399]",
-          airQualityText: "text-emerald-350 font-black",
+          airQualityText: "text-emerald-400 font-black",
           analog: "border-slate-800/35 bg-black/20 text-slate-100",
           handHour: "bg-slate-205",
           handMin: "bg-slate-400",
@@ -468,7 +468,7 @@ export function StatusSection() {
           label: "text-purple-300 font-black",
           value: "text-white font-black tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.35)]",
           subtext: "text-purple-200/90 font-bold",
-          barBg: "bg-black/55 border-purple-955/45",
+          barBg: "bg-black/55 border-purple-900/45",
           barFill: "bg-purple-500 shadow-[0_0_6px_#a855f7]",
           barFillHumidity: "bg-sky-400 shadow-[0_0_6px_#38bdf8]",
           barFillAirQuality: "bg-purple-500 shadow-[0_0_6px_#a855f7]",
@@ -476,7 +476,7 @@ export function StatusSection() {
           analog: "border-purple-900/40 bg-zinc-950/40 text-slate-100",
           handHour: "bg-slate-205",
           handMin: "bg-slate-400",
-          worldBox: "bg-black/30 border-purple-955/30 text-purple-300",
+          worldBox: "bg-black/30 border-purple-900/30 text-purple-300",
           divide: "border-white/10",
           badge: "text-purple-300 bg-black/40 border-purple-900/50",
           humidityText: "text-purple-200 font-extrabold",
@@ -503,7 +503,7 @@ export function StatusSection() {
           handHour: "bg-[#06101f]",
           handMin: "bg-[#0a182c]",
           worldBox: "bg-white/20 border-white/45 text-[#0a182c]",
-          divide: "border-blue-955/15",
+          divide: "border-blue-950/15",
           badge: "text-[#0a182c] bg-white/40 border-white/50",
           humidityText: "text-[#0a182c] font-extrabold",
           rain: false,
@@ -522,7 +522,7 @@ export function StatusSection() {
         subtext: "text-[#021830]/90 font-bold",
         barBg: "bg-[#021830]/15 border-[#021830]/10",
         barFill: "bg-[#021830]",
-        barFillHumidity: "bg-blue-955",
+        barFillHumidity: "bg-blue-950",
         barFillAirQuality: "bg-emerald-950",
         airQualityText: "text-emerald-950 font-black",
         analog: "border-[#021830]/35 bg-white/45 text-[#010e1d]",
@@ -546,10 +546,10 @@ export function StatusSection() {
       const isWet = weatherGroup === "rain" || weatherGroup === "thunderstorm";
       return {
         card: isWet 
-          ? "bg-gradient-to-br from-[#b07b80] via-[#cfa0a3] to-[#9cb2cc] border-t-white/40 border-l-white/30 border-b-black/20 border-r-black/25 text-slate-855 shadow-[0_15px_30px_rgba(0,0,0,0.12),_inset_0_2px_4px_rgba(255,255,255,0.5),_inset_0_-2px_4px_rgba(0,0,0,0.12)]"
+          ? "bg-gradient-to-br from-[#b07b80] via-[#cfa0a3] to-[#9cb2cc] border-t-white/40 border-l-white/30 border-b-black/20 border-r-black/25 text-slate-900 shadow-[0_15px_30px_rgba(0,0,0,0.12),_inset_0_2px_4px_rgba(255,255,255,0.5),_inset_0_-2px_4px_rgba(0,0,0,0.12)]"
           : "bg-gradient-to-br from-[#ff8e75] via-[#ffd099] to-[#82c5ff] border-t-white/50 border-l-white/40 border-b-black/20 border-r-black/20 text-slate-900 shadow-[0_15px_30px_rgba(0,0,0,0.1),_inset_0_2px_4px_rgba(255,255,255,0.6),_inset_0_-2px_4px_rgba(0,0,0,0.15)]",
         label: "text-slate-900/85 font-black",
-        value: "text-slate-955 font-black tracking-tight",
+        value: "text-slate-950 font-black tracking-tight",
         subtext: "text-slate-900/90 font-bold",
         barBg: "bg-slate-950/15 border-slate-950/10",
         barFill: "bg-slate-900",
@@ -558,7 +558,7 @@ export function StatusSection() {
         airQualityText: "text-emerald-950 font-black",
         analog: "border-slate-850/30 bg-white/40 text-slate-900",
         handHour: "bg-slate-900",
-        handMin: "bg-slate-855",
+        handMin: "bg-slate-700",
         worldBox: "bg-white/20 border-white/40 text-slate-900",
         divide: "border-slate-950/10",
         badge: "text-slate-900 bg-white/40 border-white/50",
@@ -589,7 +589,7 @@ export function StatusSection() {
       analog: "border-white/30 bg-black/45 text-white",
       handHour: "bg-slate-100",
       handMin: "bg-slate-300",
-      worldBox: "bg-black/20 border-black/40 text-amber-255",
+      worldBox: "bg-black/20 border-black/40 text-amber-200",
       divide: "border-white/10",
       badge: "text-slate-300 bg-black/30 border-slate-800/80",
       humidityText: "text-amber-200 font-extrabold",
@@ -711,28 +711,86 @@ export function StatusSection() {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const lat = -6.2;
-        const lon = 106.8;
+        let lat = -6.2088;
+        let lon = 106.8456;
+        let cityName = "Jakarta, ID";
+        let tzName = "Asia/Jakarta";
+
+        // Try IP-based geolocation (freeipapi.com as primary, ipapi.co as secondary backup)
+        try {
+          const geoRes = await fetch("https://freeipapi.com/api/json");
+          if (geoRes.ok) {
+            const geoData = await geoRes.json();
+            if (geoData.latitude && geoData.longitude) {
+              lat = geoData.latitude;
+              lon = geoData.longitude;
+              cityName = geoData.cityName 
+                ? `${geoData.cityName}, ${geoData.countryCode || "ID"}` 
+                : "Local Area";
+              if (geoData.timeZone) {
+                tzName = geoData.timeZone;
+              }
+            }
+          } else {
+            // Backup: Try ipapi.co
+            const backupRes = await fetch("https://ipapi.co/json/");
+            if (backupRes.ok) {
+              const geoData = await backupRes.json();
+              if (geoData.latitude && geoData.longitude) {
+                lat = geoData.latitude;
+                lon = geoData.longitude;
+                cityName = geoData.city 
+                  ? `${geoData.city}, ${geoData.country_code || "ID"}` 
+                  : "Local Area";
+                if (geoData.timezone) {
+                  tzName = geoData.timezone;
+                }
+              }
+            }
+          }
+        } catch (e) {
+          console.warn("Primary Geolocation failed, trying backup:", e);
+          try {
+            const backupRes = await fetch("https://ipapi.co/json/");
+            if (backupRes.ok) {
+              const geoData = await backupRes.json();
+              if (geoData.latitude && geoData.longitude) {
+                lat = geoData.latitude;
+                lon = geoData.longitude;
+                cityName = geoData.city 
+                  ? `${geoData.city}, ${geoData.country_code || "ID"}` 
+                  : "Local Area";
+                if (geoData.timezone) {
+                  tzName = geoData.timezone;
+                }
+              }
+            }
+          } catch (err) {
+            console.warn("All IP Geolocation options failed, using fallback:", err);
+          }
+        }
+
+        // Fetch using current endpoint to get actual real-time humidity, temperature, is_day, weather_code
         const res = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&timezone=Asia%2FJakarta`
+          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,wind_speed_10m&timezone=${encodeURIComponent(tzName)}`
         );
         if (res.ok) {
           const data = await res.json();
-          const curr = data.current_weather;
+          const curr = data.current;
           
           setWeather({
-            temp: Math.round(curr.temperature),
-            feelsLike: Math.round(curr.temperature - 1.5),
-            humidity: 78,
-            windSpeed: Math.round(curr.windspeed),
-            weatherCode: curr.weathercode,
+            temp: Math.round(curr.temperature_2m),
+            feelsLike: Math.round(curr.apparent_temperature),
+            humidity: curr.relative_humidity_2m,
+            windSpeed: Math.round(curr.wind_speed_10m),
+            weatherCode: curr.weather_code,
             isDay: curr.is_day === 1,
-            city: "Jakarta, ID",
+            city: cityName,
             loading: false,
             error: false,
           });
 
-          const group = getWeatherGroup(curr.weathercode);
+          const group = getWeatherGroup(curr.weather_code);
           setActiveWeatherEffect(group);
         } else {
           setWeather((prev) => ({ ...prev, loading: false, error: true }));
@@ -1463,7 +1521,7 @@ export function StatusSection() {
                             >
                               <div className={cn(
                                 "w-[1.2px] h-[40%] rounded-full mt-[10%] origin-bottom",
-                                timeOfDay === "night" ? "bg-slate-350" : "bg-slate-700"
+                                timeOfDay === "night" ? "bg-slate-300" : "bg-slate-700"
                               )} />
                             </div>
                             
