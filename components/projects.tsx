@@ -106,9 +106,6 @@ export function Projects() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div className="space-y-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20">
-              Portfolio
-            </span>
             <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-foreground">
               Featured Projects
             </h2>
@@ -150,124 +147,74 @@ export function Projects() {
           </div>
         </div>
 
-        {/* Projects Stack */}
-        <div className="space-y-12">
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => {
-              const isEven = index % 2 === 0;
-              return (
-                <motion.div
-                  key={project.id}
-                  layoutId={`project-container-${project.id}`}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.5 }}
-                  className="group rounded-[32px] border border-border bg-card/45 dark:bg-card/35 backdrop-blur-md overflow-hidden p-6 sm:p-8 lg:p-10 flex flex-col lg:flex-row gap-8 lg:gap-12 hover:border-primary/30 hover:shadow-[0_12px_45px_-12px_rgba(136,216,199,0.1)] dark:hover:shadow-[0_12px_45px_-12px_rgba(136,216,199,0.15)] transition-all duration-300"
-                >
-                  {/* Left Column: Details */}
-                  <div className={`flex-1 flex flex-col justify-between space-y-6 ${!isEven ? "lg:order-2" : ""}`}>
-                    <div className="space-y-4">
-                      {/* Category Badge */}
-                      <div>
-                        <span className="inline-flex px-2.5 py-0.5 text-[9px] font-bold tracking-widest text-primary border border-primary/20 bg-primary/10 rounded-full uppercase">
-                          {project.category}
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project.id}
+                layoutId={`project-container-${project.id}`}
+                onClick={() => setActiveProject(project)}
+                className="group flex flex-col bg-card/45 dark:bg-card/35 backdrop-blur-md border border-border rounded-3xl overflow-hidden hover:border-primary/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.02)] transition-all duration-300 squircle-lg cursor-pointer h-full"
+              >
+                {/* Top: Browser Mockup with Cover Image */}
+                <div className="relative w-full aspect-video bg-muted border-b border-border/40 overflow-hidden shrink-0">
+                  {/* Mac OS dot indicators */}
+                  <div className="absolute top-2.5 left-3 flex items-center gap-1 z-10">
+                    <div className="w-1.5 h-1.5 rounded-full bg-red-400/80" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/80" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-400/80" />
+                  </div>
+                  <Image
+                    src={project.coverImage}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover group-hover:scale-102 transition-transform duration-500"
+                  />
+                </div>
+
+                {/* Bottom: Card Body Details */}
+                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="inline-flex px-2 py-0.5 text-[8px] font-bold tracking-widest text-primary border border-primary/20 bg-primary/10 rounded-full uppercase">
+                        {project.category}
+                      </span>
+                      <span className="text-[10px] font-mono text-muted-foreground/60">{project.id}.ebimsa.com</span>
+                    </div>
+                    <h3 className="text-lg font-black tracking-tight text-foreground group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+                      {project.tagline}
+                    </p>
+                  </div>
+
+                  <div className="space-y-4">
+                    {/* Tech tags list */}
+                    <div className="flex flex-wrap gap-1">
+                      {project.tags.slice(0, 3).map((tag) => (
+                        <span key={tag} className="text-[9px] px-2 py-0.5 bg-muted/65 text-muted-foreground border border-border/45 rounded font-mono">
+                          {tag}
                         </span>
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-foreground group-hover:text-foreground/90 transition-colors">
-                          {project.title}
-                        </h3>
-                        <p className="text-xs sm:text-sm font-semibold text-primary tracking-wide">
-                          {project.tagline}
-                        </p>
-                      </div>
-
-                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-xl">
-                        {project.overview}
-                      </p>
-
-                      {/* Technical stats summary */}
-                      <div className="grid grid-cols-2 gap-4 pt-2 max-w-md">
-                        <div className="border-l-2 border-border pl-3 space-y-0.5">
-                          <span className="text-[9px] text-muted-foreground uppercase font-bold tracking-wider block">The Challenge</span>
-                          <span className="text-xs text-foreground font-semibold line-clamp-1">{project.problem}</span>
-                        </div>
-                        <div className="border-l-2 border-border pl-3 space-y-0.5">
-                          <span className="text-[9px] text-muted-foreground uppercase font-bold tracking-wider block">The System</span>
-                          <span className="text-xs text-foreground font-semibold line-clamp-1">{project.solution}</span>
-                        </div>
-                      </div>
+                      ))}
+                      {project.tags.length > 3 && (
+                        <span className="text-[9px] px-2 py-0.5 bg-muted/65 text-muted-foreground/80 border border-border/45 rounded font-mono">
+                          +{project.tags.length - 3}
+                        </span>
+                      )}
                     </div>
 
-                    {/* Tech stack & Actions */}
-                    <div className="space-y-4 pt-4 border-t border-border/40">
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.tags.map((t) => (
-                          <span key={t} className="px-2.5 py-0.5 text-[10px] font-semibold bg-muted/65 border border-border text-muted-foreground rounded-md">
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="flex flex-wrap items-center gap-2.5 pt-2">
-                        <button
-                          onClick={() => setActiveProject(project)}
-                          className="btn-logo-glossy px-4 py-2 rounded-xl font-bold text-xs focus-visible:outline-none"
-                        >
-                          Read Case Study
-                        </button>
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 text-primary hover:border-primary/40 font-bold text-xs transition-colors focus-visible:outline-none"
-                        >
-                          <ExternalLink className="w-3.5 h-3.5" />
-                          Live Demo
-                        </a>
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-border bg-card/60 hover:bg-muted text-muted-foreground hover:text-foreground font-bold text-xs transition-colors focus-visible:outline-none"
-                        >
-                          <Github className="w-3.5 h-3.5" />
-                          Source
-                        </a>
-                      </div>
+                    {/* Action Link */}
+                    <div className="pt-3 border-t border-border/40 flex items-center justify-between text-xs font-bold text-primary">
+                      <span>Read Case Study</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </div>
                   </div>
-
-                  {/* Right Column: Browser Window Mockup */}
-                  <div className={`flex-1 relative aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-muted dark:bg-card/50 shadow-inner ${!isEven ? "lg:order-1" : ""}`}>
-                    {/* Browser Chrome Header */}
-                    <div className="absolute top-0 left-0 right-0 h-6 border-b border-border bg-muted/95 dark:bg-card/95 flex items-center justify-between px-3 z-10">
-                      <div className="flex items-center gap-1.5">
-                        <div className="w-1.5 h-1.5 rounded-full bg-red-400" />
-                        <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
-                        <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                      </div>
-                      <span className="text-[8px] font-mono text-muted-foreground/80 select-none">{project.id}.ebimsa.com</span>
-                      <div className="w-6" /> {/* spacer */}
-                    </div>
-
-                    {/* Screenshot Container */}
-                    <div className="absolute inset-0 pt-6">
-                      <Image
-                        src={project.coverImage}
-                        alt={project.title}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                        priority
-                        className="object-cover group-hover:scale-[1.01] transition-transform duration-500"
-                      />
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+                </div>
+              </motion.div>
+            ))}
           </AnimatePresence>
         </div>
 

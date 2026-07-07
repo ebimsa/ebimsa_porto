@@ -8,43 +8,64 @@ export function Footer() {
   const [activeUsers, setActiveUsers] = useState(4);
 
   useEffect(() => {
-    // 1. Fetch real page views count from PostgreSQL database via API
-    const fetchPageViews = async () => {
+    // Generate a unique anonymous session ID for this visitor tab if it doesn't exist
+    let sessionId = "";
+    try {
+      const storedSession = sessionStorage.getItem("ebimsa_session_id");
+      if (storedSession) {
+        sessionId = storedSession;
+      } else {
+        sessionId = Math.random().toString(36).substring(2) + Date.now().toString(36);
+        sessionStorage.setItem("ebimsa_session_id", sessionId);
+      }
+    } catch {
+      sessionId = "fallback-session-" + Math.floor(Math.random() * 1000000);
+    }
+
+    const fetchStats = async () => {
       try {
-        const response = await fetch("/api/views");
+        const response = await fetch(`/api/views?session_id=${sessionId}`);
         if (response.ok) {
           const data = await response.json();
-          if (data.success && typeof data.views === "number") {
-            setPageViews(data.views);
+          if (data.success) {
+            if (typeof data.views === "number") setPageViews(data.views);
+            if (typeof data.activeUsers === "number") setActiveUsers(data.activeUsers);
           }
         } else {
           throw new Error("API responded with error");
         }
       } catch (err) {
-        console.warn("Failed to fetch views from PostgreSQL, falling back to local simulation:", err);
-        // Fallback: Increment local storage if database connection is unreachable
+        console.warn("Failed to fetch live stats from PostgreSQL, falling back to local simulation:", err);
+        // Fallback: Total Views count from Local Storage
         try {
           const storedViews = localStorage.getItem("ebimsa_views");
-          let currentViews = storedViews ? parseInt(storedViews, 10) : 0;
-          currentViews += 1;
-          localStorage.setItem("ebimsa_views", currentViews.toString());
+          let currentViews = storedViews ? parseInt(storedViews, 10) : 100;
+          // Only increment total views once per session to mimic real behavior
+          const sessionLogged = sessionStorage.getItem("ebimsa_view_logged");
+          if (!sessionLogged) {
+            currentViews += 1;
+            localStorage.setItem("ebimsa_views", currentViews.toString());
+            sessionStorage.setItem("ebimsa_view_logged", "true");
+          }
           setPageViews(currentViews);
         } catch {
           setPageViews(1);
         }
+
+        // Fallback: Fluctuate active visitors
+        setActiveUsers((prev) => {
+          const change = Math.random() > 0.6 ? 1 : Math.random() < 0.4 ? -1 : 0;
+          const next = prev + change;
+          return next >= 1 && next <= 6 ? next : 3;
+        });
       }
     };
 
-    fetchPageViews();
+    // Initial fetch on mount
+    fetchStats();
 
-    // 2. Simulate Active Users fluctuation
-    const interval = setInterval(() => {
-      setActiveUsers((prev) => {
-        const change = Math.random() > 0.5 ? 1 : -1;
-        const next = prev + change;
-        return next >= 3 && next <= 8 ? next : prev;
-      });
-    }, 5000);
+    // Heartbeat & status refresh every 10 seconds
+    const interval = setInterval(fetchStats, 10000);
 
     return () => clearInterval(interval);
   }, []);

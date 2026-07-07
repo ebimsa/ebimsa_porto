@@ -2,14 +2,12 @@
 
 import React, { useState } from "react";
 import { Navbar } from "@/components/navbar";
-import { Hero } from "@/components/hero";
 import { About } from "@/components/about";
 import { Projects } from "@/components/projects";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
 import { StatusSection } from "@/components/status-section";
 import { LoadingScreen } from "@/components/loading-screen";
-import { Guestbook } from "@/components/guestbook";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
@@ -33,8 +31,8 @@ export default function Home() {
 
             {/* Main Single Page Content Flow */}
             <main className="flex-1 w-full bg-background transition-colors duration-300">
-              {/* Hero Section */}
-              <Hero />
+              {/* Interactive Status Section (Hero Dashboard) */}
+              <StatusSection />
 
               {/* About Section */}
               <About />
@@ -42,13 +40,7 @@ export default function Home() {
               {/* Projects Section */}
               <Projects />
 
-              {/* Interactive Status Section */}
-              <StatusSection />
-
-              {/* Guestbook Section */}
-              <Guestbook />
-
-              {/* Contact Section */}
+              {/* Contact & Guestbook Section */}
               <Contact />
             </main>
 
