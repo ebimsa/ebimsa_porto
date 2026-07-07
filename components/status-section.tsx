@@ -1446,13 +1446,13 @@ export function StatusSection() {
             />
 
             {/* Modal Box */}
-            <div className="fixed inset-0 z-[160] flex items-center justify-center p-4 sm:p-6 overflow-y-auto no-scrollbar">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 15 }}
-                className="relative w-full max-w-2xl bg-card border border-border rounded-2xl md:rounded-[28px] overflow-hidden shadow-2xl p-4 sm:p-6 md:p-8 squircle-lg my-4 md:my-8 focus:outline-none"
-              >
+            <div className="fixed inset-0 z-[160] flex items-center justify-center p-2 sm:p-6 overflow-y-auto no-scrollbar">
+               <motion.div
+                 initial={{ opacity: 0, scale: 0.95, y: 15 }}
+                 animate={{ opacity: 1, scale: 1, y: 0 }}
+                 exit={{ opacity: 0, scale: 0.95, y: 15 }}
+                 className="relative w-full max-w-3xl bg-card border border-border rounded-2xl md:rounded-[28px] overflow-hidden shadow-2xl p-3 sm:p-6 md:p-8 squircle-lg my-4 md:my-8 focus:outline-none"
+               >
                 {/* Close Button */}
                 <button
                   onClick={() => setActiveModal(null)}
@@ -1475,13 +1475,13 @@ export function StatusSection() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2.5 sm:gap-6 items-stretch">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-6 items-stretch">
                       
                       {/* Left: Clock & Chronology */}
                       <div className="space-y-3 sm:space-y-4 flex flex-col justify-between">
                         <div className="flex flex-col items-center p-2 sm:p-4 rounded-xl border border-border/40 bg-muted/20">
-                          {/* SMALLER SWEEPING ANALOG CLOCK FACE */}
-                          <div className="relative w-16 h-16 sm:w-28 sm:h-28 md:w-36 md:h-36 rounded-full border border-border/80 bg-muted/25 dark:bg-black/25 flex items-center justify-center">
+                          {/* SWEETER, MORE VISIBLE ANALOG CLOCK FACE */}
+                          <div className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 rounded-full border border-border/80 bg-muted/25 dark:bg-black/25 flex items-center justify-center">
                             {/* Hour ticks */}
                             {Array.from({ length: 12 }).map((_, i) => (
                               <div
@@ -1492,8 +1492,8 @@ export function StatusSection() {
                                 <div className={cn(
                                   "rounded-full mt-0.5 sm:mt-1.5",
                                   i % 3 === 0 
-                                    ? "w-[0.8px] sm:w-[1.2px] h-1 sm:h-2 bg-foreground dark:bg-slate-205 bg-slate-800" 
-                                    : "w-[0.5px] sm:w-[0.8px] h-0.5 sm:h-1 bg-muted-foreground/35"
+                                    ? "w-[1px] sm:w-[1.2px] h-1.5 sm:h-2 bg-foreground dark:bg-slate-205 bg-slate-800" 
+                                    : "w-[0.6px] sm:w-[0.8px] h-0.5 sm:h-1 bg-muted-foreground/35"
                                 )} />
                               </div>
                             ))}
@@ -1504,7 +1504,7 @@ export function StatusSection() {
                               className="absolute inset-0 flex justify-center"
                             >
                               <div className={cn(
-                                "w-[1px] sm:w-[2px] h-[30%] rounded-full mt-[20%] origin-bottom",
+                                "w-[1.2px] sm:w-[2px] h-[30%] rounded-full mt-[20%] origin-bottom",
                                 timeOfDay === "night" ? "bg-slate-200" : "bg-slate-800"
                               )} />
                             </div>
@@ -1515,7 +1515,7 @@ export function StatusSection() {
                               className="absolute inset-0 flex justify-center"
                             >
                               <div className={cn(
-                                "w-[0.6px] sm:w-[1.2px] h-[40%] rounded-full mt-[10%] origin-bottom",
+                                "w-[0.8px] sm:w-[1.2px] h-[40%] rounded-full mt-[10%] origin-bottom",
                                 timeOfDay === "night" ? "bg-slate-300" : "bg-slate-700"
                               )} />
                             </div>
@@ -1525,19 +1525,19 @@ export function StatusSection() {
                               style={{ transform: `rotate(${hands.sec}deg)` }}
                               className="absolute inset-0 flex justify-center"
                             >
-                              <div className="w-[0.4px] sm:w-[0.6px] h-[45%] bg-amber-500 dark:bg-sky-400 rounded-full mt-[5%] origin-bottom" />
+                              <div className="w-[0.5px] sm:w-[0.6px] h-[45%] bg-amber-500 dark:bg-sky-400 rounded-full mt-[5%] origin-bottom" />
                             </div>
 
                             {/* Center dot */}
-                            <div className="absolute w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-amber-500 dark:bg-sky-400 z-20" />
+                            <div className="absolute w-1.2 sm:w-1.5 h-1.2 sm:h-1.5 rounded-full bg-amber-500 dark:bg-sky-400 z-20" />
                           </div>
 
                           {/* Digital display */}
-                          <div className="text-center mt-1.5 sm:mt-4">
-                            <h4 className="text-xs sm:text-lg md:text-xl font-black tracking-tight tabular-nums text-foreground">
+                          <div className="text-center mt-2 sm:mt-4">
+                            <h4 className="text-sm sm:text-lg md:text-xl font-black tracking-tight tabular-nums text-foreground">
                               {formatVisitorTime()}
                             </h4>
-                            <p className="text-[7px] sm:text-[9px] font-bold text-muted-foreground mt-0.5">
+                            <p className="text-[8.5px] sm:text-[9px] font-bold text-muted-foreground mt-0.5">
                               {formatVisitorDate()}
                             </p>
                           </div>
@@ -1545,23 +1545,23 @@ export function StatusSection() {
 
                         {/* World clocks grid */}
                         <div className="space-y-1 sm:space-y-1.5">
-                          <h5 className="text-[7px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Tech Hub Times</h5>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-1.5 text-[8px] sm:text-xs font-semibold">
-                            <div className="flex justify-between items-center bg-card/65 p-1 sm:p-2 rounded-lg sm:rounded-xl border border-border/50">
+                          <h5 className="text-[8.5px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Tech Hub Times</h5>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-[9.5px] sm:text-xs font-semibold">
+                            <div className="flex justify-between items-center bg-card/65 p-1.5 sm:p-2 rounded-lg sm:rounded-xl border border-border/50">
                               <span className="text-muted-foreground">{weather.city.split(',')[0]} (Local)</span>
-                              <span className="font-bold text-foreground tabular-nums text-[7px] sm:text-xs">{formatVisitorTime().substring(0,5)}</span>
+                              <span className="font-bold text-foreground tabular-nums text-[9px] sm:text-xs">{formatVisitorTime().substring(0,5)}</span>
                             </div>
-                            <div className="flex justify-between items-center bg-card/65 p-1 sm:p-2 rounded-lg sm:rounded-xl border border-border/50">
+                            <div className="flex justify-between items-center bg-card/65 p-1.5 sm:p-2 rounded-lg sm:rounded-xl border border-border/50">
                               <span className="text-muted-foreground">London (BST)</span>
-                              <span className="font-bold text-foreground tabular-nums text-[7px] sm:text-xs">{getLondonTime()}</span>
+                              <span className="font-bold text-foreground tabular-nums text-[9px] sm:text-xs">{getLondonTime()}</span>
                             </div>
-                            <div className="flex justify-between items-center bg-card/65 p-1 sm:p-2 rounded-lg sm:rounded-xl border border-border/50">
+                            <div className="flex justify-between items-center bg-card/65 p-1.5 sm:p-2 rounded-lg sm:rounded-xl border border-border/50">
                               <span className="text-muted-foreground">Tokyo (JST)</span>
-                              <span className="font-bold text-foreground tabular-nums text-[7px] sm:text-xs">{getTokyoTime()}</span>
+                              <span className="font-bold text-foreground tabular-nums text-[9px] sm:text-xs">{getTokyoTime()}</span>
                             </div>
-                            <div className="flex justify-between items-center bg-card/65 p-1 sm:p-2 rounded-lg sm:rounded-xl border border-border/50">
+                            <div className="flex justify-between items-center bg-card/65 p-1.5 sm:p-2 rounded-lg sm:rounded-xl border border-border/50">
                               <span className="text-muted-foreground">SFO (PDT)</span>
-                              <span className="font-bold text-foreground tabular-nums text-[7px] sm:text-xs">{getSFOTime()}</span>
+                              <span className="font-bold text-foreground tabular-nums text-[9px] sm:text-xs">{getSFOTime()}</span>
                             </div>
                           </div>
                         </div>
@@ -1570,41 +1570,41 @@ export function StatusSection() {
                       {/* Right: Weather & Atmosphere */}
                       <div className="space-y-3 sm:space-y-4 flex flex-col justify-between">
                         {/* Big Temp Showcase */}
-                        <div className="flex items-center justify-between bg-muted/20 p-1.5 sm:p-4 rounded-xl border border-border/40">
-                          <div className="flex items-center gap-1.5 sm:gap-3">
+                        <div className="flex items-center justify-between bg-muted/20 p-2 sm:p-4 rounded-xl border border-border/40">
+                          <div className="flex items-center gap-2 sm:gap-3">
                             <div className="p-1 sm:p-1.5 bg-background border border-border/50 rounded-lg sm:rounded-xl flex items-center justify-center shadow-sm shrink-0">
-                              <div className="scale-75 sm:scale-100 origin-center flex items-center justify-center">
+                              <div className="scale-85 sm:scale-100 origin-center flex items-center justify-center">
                                 <AnimatedWeatherIcon code={weather.weatherCode} isDay={weather.isDay} />
                               </div>
                             </div>
                             <div>
-                              <h4 className="text-sm sm:text-2xl md:text-3xl font-black text-foreground leading-none tabular-nums">
+                              <h4 className="text-lg sm:text-2xl md:text-3xl font-black text-foreground leading-none tabular-nums">
                                 {weather.temp}&deg;C
                               </h4>
-                              <p className="text-[7px] sm:text-[10px] md:text-xs font-extrabold text-foreground mt-0.5">
+                              <p className="text-[9px] sm:text-[10px] md:text-xs font-extrabold text-foreground mt-0.5">
                                 {getWeatherDesc(weather.weatherCode)}
                               </p>
                             </div>
                           </div>
-                          <div className="text-right text-[6.5px] sm:text-[9px] md:text-[10px] font-bold text-muted-foreground leading-normal shrink-0">
+                          <div className="text-right text-[8px] sm:text-[9px] md:text-[10px] font-bold text-muted-foreground leading-normal shrink-0">
                             <div>Feels: <span className="text-foreground font-black">{weather.feelsLike}&deg;C</span></div>
                             <div>Wind: <span className="text-foreground font-black">{weather.windSpeed} km/h</span></div>
                           </div>
                         </div>
 
                         {/* Extra indicators */}
-                        <div className="space-y-1 sm:space-y-2 text-[8px] sm:text-xs font-semibold">
-                          <h5 className="text-[7px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Atmospheric Indication</h5>
-                          <div className="space-y-1 sm:space-y-1.5">
-                            <div className="flex justify-between items-center bg-card/60 p-1 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
+                        <div className="space-y-1 sm:space-y-2 text-[9.5px] sm:text-xs font-semibold">
+                          <h5 className="text-[8.5px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Atmospheric Indication</h5>
+                          <div className="space-y-1.5">
+                            <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
                               <span className="text-muted-foreground">Humidity Level</span>
                               <span className="font-bold text-foreground">{weather.humidity}%</span>
                             </div>
-                            <div className="flex justify-between items-center bg-card/60 p-1 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
+                            <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
                               <span className="text-muted-foreground">Air Quality</span>
                               <span className="font-bold text-emerald-500">42 (Good)</span>
                             </div>
-                            <div className="flex justify-between items-center bg-card/60 p-1 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
+                            <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
                               <span className="text-muted-foreground">UV Sun Index</span>
                               <span className="font-bold text-amber-500">2 (Low)</span>
                             </div>
@@ -1612,15 +1612,15 @@ export function StatusSection() {
                         </div>
 
                         {/* Day progress indicator */}
-                        <div className="space-y-1 p-1.5 sm:p-3 rounded-xl border border-border/60 bg-background/40">
-                          <div className="flex justify-between text-[7px] sm:text-[9px] font-black text-muted-foreground">
+                        <div className="space-y-1 p-2 sm:p-3 rounded-xl border border-border/60 bg-background/40">
+                          <div className="flex justify-between text-[8.5px] sm:text-[9px] font-black text-muted-foreground">
                             <span>DAY PROGRESS</span>
                             <span>{getDayProgress()}%</span>
                           </div>
-                          <div className="w-full h-0.5 sm:h-1 bg-muted border border-border/40 rounded-full overflow-hidden">
+                          <div className="w-full h-1 bg-muted border border-border/40 rounded-full overflow-hidden">
                             <div className="bg-logo-gradient h-full rounded-full" style={{ width: `${getDayProgress()}%` }} />
                           </div>
-                          <p className="text-[6.5px] sm:text-[9px] text-muted-foreground leading-normal pt-0.5 font-semibold line-clamp-1 sm:line-clamp-none">
+                          <p className="text-[8px] sm:text-[9px] text-muted-foreground leading-normal pt-0.5 font-semibold line-clamp-1 sm:line-clamp-none">
                             {getTimePhaseMessage()}
                           </p>
                         </div>
@@ -1652,8 +1652,8 @@ export function StatusSection() {
                       {/* Left Column: Screen & Viewport Stats */}
                       <div className="space-y-3 sm:space-y-4 flex flex-col justify-between">
                         <div className="space-y-2">
-                          <h5 className="text-[7px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Screen & Viewport</h5>
-                          <div className="space-y-1.5 text-[8px] sm:text-xs font-semibold">
+                          <h5 className="text-[8.5px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Screen & Viewport</h5>
+                          <div className="space-y-1.5 text-[9.5px] sm:text-xs font-semibold">
                             <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
                               <span className="text-muted-foreground">OS Platform</span>
                               <span className="font-bold text-foreground">{system.os}</span>
@@ -1677,8 +1677,8 @@ export function StatusSection() {
                       {/* Right Column: Hardware & Network Power Status */}
                       <div className="space-y-3 sm:space-y-4 flex flex-col justify-between">
                         <div className="space-y-2">
-                          <h5 className="text-[7px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Hardware & Power</h5>
-                          <div className="space-y-1.5 text-[8px] sm:text-xs font-semibold">
+                          <h5 className="text-[8.5px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Hardware & Power</h5>
+                          <div className="space-y-1.5 text-[9.5px] sm:text-xs font-semibold">
                             <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
                               <span className="text-muted-foreground">Battery Level</span>
                               <span className="font-bold text-foreground">{battery.supported ? `${battery.level}%` : "100%"}</span>
@@ -1724,23 +1724,23 @@ export function StatusSection() {
                       {/* Left Column: Connection Telemetry */}
                       <div className="space-y-3 sm:space-y-4 flex flex-col justify-between">
                         <div className="space-y-2">
-                          <h5 className="text-[7px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Connection Telemetry</h5>
-                          <div className="space-y-1.5 text-[8px] sm:text-xs font-semibold">
-                            <div className="flex justify-between items-center bg-card/60 p-1 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
+                          <h5 className="text-[8.5px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Connection Telemetry</h5>
+                          <div className="space-y-1.5 text-[9.5px] sm:text-xs font-semibold">
+                            <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
                               <span className="text-muted-foreground">Status</span>
                               <span className={cn("font-extrabold", isOnline ? "text-emerald-500" : "text-destructive")}>
                                 {isOnline ? "Online" : "Offline"}
                               </span>
                             </div>
-                            <div className="flex justify-between items-center bg-card/60 p-1 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
+                            <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
                               <span className="text-muted-foreground">Ping / Latency</span>
                               <span className="font-bold text-foreground tabular-nums">{ping !== null ? `${ping} ms` : "--"}</span>
                             </div>
-                            <div className="flex justify-between items-center bg-card/60 p-1 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/50">
+                            <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/50">
                               <span className="text-muted-foreground">Type</span>
                               <span className="font-bold text-foreground uppercase truncate max-w-[70px] sm:max-w-none">{connectionInfo?.effectiveType || "Wifi/LAN"}</span>
                             </div>
-                            <div className="flex justify-between items-center bg-card/60 p-1 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/50">
+                            <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/50">
                               <span className="text-muted-foreground">Bandwidth</span>
                               <span className="font-bold text-foreground tabular-nums">{connectionInfo?.downlink ? `${connectionInfo.downlink} Mbps` : "--"}</span>
                             </div>
@@ -1751,29 +1751,29 @@ export function StatusSection() {
                       {/* Right Column: Speed Test Panel */}
                       <div className="space-y-3 sm:space-y-4 flex flex-col justify-between">
                         <div className="space-y-2 h-full flex flex-col justify-between">
-                          <h5 className="text-[7px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Bandwidth Diagnostics</h5>
+                          <h5 className="text-[8.5px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Bandwidth Diagnostics</h5>
                           <div className="p-2 sm:p-4 rounded-xl border border-border/60 bg-background/40 flex flex-col items-center justify-center flex-1 min-h-[90px] sm:min-h-[120px] relative overflow-hidden">
                             {isTesting ? (
                               <div className="space-y-1.5 w-full text-center">
                                 <div className="relative w-8 h-8 sm:w-12 sm:h-12 mx-auto flex items-center justify-center">
                                   <div className="absolute inset-0 rounded-full border border-primary/20 border-t-primary animate-spin" />
-                                  <span className="text-[8px] sm:text-xs font-black text-foreground tabular-nums">{progress}%</span>
+                                  <span className="text-[9.5px] sm:text-xs font-black text-foreground tabular-nums">{progress}%</span>
                                 </div>
-                                <p className="text-[7px] sm:text-[9px] font-bold text-muted-foreground animate-pulse">Running downlink test...</p>
+                                <p className="text-[8px] sm:text-[9px] font-bold text-muted-foreground animate-pulse">Running downlink test...</p>
                               </div>
                             ) : (
                               <div className="text-center space-y-1.5 w-full">
                                 {speedResult ? (
                                   <div className="space-y-0.5">
-                                    <span className="text-[6.5px] sm:text-[8px] font-black uppercase tracking-widest text-muted-foreground">DOWNLOAD SPEED</span>
-                                    <h4 className="text-lg sm:text-2xl font-black text-emerald-500 tracking-tight leading-none tabular-nums">
-                                      {speedResult} <span className="text-[8px] sm:text-xs font-bold">Mbps</span>
+                                    <span className="text-[7.5px] sm:text-[8px] font-black uppercase tracking-widest text-muted-foreground">DOWNLOAD SPEED</span>
+                                    <h4 className="text-xl sm:text-2xl font-black text-emerald-500 tracking-tight leading-none tabular-nums">
+                                      {speedResult} <span className="text-[9px] sm:text-xs font-bold">Mbps</span>
                                     </h4>
                                   </div>
                                 ) : (
                                   <div className="space-y-0.5">
-                                    <h4 className="text-[9px] sm:text-xs font-extrabold text-foreground">Downlink Diagnostic</h4>
-                                    <p className="text-[7px] sm:text-[9px] text-muted-foreground leading-normal max-w-[120px] sm:max-w-xs mx-auto">
+                                    <h4 className="text-[10px] sm:text-xs font-extrabold text-foreground">Downlink Diagnostic</h4>
+                                    <p className="text-[8px] sm:text-[9px] text-muted-foreground leading-normal max-w-[120px] sm:max-w-xs mx-auto">
                                       Run bandwidth diagnostics.
                                     </p>
                                   </div>
@@ -1784,7 +1784,7 @@ export function StatusSection() {
                                     runSpeedTest();
                                   }}
                                   disabled={!isOnline}
-                                  className="w-full btn-logo-glossy py-1 rounded-lg font-bold text-[8px] sm:text-[10px] disabled:opacity-50 disabled:cursor-not-allowed text-center transition-all focus-visible:outline-none cursor-pointer mt-1"
+                                  className="w-full btn-logo-glossy py-1 rounded-lg font-bold text-[9.5px] sm:text-[10px] disabled:opacity-50 disabled:cursor-not-allowed text-center transition-all focus-visible:outline-none cursor-pointer mt-1"
                                 >
                                   Test Speed
                                 </button>
