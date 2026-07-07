@@ -677,16 +677,24 @@ export function StatusSection() {
     setUserAgentStr(ua);
     let detectedOS = "Unknown";
     let detectedBrowser = "Unknown";
-
-    if (ua.indexOf("Win") !== -1) detectedOS = "Windows";
+    if (ua.indexOf("Windows") !== -1 || ua.indexOf("Win") !== -1) detectedOS = "Windows";
+    else if (ua.indexOf("Android") !== -1) detectedOS = "Android";
+    else if (ua.indexOf("iPhone") !== -1 || ua.indexOf("iPad") !== -1 || ua.indexOf("iPod") !== -1) detectedOS = "iOS";
     else if (ua.indexOf("Mac") !== -1) detectedOS = "macOS";
-    else if (ua.indexOf("X11") !== -1) detectedOS = "Unix";
     else if (ua.indexOf("Linux") !== -1) detectedOS = "Linux";
+    else if (ua.indexOf("X11") !== -1) detectedOS = "Unix";
 
-    if (ua.indexOf("Firefox") !== -1) detectedBrowser = "Firefox";
-    else if (ua.indexOf("Chrome") !== -1) detectedBrowser = "Chrome";
-    else if (ua.indexOf("Safari") !== -1) detectedBrowser = "Safari";
-    else if (ua.indexOf("Edge") !== -1) detectedBrowser = "Edge";
+    if (ua.indexOf("Firefox") !== -1) {
+      detectedBrowser = "Firefox";
+    } else if (ua.indexOf("Edg") !== -1 || ua.indexOf("Edge") !== -1) {
+      detectedBrowser = "Microsoft Edge";
+    } else if (ua.indexOf("OPR") !== -1 || ua.indexOf("Opera") !== -1) {
+      detectedBrowser = "Opera";
+    } else if (ua.indexOf("Chrome") !== -1) {
+      detectedBrowser = "Chrome";
+    } else if (ua.indexOf("Safari") !== -1) {
+      detectedBrowser = "Safari";
+    }
 
     setSystem({ os: detectedOS, browser: detectedBrowser });
 
@@ -696,15 +704,10 @@ export function StatusSection() {
     updateScreenSize();
     window.addEventListener("resize", updateScreenSize);
 
-    const ramInterval = setInterval(() => {
-      setRamUsage((prev) => Math.max(4.2, Math.min(5.2, prev + (Math.random() > 0.5 ? 0.05 : -0.05))));
-    }, 4000);
-
     return () => {
       window.removeEventListener("online", handleOnline);
       window.removeEventListener("offline", handleOffline);
       window.removeEventListener("resize", updateScreenSize);
-      clearInterval(ramInterval);
     };
   }, []);
 
@@ -1313,14 +1316,6 @@ export function StatusSection() {
                 <span className="font-bold text-foreground tabular-nums">{screenSize}</span>
               </div>
 
-              {/* Dynamic Ram usage */}
-              <div className="flex justify-between items-center border-t border-border/40 pt-1.5">
-                <span>RAM Load:</span>
-                <span className="font-bold text-foreground tabular-nums">{ramUsage.toFixed(1)} GB</span>
-              </div>
-              <div className="w-full h-1 bg-muted/65 border border-border/40 rounded-full overflow-hidden">
-                <div className="bg-primary h-full rounded-full" style={{ width: `${(ramUsage / 8.0) * 100}%` }} />
-              </div>
 
               {/* Battery */}
               <div className="flex justify-between items-center border-t border-border/40 pt-1.5">
@@ -1642,178 +1637,168 @@ export function StatusSection() {
 
                 {/* MODAL CONTENT: SYSTEM */}
                 {activeModal === "system" && (
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-3 border-b border-border/40 pb-4">
-                      <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
-                        <Laptop className="w-5 h-5" />
+                  <div className="space-y-3.5 sm:space-y-6">
+                    <div className="flex items-center gap-2 border-b border-border/40 pb-2 md:pb-4">
+                      <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                        <Laptop className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                       </div>
                       <div>
-                        <h3 className="text-base font-extrabold text-foreground">Client Device Diagnostics</h3>
-                        <p className="text-[10px] text-muted-foreground font-semibold">Active Client Capabilities</p>
+                        <h3 className="text-xs sm:text-base font-extrabold text-foreground">Client Device Diagnostics</h3>
+                        <p className="text-[7.5px] sm:text-[10px] text-muted-foreground font-semibold">Active Client Capabilities</p>
                       </div>
                     </div>
 
-                    <div className="space-y-4">
-                      {/* OS and Browser Row */}
-                      <div className="grid grid-cols-2 gap-2 text-xs font-semibold">
-                        <div className="bg-muted/30 p-3 rounded-xl border border-border/40 space-y-1">
-                          <span className="text-[8px] font-black text-muted-foreground uppercase tracking-wider block">OS</span>
-                          <span className="font-extrabold text-foreground">{system.os}</span>
-                        </div>
-                        <div className="bg-muted/30 p-3 rounded-xl border border-border/40 space-y-1">
-                          <span className="text-[8px] font-black text-muted-foreground uppercase tracking-wider block">Browser</span>
-                          <span className="font-extrabold text-foreground">{system.browser}</span>
-                        </div>
-                      </div>
-
-                      {/* User Agent debug block */}
-                      <div className="space-y-1.5">
-                        <span className="text-[9px] font-black uppercase tracking-wider text-muted-foreground">User Agent String</span>
-                        <div className="p-2.5 rounded-lg border border-border/70 bg-background/50 overflow-x-auto text-[8px] font-mono text-muted-foreground select-all leading-normal max-h-16 no-scrollbar">
-                          {userAgentStr}
-                        </div>
-                      </div>
-
-                      {/* Screen stats */}
-                      <div className="grid grid-cols-2 gap-2 text-xs font-semibold">
-                        <div className="flex justify-between items-center bg-card/60 p-2.5 rounded-xl border border-border/60">
-                          <span className="text-muted-foreground">Viewport</span>
-                          <span className="font-bold text-foreground tabular-nums">{screenSize.split("x")[0]}px</span>
-                        </div>
-                        <div className="flex justify-between items-center bg-card/60 p-2.5 rounded-xl border border-border/60">
-                          <span className="text-muted-foreground">Pixel Ratio</span>
-                          <span className="font-bold text-foreground tabular-nums">{typeof window !== "undefined" ? window.devicePixelRatio : 1}x</span>
-                        </div>
-                      </div>
-
-                      {/* RAM Memory Allocation */}
-                      <div className="space-y-1.5 p-3 rounded-xl border border-border/60 bg-background/40">
-                        <div className="flex justify-between text-[9px] font-black text-muted-foreground">
-                          <span>RAM LOAD METRICS (SIMULATED)</span>
-                          <span>{ramUsage.toFixed(1)} GB / 8.0 GB</span>
-                        </div>
-                        <div className="w-full h-2 bg-muted border border-border/40 rounded-full overflow-hidden">
-                          <div className="bg-primary h-full rounded-full" style={{ width: `${(ramUsage / 8.0) * 100}%` }} />
-                        </div>
-                      </div>
-
-                      {/* Network & Power Status */}
-                      <div className="space-y-2">
-                        <h5 className="text-[9px] font-black uppercase tracking-wider text-muted-foreground">Hardware & Network</h5>
+                    <div className="grid grid-cols-2 gap-2.5 sm:gap-6 items-stretch">
+                      {/* Left Column: Screen & Viewport Stats */}
+                      <div className="space-y-3 sm:space-y-4 flex flex-col justify-between">
                         <div className="space-y-2">
-                          <div className="flex justify-between items-center bg-card/60 p-2.5 rounded-xl border border-border/60 text-xs">
-                            <span className="text-muted-foreground">Battery Status</span>
-                            <span className="font-bold text-foreground">
-                              {battery.supported ? `${battery.level}% ${battery.charging ? "(Charging)" : "(Discharging)"}` : "AC Powered"}
-                            </span>
+                          <h5 className="text-[7px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Screen & Viewport</h5>
+                          <div className="space-y-1.5 text-[8px] sm:text-xs font-semibold">
+                            <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
+                              <span className="text-muted-foreground">OS Platform</span>
+                              <span className="font-bold text-foreground">{system.os}</span>
+                            </div>
+                            <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
+                              <span className="text-muted-foreground">Browser</span>
+                              <span className="font-bold text-foreground">{system.browser}</span>
+                            </div>
+                            <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
+                              <span className="text-muted-foreground">Viewport</span>
+                              <span className="font-bold text-foreground tabular-nums">{screenSize}</span>
+                            </div>
+                            <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
+                              <span className="text-muted-foreground">Pixel Ratio</span>
+                              <span className="font-bold text-foreground tabular-nums">{typeof window !== "undefined" ? window.devicePixelRatio : 1}x</span>
+                            </div>
                           </div>
-                          <div className="flex justify-between items-center bg-card/60 p-2.5 rounded-xl border border-border/60 text-xs">
-                            <span className="text-muted-foreground">Network Connection</span>
-                            <span className="font-bold text-foreground uppercase">{connectionInfo?.effectiveType || "Wifi/Ethernet"}</span>
+                        </div>
+                      </div>
+
+                      {/* Right Column: Hardware & Network Power Status */}
+                      <div className="space-y-3 sm:space-y-4 flex flex-col justify-between">
+                        <div className="space-y-2">
+                          <h5 className="text-[7px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Hardware & Power</h5>
+                          <div className="space-y-1.5 text-[8px] sm:text-xs font-semibold">
+                            <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
+                              <span className="text-muted-foreground">Battery Level</span>
+                              <span className="font-bold text-foreground">{battery.supported ? `${battery.level}%` : "100%"}</span>
+                            </div>
+                            <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
+                              <span className="text-muted-foreground">Power Source</span>
+                              <span className="font-bold text-foreground">{battery.supported && battery.charging ? "Battery Charging" : battery.supported ? "Battery Discharging" : "AC External Power"}</span>
+                            </div>
+                            <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
+                              <span className="text-muted-foreground">Connection Type</span>
+                              <span className="font-bold text-foreground uppercase">{connectionInfo?.effectiveType || "Wifi/Ethernet"}</span>
+                            </div>
+                            <div className="flex justify-between items-center bg-card/60 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
+                              <span className="text-muted-foreground">Latency</span>
+                              <span className="font-bold text-foreground tabular-nums">{ping !== null ? `${ping} ms` : "0 ms"}</span>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
+
+                    {/* Explanatory text */}
+                    <p className="text-[7.5px] sm:text-[9.5px] text-muted-foreground leading-normal bg-primary/5 p-2 sm:p-3 rounded-xl border border-primary/10">
+                      <strong>Hardware Diagnostics:</strong> Displays detected OS, browser version, viewport resolutions, battery charging telemetry, and active network connections.
+                    </p>
                   </div>
                 )}
 
                 {/* MODAL CONTENT: NETWORK */}
                 {activeModal === "network" && (
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-3 border-b border-border/40 pb-4">
-                      <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
-                        <Gauge className="w-5 h-5 animate-pulse" />
+                  <div className="space-y-3.5 sm:space-y-6">
+                    <div className="flex items-center gap-2 border-b border-border/40 pb-2 md:pb-4">
+                      <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                        <Gauge className="w-3.5 h-3.5 sm:w-5 sm:h-5 animate-pulse" />
                       </div>
                       <div>
-                        <h3 className="text-base font-extrabold text-foreground">Network Diagnostics & Speed Test</h3>
-                        <p className="text-[10px] text-muted-foreground font-semibold">Active Connection Telemetry</p>
+                        <h3 className="text-xs sm:text-base font-extrabold text-foreground">Network Diagnostics & Speed Test</h3>
+                        <p className="text-[7.5px] sm:text-[10px] text-muted-foreground font-semibold">Active Connection Telemetry</p>
                       </div>
                     </div>
 
-                    <div className="space-y-4">
-                      {/* Connection specs */}
-                      <div className="grid grid-cols-3 gap-2 text-xs font-semibold">
-                        <div className="bg-muted/30 p-2.5 rounded-xl border border-border/40 space-y-0.5 text-center">
-                          <span className="text-[8px] font-black text-muted-foreground uppercase tracking-wider block">Status</span>
-                          <span className={cn("font-extrabold", isOnline ? "text-emerald-500" : "text-destructive")}>
-                            {isOnline ? "Online" : "Offline"}
-                          </span>
-                        </div>
-                        <div className="bg-muted/30 p-2.5 rounded-xl border border-border/40 space-y-0.5 text-center">
-                          <span className="text-[8px] font-black text-muted-foreground uppercase tracking-wider block">Ping</span>
-                          <span className="font-extrabold text-foreground tabular-nums">{ping !== null ? `${ping} ms` : "--"}</span>
-                        </div>
-                        <div className="bg-muted/30 p-2.5 rounded-xl border border-border/40 space-y-0.5 text-center">
-                          <span className="text-[8px] font-black text-muted-foreground uppercase tracking-wider block">Type</span>
-                          <span className="font-extrabold text-foreground uppercase truncate block">{connectionInfo?.effectiveType || "Wifi/LAN"}</span>
+                    <div className="grid grid-cols-2 gap-2.5 sm:gap-6 items-stretch">
+                      {/* Left Column: Connection Telemetry */}
+                      <div className="space-y-3 sm:space-y-4 flex flex-col justify-between">
+                        <div className="space-y-2">
+                          <h5 className="text-[7px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Connection Telemetry</h5>
+                          <div className="space-y-1.5 text-[8px] sm:text-xs font-semibold">
+                            <div className="flex justify-between items-center bg-card/60 p-1 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
+                              <span className="text-muted-foreground">Status</span>
+                              <span className={cn("font-extrabold", isOnline ? "text-emerald-500" : "text-destructive")}>
+                                {isOnline ? "Online" : "Offline"}
+                              </span>
+                            </div>
+                            <div className="flex justify-between items-center bg-card/60 p-1 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/60">
+                              <span className="text-muted-foreground">Ping / Latency</span>
+                              <span className="font-bold text-foreground tabular-nums">{ping !== null ? `${ping} ms` : "--"}</span>
+                            </div>
+                            <div className="flex justify-between items-center bg-card/60 p-1 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/50">
+                              <span className="text-muted-foreground">Type</span>
+                              <span className="font-bold text-foreground uppercase truncate max-w-[70px] sm:max-w-none">{connectionInfo?.effectiveType || "Wifi/LAN"}</span>
+                            </div>
+                            <div className="flex justify-between items-center bg-card/60 p-1 sm:p-2.5 rounded-lg sm:rounded-xl border border-border/50">
+                              <span className="text-muted-foreground">Bandwidth</span>
+                              <span className="font-bold text-foreground tabular-nums">{connectionInfo?.downlink ? `${connectionInfo.downlink} Mbps` : "--"}</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
-                      {/* Speed Test Panel */}
-                      <div className="p-4 rounded-xl border border-border/60 bg-background/40 flex flex-col items-center justify-center min-h-[140px] relative overflow-hidden">
-                        {isTesting ? (
-                          <div className="space-y-3 w-full text-center">
-                            <div className="relative w-16 h-16 mx-auto flex items-center justify-center">
-                              {/* Spinning loading indicator */}
-                              <div className="absolute inset-0 rounded-full border-2 border-primary/20 border-t-primary animate-spin" />
-                              <span className="text-xs font-black text-foreground tabular-nums">{progress}%</span>
-                            </div>
-                            <p className="text-[10px] font-bold text-muted-foreground animate-pulse">Running downlink bandwidth test...</p>
-                          </div>
-                        ) : (
-                          <div className="text-center space-y-3 w-full animate-fadeIn">
-                            {speedResult ? (
-                              <div className="space-y-1">
-                                <span className="text-[9px] font-black uppercase tracking-widest text-muted-foreground">SIMULATED DOWNLOAD SPEED</span>
-                                <h4 className="text-3xl font-black text-emerald-500 tracking-tight leading-none tabular-nums">
-                                  {speedResult} <span className="text-xs font-bold">Mbps</span>
-                                </h4>
-                                <p className="text-[10px] text-muted-foreground font-semibold pt-1">
-                                  Connection rating: Excellent for real-time applications.
-                                </p>
+                      {/* Right Column: Speed Test Panel */}
+                      <div className="space-y-3 sm:space-y-4 flex flex-col justify-between">
+                        <div className="space-y-2 h-full flex flex-col justify-between">
+                          <h5 className="text-[7px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">Bandwidth Diagnostics</h5>
+                          <div className="p-2 sm:p-4 rounded-xl border border-border/60 bg-background/40 flex flex-col items-center justify-center flex-1 min-h-[90px] sm:min-h-[120px] relative overflow-hidden">
+                            {isTesting ? (
+                              <div className="space-y-1.5 w-full text-center">
+                                <div className="relative w-8 h-8 sm:w-12 sm:h-12 mx-auto flex items-center justify-center">
+                                  <div className="absolute inset-0 rounded-full border border-primary/20 border-t-primary animate-spin" />
+                                  <span className="text-[8px] sm:text-xs font-black text-foreground tabular-nums">{progress}%</span>
+                                </div>
+                                <p className="text-[7px] sm:text-[9px] font-bold text-muted-foreground animate-pulse">Running downlink test...</p>
                               </div>
                             ) : (
-                              <div className="space-y-1">
-                                <h4 className="text-sm font-extrabold text-foreground">Downlink Bandwidth Diagnostic</h4>
-                                <p className="text-[10px] text-muted-foreground max-w-xs mx-auto leading-relaxed">
-                                  Click the button below to run client latency and download bandwidth diagnostics.
-                                </p>
+                              <div className="text-center space-y-1.5 w-full">
+                                {speedResult ? (
+                                  <div className="space-y-0.5">
+                                    <span className="text-[6.5px] sm:text-[8px] font-black uppercase tracking-widest text-muted-foreground">DOWNLOAD SPEED</span>
+                                    <h4 className="text-lg sm:text-2xl font-black text-emerald-500 tracking-tight leading-none tabular-nums">
+                                      {speedResult} <span className="text-[8px] sm:text-xs font-bold">Mbps</span>
+                                    </h4>
+                                  </div>
+                                ) : (
+                                  <div className="space-y-0.5">
+                                    <h4 className="text-[9px] sm:text-xs font-extrabold text-foreground">Downlink Diagnostic</h4>
+                                    <p className="text-[7px] sm:text-[9px] text-muted-foreground leading-normal max-w-[120px] sm:max-w-xs mx-auto">
+                                      Run bandwidth diagnostics.
+                                    </p>
+                                  </div>
+                                )}
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    runSpeedTest();
+                                  }}
+                                  disabled={!isOnline}
+                                  className="w-full btn-logo-glossy py-1 rounded-lg font-bold text-[8px] sm:text-[10px] disabled:opacity-50 disabled:cursor-not-allowed text-center transition-all focus-visible:outline-none cursor-pointer mt-1"
+                                >
+                                  Test Speed
+                                </button>
                               </div>
                             )}
-
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                runSpeedTest();
-                              }}
-                              disabled={!isOnline}
-                              className="btn-logo-glossy px-6 py-2 rounded-xl font-bold text-xs cursor-pointer shadow hover:shadow-primary/5 transition-all"
-                            >
-                              {speedResult ? "Test Again" : "Run Speed Test"}
-                            </button>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Extended parameters */}
-                      <div className="space-y-2">
-                        <h5 className="text-[9px] font-black uppercase tracking-wider text-muted-foreground">Diagnostic Parameters</h5>
-                        <div className="space-y-2">
-                          <div className="flex justify-between items-center bg-card/60 p-2.5 rounded-xl border border-border/60 text-xs">
-                            <span className="text-muted-foreground">Downlink Capacity</span>
-                            <span className="font-bold text-foreground tabular-nums">{connectionInfo?.downlink ? `${connectionInfo.downlink} Mbps` : "10 Mbps (Fallback)"}</span>
-                          </div>
-                          <div className="flex justify-between items-center bg-card/60 p-2.5 rounded-xl border border-border/60 text-xs">
-                            <span className="text-muted-foreground">Packet Loss</span>
-                            <span className="font-bold text-emerald-500 tabular-nums">0.0% (Stable)</span>
-                          </div>
-                          <div className="flex justify-between items-center bg-card/60 p-2.5 rounded-xl border border-border/60 text-xs">
-                            <span className="text-muted-foreground">Encryption Protocol</span>
-                            <span className="font-bold text-foreground">TLS 1.3 (AES-256)</span>
                           </div>
                         </div>
                       </div>
                     </div>
+
+                    {/* Explanatory text */}
+                    <p className="text-[7.5px] sm:text-[9.5px] text-muted-foreground leading-normal bg-primary/5 p-2 sm:p-3 rounded-xl border border-primary/10">
+                      <strong>Bandwidth Telemetry:</strong> Evaluates simulated downlink transmission speeds and active latency profiles.
+                    </p>
                   </div>
                 )}
               </motion.div>
