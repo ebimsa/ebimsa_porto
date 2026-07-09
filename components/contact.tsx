@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Mail,
   Github,
   Linkedin,
   Instagram,
@@ -11,11 +10,7 @@ import {
   Check,
   Copy,
   ArrowUpRight,
-  Send,
-  User,
-  MessageSquare,
-  ListFilter,
-  Sparkles
+  Send
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -177,8 +172,7 @@ export function Contact() {
           {/* COLUMN 1: Direct channels & Socials */}
           <div className="flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-3xl p-5 sm:p-6 squircle-lg shadow-sm justify-between h-auto md:h-[500px]">
             <div className="space-y-4">
-              <div className="flex items-center gap-2 border-b border-border/40 pb-3">
-                <Mail className="w-4.5 h-4.5 text-primary shrink-0" />
+              <div className="flex items-center border-b border-border/40 pb-3">
                 <h3 className="font-extrabold text-sm text-foreground uppercase tracking-wider">
                   Direct Channels
                 </h3>
@@ -259,8 +253,7 @@ export function Contact() {
           {/* COLUMN 2: Guestbook Input Form */}
           <div className="flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-3xl p-5 sm:p-6 squircle-lg shadow-sm justify-between h-auto md:h-[500px]">
             <div className="space-y-4 w-full flex-1">
-              <div className="flex items-center gap-2 border-b border-border/40 pb-3">
-                <Sparkles className="w-4.5 h-4.5 text-primary shrink-0" />
+              <div className="flex items-center border-b border-border/40 pb-3">
                 <h3 className="font-extrabold text-sm text-foreground uppercase tracking-wider">
                   Write New Message
                 </h3>
@@ -330,8 +323,7 @@ export function Contact() {
           <div className="flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-3xl p-5 sm:p-6 squircle-lg shadow-sm justify-between h-[500px]">
             <div className="flex flex-col h-full w-full overflow-hidden">
               <div className="flex items-center justify-between border-b border-border/40 pb-3 shrink-0">
-                <div className="flex items-center gap-2">
-                  <ListFilter className="w-4.5 h-4.5 text-primary shrink-0" />
+                <div className="flex items-center">
                   <h3 className="font-extrabold text-sm text-foreground uppercase tracking-wider">
                     Message Feed
                   </h3>

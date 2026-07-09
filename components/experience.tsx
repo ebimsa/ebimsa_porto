@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Calendar, Building, Users, BookOpen } from "lucide-react";
 
 type ExperienceItem = {
@@ -72,45 +72,73 @@ const EXPERIENCE_DATA: ExperienceItem[] = [
 ];
 
 export function Experience() {
-  const targetRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-  });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = React.useState(0);
 
-  // Maps vertical scroll progress (0 to 1) to horizontal movement (0% to -65%)
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-65%"]);
+  const handleScroll = () => {
+    const container = containerRef.current;
+    if (!container) return;
+    const maxScroll = container.scrollWidth - container.clientWidth;
+    if (maxScroll <= 0) return;
+    setScrollProgress(container.scrollLeft / maxScroll);
+  };
+
+  React.useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (e.deltaY !== 0) {
+        const canScrollLeft = container.scrollLeft > 0;
+        const canScrollRight =
+          container.scrollLeft < container.scrollWidth - container.clientWidth - 1;
+
+        if ((e.deltaY > 0 && canScrollRight) || (e.deltaY < 0 && canScrollLeft)) {
+          e.preventDefault();
+          container.scrollLeft += e.deltaY;
+        }
+      }
+    };
+
+    container.addEventListener("wheel", handleWheel, { passive: false });
+    return () => {
+      container.removeEventListener("wheel", handleWheel);
+    };
+  }, []);
 
   const rotations = ["rotate-[-1.5deg]", "rotate-[1deg]", "rotate-[-1deg]", "rotate-[1.5deg]"];
 
   return (
-    <section ref={targetRef} id="experience" className="relative h-[250vh] bg-dot-pattern border-t border-border/40">
-      {/* Sticky container that keeps section in viewport during scroll-jacking */}
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-        
-        {/* Subtle Background Glow */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-primary/2 blur-[120px] pointer-events-none -z-10" />
+    <section id="experience" className="relative bg-dot-pattern border-t border-border/40 py-20">
+      {/* Subtle Background Glow */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-primary/2 blur-[120px] pointer-events-none -z-10" />
 
+      {/* 1. Desktop Horizontal scroll container */}
+      <div className="hidden md:flex flex-col justify-center overflow-hidden">
         {/* Section Header */}
         <div className="max-w-6xl mx-auto px-6 w-full mb-4">
           <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-foreground">
             Experience & Organizations
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground max-w-xl mt-2">
-            Scroll down to navigate through my professional work and organizational leadership timeline.
+            Scroll over the cards to navigate through my professional work and organizational leadership timeline.
           </p>
         </div>
 
         {/* Horizontal Scroll Window */}
-        <div className="relative w-full overflow-hidden pl-[8%] pr-[20%] min-h-[500px]">
+        <div
+          ref={containerRef}
+          onScroll={handleScroll}
+          className="relative w-full overflow-x-auto no-scrollbar pl-[8%] pr-[20%] min-h-[500px]"
+        >
           <motion.div
-            style={{ x }}
             className="flex gap-8 relative pb-12 w-max"
           >
             {/* The Horizontal Timeline Line */}
             <div className="absolute top-[88px] left-[32px] right-[300px] h-[2px] bg-border/80 z-0">
               {/* Dynamic scroll progress highlights active parts of the line */}
               <motion.div
-                style={{ scaleX: scrollYProgress }}
+                style={{ scaleX: scrollProgress }}
                 className="absolute inset-0 bg-primary origin-left"
               />
             </div>
@@ -199,6 +227,106 @@ export function Experience() {
               );
             })}
           </motion.div>
+        </div>
+      </div>
+
+      {/* 2. Mobile horizontal touch-swipe scroll container */}
+      <div className="block md:hidden w-full relative">
+        {/* Section Header */}
+        <div className="px-6 mb-4">
+          <h2 className="text-3xl font-black tracking-tight text-foreground">
+            Experience & Organizations
+          </h2>
+          <p className="text-sm text-muted-foreground mt-2">
+            Swipe left/right to navigate my professional timeline.
+          </p>
+        </div>
+
+        {/* Horizontal Swipe Viewport Container */}
+        <div className="w-full overflow-x-auto no-scrollbar snap-x snap-mandatory pb-12">
+          <div className="flex gap-6 relative pl-[8%] pr-[20%] w-max">
+            
+            {/* The Horizontal Timeline Line */}
+            <div className="absolute top-[88px] left-[32px] right-[300px] h-[2px] bg-border/80 z-0" />
+
+            {EXPERIENCE_DATA.map((exp, index) => {
+              const Icon = exp.icon;
+              const isEven = index % 2 === 0;
+              const wrapperPadding = isEven ? "pt-[112px]" : "pt-[160px]";
+              const verticalLineHeight = isEven ? "h-[16px]" : "h-[64px]";
+              const rotationClass = rotations[index % rotations.length];
+
+              return (
+                <div
+                  key={exp.id}
+                  className={`relative flex flex-col shrink-0 w-[82vw] max-w-[320px] snap-center select-none z-10 ${wrapperPadding}`}
+                >
+                  {/* Timeline node dot */}
+                  <div className="absolute top-[80px] left-8 w-4 h-4 rounded-full border-2 border-primary bg-background z-20 flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  </div>
+
+                  {/* Vertical connector line hanging from node to card */}
+                  <div className={`absolute top-[96px] left-[39px] w-[2px] bg-border/80 z-0 ${verticalLineHeight}`} />
+
+                  {/* Glassmorphic Bento Card */}
+                  <div className={`group relative p-6 rounded-3xl border border-border bg-card/45 dark:bg-card/35 backdrop-blur-md transition-all duration-500 squircle-lg flex flex-col justify-between min-h-[310px] hover:border-primary/35 hover:shadow-primary/10 hover:shadow-2xl ${rotationClass} hover:rotate-0 hover:scale-[1.01]`}>
+                    
+                    {/* Glowing Theme Color decoration in background */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10" />
+
+                    {/* Corner glow accent */}
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm pointer-events-none" />
+
+                    <div className="space-y-4">
+                      {/* Card Header */}
+                      <div className="space-y-1.5">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="inline-flex px-2 py-0.5 text-[9px] font-bold tracking-widest border border-primary/20 bg-primary/10 text-primary rounded-full uppercase">
+                            {exp.type}
+                          </span>
+                          <span className="text-[10px] font-semibold text-muted-foreground flex items-center gap-1">
+                            <Calendar className="w-3 h-3" />
+                            {exp.period}
+                          </span>
+                        </div>
+                        <h3 className="text-lg font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
+                          {exp.role}
+                        </h3>
+                        <p className="text-sm font-semibold text-muted-foreground/80 flex items-center gap-1.5">
+                          <span className="p-1 rounded-lg border border-primary/20 bg-primary/10 text-primary">
+                            <Icon className="w-3.5 h-3.5" />
+                          </span>
+                          {exp.organization}
+                        </p>
+                      </div>
+
+                      {/* Details Bullet List */}
+                      <ul className="space-y-2 list-disc pl-4 text-muted-foreground text-xs leading-relaxed">
+                        {exp.details.map((detail, idx) => (
+                          <li key={idx} className="marker:text-foreground/35">
+                            {detail}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Tech Tags Footer */}
+                    <div className="flex flex-wrap gap-1.5 pt-4 border-t border-border/40 mt-6">
+                      {exp.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-0.5 text-[10px] font-medium border border-primary/15 bg-primary/5 text-primary rounded-md"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
