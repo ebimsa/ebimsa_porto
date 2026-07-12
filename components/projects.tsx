@@ -62,8 +62,89 @@ const PROJECTS_DATA: Project[] = [
     lessons: "Gained deep knowledge in secure financial ledger engineering, Svelte stores state synchronization, and integrating external payment gateway API endpoints.",
     githubUrl: "https://github.com/enggalbima/doripay",
     demoUrl: "https://doripay.com",
+    videoUrl: "/doripay.mp4",
   },
 ];
+
+function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
+  return (
+    <motion.div
+      layoutId={`project-container-${project.id}`}
+      onClick={onClick}
+      className="group flex flex-col bg-card/45 dark:bg-card/35 backdrop-blur-md border border-border rounded-3xl overflow-hidden hover:border-primary/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.02)] transition-all duration-300 squircle-lg cursor-pointer h-full"
+    >
+      {/* Top: Browser Mockup with Cover Image / Always Playing Video */}
+      <div className="relative w-full aspect-video bg-muted border-b border-border/40 overflow-hidden shrink-0">
+        {/* Mac OS dot indicators */}
+        <div className="absolute top-2.5 left-3 flex items-center gap-1 z-10">
+          <div className="w-1.5 h-1.5 rounded-full bg-red-400/80" />
+          <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/80" />
+          <div className="w-1.5 h-1.5 rounded-full bg-green-400/80" />
+        </div>
+        
+        {project.videoUrl ? (
+          <video
+            src={project.videoUrl}
+            poster={project.coverImage}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
+          />
+        ) : (
+          <Image
+            src={project.coverImage}
+            alt={project.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover group-hover:scale-102 transition-transform duration-500"
+          />
+        )}
+      </div>
+
+      {/* Bottom: Card Body Details */}
+      <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="inline-flex px-2 py-0.5 text-[8px] font-bold tracking-widest text-primary border border-primary/20 bg-primary/10 rounded-full uppercase">
+              {project.category}
+            </span>
+            <span className="text-[10px] font-mono text-muted-foreground/60">{project.demoUrl.replace("https://", "")}</span>
+          </div>
+          <h3 className="text-lg font-black tracking-tight text-foreground group-hover:text-primary transition-colors">
+            {project.title}
+          </h3>
+          <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+            {project.tagline}
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          {/* Tech tags list */}
+          <div className="flex flex-wrap gap-1">
+            {project.tags.slice(0, 3).map((tag) => (
+              <span key={tag} className="text-[9px] px-2 py-0.5 bg-muted/65 text-muted-foreground border border-border/45 rounded font-mono">
+                {tag}
+              </span>
+            ))}
+            {project.tags.length > 3 && (
+              <span className="text-[9px] px-2 py-0.5 bg-muted/65 text-muted-foreground/80 border border-border/45 rounded font-mono">
+                +{project.tags.length - 3}
+              </span>
+            )}
+          </div>
+
+          {/* Action Link */}
+          <div className="pt-3 border-t border-border/40 flex items-center justify-between text-xs font-bold text-primary">
+            <span>Read Case Study</span>
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export function Projects() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -135,69 +216,11 @@ export function Projects() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
-              <motion.div
+              <ProjectCard
                 key={project.id}
-                layoutId={`project-container-${project.id}`}
+                project={project}
                 onClick={() => setActiveProject(project)}
-                className="group flex flex-col bg-card/45 dark:bg-card/35 backdrop-blur-md border border-border rounded-3xl overflow-hidden hover:border-primary/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.02)] transition-all duration-300 squircle-lg cursor-pointer h-full"
-              >
-                {/* Top: Browser Mockup with Cover Image */}
-                <div className="relative w-full aspect-video bg-muted border-b border-border/40 overflow-hidden shrink-0">
-                  {/* Mac OS dot indicators */}
-                  <div className="absolute top-2.5 left-3 flex items-center gap-1 z-10">
-                    <div className="w-1.5 h-1.5 rounded-full bg-red-400/80" />
-                    <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/80" />
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-400/80" />
-                  </div>
-                  <Image
-                    src={project.coverImage}
-                    alt={project.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover group-hover:scale-102 transition-transform duration-500"
-                  />
-                </div>
-
-                {/* Bottom: Card Body Details */}
-                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="inline-flex px-2 py-0.5 text-[8px] font-bold tracking-widest text-primary border border-primary/20 bg-primary/10 rounded-full uppercase">
-                        {project.category}
-                      </span>
-                      <span className="text-[10px] font-mono text-muted-foreground/60">{project.demoUrl.replace("https://", "")}</span>
-                    </div>
-                    <h3 className="text-lg font-black tracking-tight text-foreground group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
-                      {project.tagline}
-                    </p>
-                  </div>
-
-                  <div className="space-y-4">
-                    {/* Tech tags list */}
-                    <div className="flex flex-wrap gap-1">
-                      {project.tags.slice(0, 3).map((tag) => (
-                        <span key={tag} className="text-[9px] px-2 py-0.5 bg-muted/65 text-muted-foreground border border-border/45 rounded font-mono">
-                          {tag}
-                        </span>
-                      ))}
-                      {project.tags.length > 3 && (
-                        <span className="text-[9px] px-2 py-0.5 bg-muted/65 text-muted-foreground/80 border border-border/45 rounded font-mono">
-                          +{project.tags.length - 3}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Action Link */}
-                    <div className="pt-3 border-t border-border/40 flex items-center justify-between text-xs font-bold text-primary">
-                      <span>Read Case Study</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+              />
             ))}
           </AnimatePresence>
         </div>
@@ -228,41 +251,55 @@ export function Projects() {
               <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto no-scrollbar">
                 <motion.div
                   layoutId={`project-container-${activeProject.id}`}
-                  className="relative w-full max-w-4xl bg-card border border-border rounded-[32px] overflow-hidden shadow-2xl squircle-lg my-8 focus:outline-none"
+                  className="relative w-full max-w-4xl bg-card border border-border rounded-[32px] overflow-hidden shadow-2xl squircle-lg my-4 focus:outline-none flex flex-col max-h-[90vh] md:max-h-[85vh]"
                   tabIndex={-1}
                 >
                   {/* Close button */}
                   <button
                     onClick={() => setActiveProject(null)}
-                    className="absolute top-4 right-4 z-10 p-2 rounded-full border border-border/80 bg-background/60 backdrop-blur-md text-muted-foreground hover:text-foreground focus-visible:outline-none hover:bg-muted/80 transition-all"
+                    className="absolute top-4 right-4 z-20 p-2 rounded-full border border-border/80 bg-background/60 backdrop-blur-md text-muted-foreground hover:text-foreground focus-visible:outline-none hover:bg-muted/80 transition-all"
                     aria-label="Close details"
                   >
                     <X className="w-4 h-4" />
                   </button>
 
                   {/* Header Cover Banner */}
-                  <div className="relative w-full h-48 sm:h-72 bg-muted">
-                    <Image
-                      src={activeProject.coverImage}
-                      alt={activeProject.title}
-                      fill
-                      priority
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-                    {/* Floating Brand Title overlay */}
-                    <div className="absolute bottom-6 left-6 right-6">
-                      <span className="px-2.5 py-1 text-[10px] font-bold tracking-widest text-foreground bg-background/90 border border-border/50 rounded-full uppercase">
-                        {activeProject.category}
-                      </span>
-                      <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground mt-2 drop-shadow-sm">
-                        {activeProject.title}
-                      </h2>
-                    </div>
+                  <div className="relative w-full aspect-video md:max-h-[320px] bg-black overflow-hidden flex items-center justify-center shrink-0">
+                    {activeProject.videoUrl ? (
+                      <video
+                        src={activeProject.videoUrl}
+                        controls
+                        autoPlay
+                        muted
+                        playsInline
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <>
+                        <Image
+                          src={activeProject.coverImage}
+                          alt={activeProject.title}
+                          fill
+                          priority
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+                      </>
+                    )}
+                  </div>
+
+                  {/* Project Title Block (Below banner) */}
+                  <div className="px-6 pt-5 sm:px-8 sm:pt-6 md:px-10 border-b border-border/40 pb-3 shrink-0">
+                    <span className="px-2 py-0.5 text-[9px] font-bold tracking-widest text-primary border border-primary/20 bg-primary/10 rounded-full uppercase inline-block">
+                      {activeProject.category}
+                    </span>
+                    <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground mt-2">
+                      {activeProject.title}
+                    </h2>
                   </div>
 
                   {/* Content details scroll block */}
-                  <div className="p-6 sm:p-8 md:p-10 space-y-8 max-h-[60vh] overflow-y-auto no-scrollbar">
+                  <div className="p-6 sm:p-8 md:p-10 pt-4 sm:pt-4 md:pt-4 space-y-8 overflow-y-auto no-scrollbar flex-1">
                     {/* Headline Tagline */}
                     <p className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-foreground leading-snug">
                       {activeProject.tagline}
@@ -281,25 +318,7 @@ export function Projects() {
                             {activeProject.overview}
                           </p>
                         </div>
-
-                        {activeProject.videoUrl && (
-                          <div className="space-y-3">
-                            <h4 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground">
-                              <Play className="w-4 h-4 text-primary fill-primary/10" />
-                              Project Demonstration
-                            </h4>
-                            <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-border bg-black shadow-lg">
-                              <video
-                                src={activeProject.videoUrl}
-                                controls
-                                preload="metadata"
-                                className="w-full h-full object-contain"
-                              />
-                            </div>
-                          </div>
-                        )}
-
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                           <div className="space-y-2">
                             <h4 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground">
                               <ShieldCheck className="w-4 h-4" />
