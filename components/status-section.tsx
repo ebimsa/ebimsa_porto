@@ -1096,13 +1096,15 @@ export function StatusSection() {
                 <ArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </a>
 
-              <div
-                title="Resume coming soon"
-                className="flex items-center justify-center gap-1.5 px-4 py-2 md:px-5 md:py-2.5 rounded-xl md:rounded-2xl border border-border/40 bg-card/20 text-muted-foreground/50 font-bold text-[10px] md:text-xs squircle-sm md:squircle-md cursor-not-allowed opacity-55 select-none"
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-center gap-1.5 px-4 py-2 md:px-5 md:py-2.5 rounded-xl md:rounded-2xl border border-border/80 bg-card/40 text-muted-foreground hover:text-primary hover:border-primary/30 font-bold text-[10px] md:text-xs squircle-sm md:squircle-md transition-all duration-300 cursor-pointer"
               >
-                <FileText className="w-3 h-3 md:w-3.5 md:h-3.5 text-muted-foreground/45" />
+                <FileText className="w-3 h-3 md:w-3.5 md:h-3.5 text-muted-foreground group-hover:text-primary transition-colors" />
                 Resume
-              </div>
+              </a>
             </div>
           </div>
 

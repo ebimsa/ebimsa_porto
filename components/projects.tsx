@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ExternalLink, Github, X, Code, ShieldCheck, Cpu, GitBranch, Lightbulb, ArrowRight } from "lucide-react";
+import { Search, ExternalLink, Github, X, Code, ShieldCheck, Cpu, GitBranch, Lightbulb, ArrowRight, Play } from "lucide-react";
 
 type Project = {
   id: string;
@@ -22,6 +22,7 @@ type Project = {
   lessons: string;
   githubUrl: string;
   demoUrl: string;
+  videoUrl?: string;
 };
 
 const PROJECTS_DATA: Project[] = [
@@ -42,6 +43,7 @@ const PROJECTS_DATA: Project[] = [
     lessons: "Mastered stateful PHP architectures (Octane), CAS token single sign-on protocols, and indexing performance tuning on massive JSONB datasets.",
     githubUrl: "https://github.com/enggalbima/saidata",
     demoUrl: "https://saidata.unila.ac.id",
+    videoUrl: "/saidata.mp4",
   },
   {
     id: "doripay",
@@ -279,6 +281,23 @@ export function Projects() {
                             {activeProject.overview}
                           </p>
                         </div>
+
+                        {activeProject.videoUrl && (
+                          <div className="space-y-3">
+                            <h4 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground">
+                              <Play className="w-4 h-4 text-primary fill-primary/10" />
+                              Project Demonstration
+                            </h4>
+                            <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-border bg-black shadow-lg">
+                              <video
+                                src={activeProject.videoUrl}
+                                controls
+                                preload="metadata"
+                                className="w-full h-full object-contain"
+                              />
+                            </div>
+                          </div>
+                        )}
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                           <div className="space-y-2">

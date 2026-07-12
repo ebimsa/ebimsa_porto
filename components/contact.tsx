@@ -61,10 +61,10 @@ export function Contact() {
     {
       name: "Resume",
       url: "/resume.pdf",
-      handle: "Coming Soon",
+      handle: "Download PDF",
       icon: FileText,
-      color: "opacity-55 cursor-not-allowed border-dashed hover:bg-card/40 hover:shadow-none",
-      disabled: true,
+      color: "hover:border-primary/30 hover:text-primary",
+      disabled: false,
     },
   ];
 
