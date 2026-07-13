@@ -116,8 +116,8 @@ export function Experience() {
       {/* 1. Desktop Horizontal scroll container */}
       <div className="hidden md:flex flex-col justify-center overflow-hidden">
         {/* Section Header */}
-        <div className="max-w-6xl mx-auto px-6 w-full mb-4">
-          <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-foreground">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 w-full mb-4">
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-foreground">
             Experience & Organizations
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground max-w-xl mt-2">
@@ -233,8 +233,8 @@ export function Experience() {
       {/* 2. Mobile horizontal touch-swipe scroll container */}
       <div className="block md:hidden w-full relative">
         {/* Section Header */}
-        <div className="px-6 mb-4">
-          <h2 className="text-3xl font-black tracking-tight text-foreground">
+        <div className="px-4 md:px-6 mb-4">
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-foreground">
             Experience & Organizations
           </h2>
           <p className="text-sm text-muted-foreground mt-2">

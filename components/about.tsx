@@ -54,7 +54,7 @@ export function About() {
             className="lg:col-span-5 space-y-6"
           >
             <div className="space-y-3">
-              <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-foreground leading-tight">
+              <h2 className="text-3xl md:text-5xl font-black tracking-tight text-foreground leading-tight">
                 Engineering Focus & Philosophy
               </h2>
             </div>

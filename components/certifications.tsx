@@ -63,10 +63,10 @@ export function Certifications() {
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20">
             Credentials
           </span>
-          <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-foreground">
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-foreground">
             Professional Certifications
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-xl">
+          <p className="text-sm sm:text-base text-muted-foreground max-w-xl">
             Verified expertise in cloud computing, container virtualization, and systems automation.
           </p>
         </div>
@@ -91,7 +91,7 @@ export function Certifications() {
                   </span>
                 </div>
                 <div className="space-y-1">
-                  <h3 className="font-bold text-base sm:text-lg text-foreground tracking-tight group-hover:text-foreground/80 transition-colors line-clamp-1">
+                  <h3 className="font-bold text-lg sm:text-xl text-foreground tracking-tight group-hover:text-foreground/80 transition-colors line-clamp-1">
                     {cert.title}
                   </h3>
                   <p className="text-xs sm:text-sm text-muted-foreground font-semibold">

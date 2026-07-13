@@ -718,58 +718,98 @@ export function StatusSection() {
         let lon = 106.8456;
         let cityName = "Jakarta, ID";
         let tzName = "Asia/Jakarta";
+        let locationDetected = false;
 
-        // Try IP-based geolocation (freeipapi.com as primary, ipapi.co as secondary backup)
+        // Try browser GPS/Wi-Fi Geolocation first (accurate)
         try {
-          const geoRes = await fetch("https://freeipapi.com/api/json");
-          if (geoRes.ok) {
-            const geoData = await geoRes.json();
-            if (geoData.latitude && geoData.longitude) {
-              lat = geoData.latitude;
-              lon = geoData.longitude;
-              cityName = geoData.cityName 
-                ? `${geoData.cityName}, ${geoData.countryCode || "ID"}` 
-                : "Local Area";
-              if (geoData.timeZone) {
-                tzName = geoData.timeZone;
+          if (typeof window !== "undefined" && navigator.geolocation) {
+            const position = await new Promise<GeolocationPosition>((resolve, reject) => {
+              navigator.geolocation.getCurrentPosition(resolve, reject, {
+                enableHighAccuracy: false,
+                timeout: 4000, // Quick 4s timeout so it doesn't hang
+                maximumAge: 10 * 60 * 1000, // 10 minutes cache
+              });
+            });
+            lat = position.coords.latitude;
+            lon = position.coords.longitude;
+            tzName = Intl.DateTimeFormat().resolvedOptions().timeZone || "Asia/Jakarta";
+            locationDetected = true;
+
+            // Try to resolve city name using BigDataCloud free reverse geocoding API
+            try {
+              const revRes = await fetch(
+                `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`
+              );
+              if (revRes.ok) {
+                const revData = await revRes.json();
+                const city = revData.city || revData.locality || revData.principalSubdivision || "";
+                const country = revData.countryCode || "ID";
+                cityName = city ? `${city}, ${country}` : "Local Area, ID";
+              } else {
+                cityName = "Local Area, ID";
               }
-            }
-          } else {
-            // Backup: Try ipapi.co
-            const backupRes = await fetch("https://ipapi.co/json/");
-            if (backupRes.ok) {
-              const geoData = await backupRes.json();
-              if (geoData.latitude && geoData.longitude) {
-                lat = geoData.latitude;
-                lon = geoData.longitude;
-                cityName = geoData.city 
-                  ? `${geoData.city}, ${geoData.country_code || "ID"}` 
-                  : "Local Area";
-                if (geoData.timezone) {
-                  tzName = geoData.timezone;
-                }
-              }
+            } catch (revError) {
+              console.warn("Reverse geocoding failed, using generic name:", revError);
+              cityName = "Local Area, ID";
             }
           }
-        } catch (e) {
-          console.warn("Primary Geolocation failed, trying backup:", e);
+        } catch (geoError) {
+          console.warn("Browser Geolocation failed or denied, trying IP Geolocation:", geoError);
+        }
+
+        // If Browser Geolocation failed or was denied, fallback to IP-based geolocation
+        if (!locationDetected) {
           try {
-            const backupRes = await fetch("https://ipapi.co/json/");
-            if (backupRes.ok) {
-              const geoData = await backupRes.json();
+            const geoRes = await fetch("https://freeipapi.com/api/json");
+            if (geoRes.ok) {
+              const geoData = await geoRes.json();
               if (geoData.latitude && geoData.longitude) {
                 lat = geoData.latitude;
                 lon = geoData.longitude;
-                cityName = geoData.city 
-                  ? `${geoData.city}, ${geoData.country_code || "ID"}` 
+                cityName = geoData.cityName 
+                  ? `${geoData.cityName}, ${geoData.countryCode || "ID"}` 
                   : "Local Area";
-                if (geoData.timezone) {
-                  tzName = geoData.timezone;
+                if (geoData.timeZone) {
+                  tzName = geoData.timeZone;
+                }
+              }
+            } else {
+              // Backup: Try ipapi.co
+              const backupRes = await fetch("https://ipapi.co/json/");
+              if (backupRes.ok) {
+                const geoData = await backupRes.json();
+                if (geoData.latitude && geoData.longitude) {
+                  lat = geoData.latitude;
+                  lon = geoData.longitude;
+                  cityName = geoData.city 
+                    ? `${geoData.city}, ${geoData.country_code || "ID"}` 
+                    : "Local Area";
+                  if (geoData.timezone) {
+                    tzName = geoData.timezone;
+                  }
                 }
               }
             }
-          } catch (err) {
-            console.warn("All IP Geolocation options failed, using fallback:", err);
+          } catch (e) {
+            console.warn("Primary IP Geolocation failed, trying backup:", e);
+            try {
+              const backupRes = await fetch("https://ipapi.co/json/");
+              if (backupRes.ok) {
+                const geoData = await backupRes.json();
+                if (geoData.latitude && geoData.longitude) {
+                  lat = geoData.latitude;
+                  lon = geoData.longitude;
+                  cityName = geoData.city 
+                    ? `${geoData.city}, ${geoData.country_code || "ID"}` 
+                    : "Local Area";
+                  if (geoData.timezone) {
+                    tzName = geoData.timezone;
+                  }
+                }
+              }
+            } catch (err) {
+              console.warn("All IP Geolocation options failed, using fallback:", err);
+            }
           }
         }
 

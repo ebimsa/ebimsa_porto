@@ -158,7 +158,7 @@ export function Contact() {
         
         {/* Section Header */}
         <div className="text-center md:text-left space-y-3">
-          <h2 className="text-4xl font-black tracking-tight text-foreground leading-none">
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-foreground leading-tight">
             Say Hello & Guestbook
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl">

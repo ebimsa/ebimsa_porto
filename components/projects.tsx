@@ -171,10 +171,10 @@ export function Projects() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div className="space-y-3">
-            <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-foreground">
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-foreground">
               Featured Projects
             </h2>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-xl">
+            <p className="text-sm sm:text-base text-muted-foreground max-w-xl">
               A selection of coding projects I built to learn new concepts, frameworks, and programming patterns.
             </p>
           </div>
