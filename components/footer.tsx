@@ -314,7 +314,7 @@ const linePath = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).jo
                 initial={{ opacity: 0, scale: 0.95, y: 15 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 15 }}
-                className="relative w-full max-w-2xl bg-card border border-border rounded-2xl md:rounded-[28px] overflow-hidden shadow-2xl p-4 sm:p-6 md:p-8 squircle-lg my-4 md:my-8 focus:outline-none"
+                className="relative w-full max-w-2xl bg-card border border-border rounded-xl md:rounded-2xl overflow-hidden shadow-2xl p-4 sm:p-6 md:p-8 squircle-lg my-4 md:my-8 focus:outline-none"
               >
                 {/* Close Button */}
                 <button

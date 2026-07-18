@@ -60,7 +60,7 @@ export function Certifications() {
       <div className="max-w-6xl mx-auto px-4 md:px-6">
         {/* Header */}
         <div className="space-y-3 mb-16 text-center md:text-left">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20">
+          <span className="text-xs font-bold uppercase tracking-widest text-primary">
             Credentials
           </span>
           <h2 className="text-3xl md:text-5xl font-black tracking-tight text-foreground">
@@ -76,9 +76,8 @@ export function Certifications() {
           {CERTIFICATIONS_DATA.map((cert) => (
             <motion.div
               key={cert.id}
-              whileHover={{ y: -5 }}
               onClick={() => setActiveCert(cert)}
-              className="group cursor-pointer p-6 rounded-3xl border border-border bg-card/60 backdrop-blur-sm hover:border-primary/20 hover:shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] transition-all squircle-lg flex flex-col justify-between min-h-[180px]"
+              className="group cursor-pointer p-6 rounded-xl md:rounded-2xl border border-border bg-card/60 backdrop-blur-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform squircle-lg flex flex-col justify-between min-h-[180px] active:translate-y-0 active:scale-[0.99]"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -126,7 +125,7 @@ export function Certifications() {
                   initial={{ opacity: 0, scale: 0.95, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                  className="relative w-full max-w-lg bg-card border border-border p-6 sm:p-8 rounded-[28px] shadow-2xl squircle-lg focus:outline-none"
+                  className="relative w-full max-w-lg bg-card border border-border p-6 sm:p-8 rounded-xl md:rounded-2xl shadow-2xl squircle-lg focus:outline-none"
                   tabIndex={-1}
                 >
                   {/* Close */}

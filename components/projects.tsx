@@ -71,16 +71,10 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
     <motion.div
       layoutId={`project-container-${project.id}`}
       onClick={onClick}
-      className="group flex flex-col bg-card/45 dark:bg-card/35 backdrop-blur-md border border-border rounded-3xl overflow-hidden hover:border-primary/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.02)] transition-all duration-300 squircle-lg cursor-pointer h-full"
+      className="group flex flex-col bg-card/45 dark:bg-card/35 backdrop-blur-md border border-border rounded-xl md:rounded-2xl overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform squircle-lg cursor-pointer h-full active:translate-y-0 active:scale-[0.99]"
     >
       {/* Top: Browser Mockup with Cover Image / Always Playing Video */}
       <div className="relative w-full aspect-video bg-muted border-b border-border/40 overflow-hidden shrink-0">
-        {/* Mac OS dot indicators */}
-        <div className="absolute top-2.5 left-3 flex items-center gap-1 z-10">
-          <div className="w-1.5 h-1.5 rounded-full bg-red-400/80" />
-          <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/80" />
-          <div className="w-1.5 h-1.5 rounded-full bg-green-400/80" />
-        </div>
         
         {project.videoUrl ? (
           <video
@@ -106,10 +100,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
       {/* Bottom: Card Body Details */}
       <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
         <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <span className="inline-flex px-2 py-0.5 text-[8px] font-bold tracking-widest text-primary border border-primary/20 bg-primary/10 rounded-full uppercase">
-              {project.category}
-            </span>
+          <div className="flex items-center justify-end">
             <span className="text-[10px] font-mono text-muted-foreground/60">{project.demoUrl.replace("https://", "")}</span>
           </div>
           <h3 className="text-lg font-black tracking-tight text-foreground group-hover:text-primary transition-colors">
@@ -189,17 +180,17 @@ export function Projects() {
                 placeholder="Search projects or tech..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 text-sm rounded-xl border border-border bg-card/50 focus:bg-card focus-visible:outline-none transition-colors squircle-sm"
+                className="w-full pl-9 pr-4 py-2 text-sm rounded-lg border border-border bg-card/50 focus:bg-card focus-visible:outline-none transition-colors squircle-sm"
               />
             </div>
 
             {/* Tabs */}
-            <div className="flex gap-1 p-1 rounded-xl border border-border bg-card/60 no-scrollbar overflow-x-auto">
+            <div className="flex gap-1 p-1 rounded-lg border border-border bg-card/60 no-scrollbar overflow-x-auto">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors focus-visible:outline-none ${
+                  className={`px-3 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition-colors focus-visible:outline-none ${
                     selectedCategory === cat
                       ? "bg-foreground text-background shadow-sm"
                       : "text-muted-foreground hover:text-foreground"
@@ -251,7 +242,7 @@ export function Projects() {
               <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto no-scrollbar">
                 <motion.div
                   layoutId={`project-container-${activeProject.id}`}
-                  className="relative w-full max-w-4xl bg-card border border-border rounded-[32px] overflow-hidden shadow-2xl squircle-lg my-4 focus:outline-none flex flex-col max-h-[90vh] md:max-h-[85vh]"
+                  className="relative w-full max-w-4xl bg-card border border-border rounded-xl md:rounded-2xl overflow-hidden shadow-2xl squircle-lg my-4 focus:outline-none flex flex-col max-h-[90vh] md:max-h-[85vh]"
                   tabIndex={-1}
                 >
                   {/* Close button */}
@@ -290,10 +281,7 @@ export function Projects() {
 
                   {/* Project Title Block (Below banner) */}
                   <div className="px-6 pt-5 sm:px-8 sm:pt-6 md:px-10 border-b border-border/40 pb-3 shrink-0">
-                    <span className="px-2 py-0.5 text-[9px] font-bold tracking-widest text-primary border border-primary/20 bg-primary/10 rounded-full uppercase inline-block">
-                      {activeProject.category}
-                    </span>
-                    <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground mt-2">
+                    <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
                       {activeProject.title}
                     </h2>
                   </div>

@@ -170,19 +170,13 @@ export function Experience() {
                   <div className={`absolute top-[96px] left-[39px] w-[2px] bg-border/80 z-0 ${verticalLineHeight}`} />
 
                   {/* Glassmorphic Bento Card */}
-                  <div className={`group relative p-6 sm:p-8 rounded-3xl border border-border bg-card/45 dark:bg-card/35 backdrop-blur-md transition-all duration-500 squircle-lg flex flex-col justify-between min-h-[310px] hover:border-primary/35 hover:shadow-primary/10 hover:shadow-2xl ${rotationClass} hover:rotate-0 hover:scale-[1.01]`}>
-                    
-                    {/* Glowing Theme Color decoration in background */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10" />
-
-                    {/* Corner glow accent */}
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm pointer-events-none" />
+                  <div className="group relative p-5 sm:p-6 rounded-xl md:rounded-2xl border border-border/60 bg-card/45 backdrop-blur-md shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform squircle-lg flex flex-col justify-between min-h-[310px]">
 
                     <div className="space-y-4">
                       {/* Card Header */}
                       <div className="space-y-1.5">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <span className="inline-flex px-2 py-0.5 text-[9px] font-bold tracking-widest border border-primary/20 bg-primary/10 text-primary rounded-full uppercase">
+                          <span className="text-[10px] font-bold tracking-widest text-muted-foreground/80 uppercase">
                             {exp.type}
                           </span>
                           <span className="text-[10px] font-semibold text-muted-foreground flex items-center gap-1">
@@ -194,7 +188,7 @@ export function Experience() {
                           {exp.role}
                         </h3>
                         <p className="text-sm font-semibold text-muted-foreground/80 flex items-center gap-1.5">
-                          <span className="p-1 rounded-lg border border-primary/20 bg-primary/10 text-primary">
+                          <span className="p-1 rounded-lg border border-border bg-muted/40 text-muted-foreground">
                             <Icon className="w-3.5 h-3.5" />
                           </span>
                           {exp.organization}
@@ -216,7 +210,7 @@ export function Experience() {
                       {exp.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2.5 py-0.5 text-[10px] font-medium border border-primary/15 bg-primary/5 text-primary"
+                          className="px-2 py-0.5 text-[9px] font-mono bg-muted/65 text-muted-foreground border border-border/45 rounded"
                         >
                           {tag}
                         </span>
@@ -270,19 +264,13 @@ export function Experience() {
                   <div className={`absolute top-[96px] left-[39px] w-[2px] bg-border/80 z-0 ${verticalLineHeight}`} />
 
                   {/* Glassmorphic Bento Card */}
-                  <div className={`group relative p-6 rounded-3xl border border-border bg-card/45 dark:bg-card/35 backdrop-blur-md transition-all duration-500 squircle-lg flex flex-col justify-between min-h-[310px] hover:border-primary/35 hover:shadow-primary/10 hover:shadow-2xl ${rotationClass} hover:rotate-0 hover:scale-[1.01]`}>
-                    
-                    {/* Glowing Theme Color decoration in background */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10" />
-
-                    {/* Corner glow accent */}
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm pointer-events-none" />
+                  <div className="group relative p-5 rounded-xl md:rounded-2xl border border-border/60 bg-card/45 backdrop-blur-md shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform squircle-lg flex flex-col justify-between min-h-[310px]">
 
                     <div className="space-y-4">
                       {/* Card Header */}
                       <div className="space-y-1.5">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <span className="inline-flex px-2 py-0.5 text-[9px] font-bold tracking-widest border border-primary/20 bg-primary/10 text-primary rounded-full uppercase">
+                          <span className="text-[10px] font-bold tracking-widest text-muted-foreground/80 uppercase">
                             {exp.type}
                           </span>
                           <span className="text-[10px] font-semibold text-muted-foreground flex items-center gap-1">
@@ -294,7 +282,7 @@ export function Experience() {
                           {exp.role}
                         </h3>
                         <p className="text-sm font-semibold text-muted-foreground/80 flex items-center gap-1.5">
-                          <span className="p-1 rounded-lg border border-primary/20 bg-primary/10 text-primary">
+                          <span className="p-1 rounded-lg border border-border bg-muted/40 text-muted-foreground">
                             <Icon className="w-3.5 h-3.5" />
                           </span>
                           {exp.organization}
@@ -316,7 +304,7 @@ export function Experience() {
                       {exp.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2.5 py-0.5 text-[10px] font-medium border border-primary/15 bg-primary/5 text-primary rounded-md"
+                          className="px-2 py-0.5 text-[9px] font-mono bg-muted/65 text-muted-foreground border border-border/45 rounded"
                         >
                           {tag}
                         </span>

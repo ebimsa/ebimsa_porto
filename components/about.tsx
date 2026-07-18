@@ -76,7 +76,7 @@ export function About() {
               </div>
               <div>
                 <p className="text-sm font-bold text-foreground">Primary Stack</p>
-                <p className="text-xs text-muted-foreground font-medium">Golang, PostgreSQL, Next.js</p>
+                <p className="text-xs text-muted-foreground font-medium">Go, PHP (Laravel), PostgreSQL, React/Next.js, Svelte</p>
               </div>
             </div>
           </motion.div>
@@ -92,7 +92,7 @@ export function About() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-50px" }}
-                  className="group relative p-3 sm:p-6 rounded-xl sm:rounded-3xl border border-border bg-card hover:border-primary/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] transition-all duration-300 squircle-sm sm:squircle-lg flex flex-col justify-between min-h-[140px] sm:min-h-[220px]"
+                  className="group relative p-3 sm:p-6 rounded-xl sm:rounded-2xl border border-border bg-card hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform squircle-lg flex flex-col justify-between min-h-[140px] sm:min-h-[220px]"
                 >
                   {/* Subtle Glowing Corner Decoration on Hover */}
                   <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm pointer-events-none" />

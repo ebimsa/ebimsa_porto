@@ -175,17 +175,17 @@
 
 /* Premium Squircle Helper class (combining border radius and smoothing) */
 .squircle-lg {
-  border-radius: 28px;
+  border-radius: 16px;
   -webkit-mask-image: -webkit-radial-gradient(white, black); /* fix for safari corners */
 }
 
 .squircle-md {
-  border-radius: 18px;
+  border-radius: 10px;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 .squircle-sm {
-  border-radius: 12px;
+  border-radius: 6px;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 

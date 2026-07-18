@@ -1090,13 +1090,13 @@ export function StatusSection() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 grid-flow-dense">
           
           {/* WIDGET 1: Developer Profile & CTA Card (Takes 2 cols on mobile/desktop) */}
-          <div className="col-span-2 md:col-span-2 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-border bg-card/45 backdrop-blur-md hover:border-primary/25 hover:shadow-[0_8px_30px_rgb(0,0,0,0.01)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] transition-all duration-300 squircle-lg flex flex-col justify-between min-h-[190px] md:min-h-[220px] group relative overflow-hidden">
+          <div className="col-span-2 md:col-span-2 p-4 md:p-6 rounded-xl md:rounded-2xl border border-border bg-card/45 backdrop-blur-md hover:border-primary/25 hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform squircle-lg flex flex-col justify-between min-h-[190px] md:min-h-[220px] group relative overflow-hidden">
             <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm pointer-events-none" />
             
             {/* Top Row: Avatar & Status Badge */}
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center justify-start gap-4">
               <div className="flex items-center gap-3">
-                <div className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden rounded-lg md:rounded-xl border border-border bg-muted shrink-0 shadow-inner">
+                <div className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden rounded-md md:rounded-lg border border-border bg-muted shrink-0 shadow-inner">
                   <Image
                     src="/semipro_enggal.png"
                     alt="Enggal Bima Sakti"
@@ -1114,11 +1114,6 @@ export function StatusSection() {
                   </p>
                 </div>
               </div>
-              
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 md:px-2.5 md:py-1 rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-wider text-emerald-500 bg-emerald-500/10 border border-emerald-500/20 shrink-0">
-                <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
-                Available
-              </span>
             </div>
 
             {/* Middle: Short Bio */}
@@ -1130,7 +1125,7 @@ export function StatusSection() {
             <div className="flex flex-wrap items-center gap-2 mt-auto">
               <a
                 href="#projects"
-                className="group btn-logo-glossy flex items-center justify-center gap-1.5 px-4 py-2 md:px-5 md:py-2.5 rounded-xl md:rounded-2xl font-bold text-[10px] md:text-xs squircle-sm md:squircle-md text-center shadow-md hover:shadow-primary/5 transition-all duration-300 cursor-pointer"
+                className="group btn-logo-glossy flex items-center justify-center gap-1.5 px-4 py-2 md:px-5 md:py-2.5 rounded-lg md:rounded-xl font-bold text-[10px] md:text-xs squircle-sm text-center shadow-md hover:shadow-primary/5 transition-all duration-300 cursor-pointer"
               >
                 Projects
                 <ArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -1140,7 +1135,7 @@ export function StatusSection() {
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-center gap-1.5 px-4 py-2 md:px-5 md:py-2.5 rounded-xl md:rounded-2xl border border-border/80 bg-card/40 text-muted-foreground hover:text-primary hover:border-primary/30 font-bold text-[10px] md:text-xs squircle-sm md:squircle-md transition-all duration-300 cursor-pointer"
+                className="group flex items-center justify-center gap-1.5 px-4 py-2 md:px-5 md:py-2.5 rounded-lg md:rounded-xl border border-border/80 bg-card/40 text-muted-foreground hover:text-primary hover:border-primary/30 font-bold text-[10px] md:text-xs squircle-sm transition-all duration-300 cursor-pointer"
               >
                 <FileText className="w-3 h-3 md:w-3.5 md:h-3.5 text-muted-foreground group-hover:text-primary transition-colors" />
                 Resume
@@ -1152,7 +1147,7 @@ export function StatusSection() {
           <div
             onClick={() => setActiveModal("atmosphere")}
             className={cn(
-              "col-span-2 p-4 md:p-6 rounded-2xl md:rounded-3xl border transition-all duration-500 squircle-lg relative overflow-hidden select-none shadow-2xl transform-gpu hover:-translate-y-1.5 hover:shadow-[0_25px_45px_rgba(0,0,0,0.25)] active:translate-y-0 active:scale-[0.99] will-change-transform flex flex-col justify-between min-h-[190px] md:min-h-[220px] cursor-pointer",
+              "col-span-2 p-4 md:p-6 rounded-xl md:rounded-2xl border transition-all duration-500 squircle-lg relative overflow-hidden select-none shadow-2xl transform-gpu hover:-translate-y-1.5 hover:shadow-[0_25px_45px_rgba(0,0,0,0.25)] active:translate-y-0 active:scale-[0.99] will-change-transform flex flex-col justify-between min-h-[190px] md:min-h-[220px] cursor-pointer",
               atm.card
             )}
           >
@@ -1218,7 +1213,7 @@ export function StatusSection() {
                 Atmosphere & Time
               </span>
               <div className="flex items-center gap-1.5 shrink-0">
-                <span className={cn("text-[7px] md:text-[8px] font-black px-1.5 py-0.5 rounded-full border flex items-center gap-1 shrink-0", atm.badge)}>
+                <span className="text-[7.5px] md:text-[8.5px] font-bold flex items-center gap-1 shrink-0 text-foreground">
                   <Navigation className="w-2 h-2 text-sky-400" />
                   {weather.city}
                 </span>
@@ -1334,7 +1329,7 @@ export function StatusSection() {
           <div
             onClick={() => setActiveModal("system")}
             className={cn(
-              "col-span-1 p-4 md:p-6 rounded-2xl md:rounded-3xl border transition-all duration-300 squircle-lg flex flex-col justify-between min-h-[190px] md:min-h-[220px] group relative overflow-hidden cursor-pointer hover:scale-[1.01] active:scale-[0.99] select-none",
+              "col-span-1 p-4 md:p-6 rounded-xl md:rounded-2xl border transition-all duration-500 squircle-lg flex flex-col justify-between min-h-[190px] md:min-h-[220px] group relative overflow-hidden cursor-pointer hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] active:translate-y-0 active:scale-[0.99] transform-gpu will-change-transform select-none",
               getBatteryCardClass()
             )}
           >
@@ -1389,7 +1384,7 @@ export function StatusSection() {
           {/* WIDGET 4: Internet Speed Test (Takes 1 col on mobile/desktop, Clickable) */}
           <div
             onClick={() => setActiveModal("network")}
-            className="col-span-1 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-border bg-card hover:border-primary/25 hover:shadow-[0_8px_30px_rgb(0,0,0,0.01)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] transition-all duration-300 squircle-lg flex flex-col justify-between min-h-[190px] md:min-h-[220px] group relative overflow-hidden cursor-pointer hover:scale-[1.01] active:scale-[0.99] select-none"
+            className="col-span-1 p-4 md:p-6 rounded-xl md:rounded-2xl border border-border bg-card hover:border-primary/25 hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform squircle-lg flex flex-col justify-between min-h-[190px] md:min-h-[220px] group relative overflow-hidden cursor-pointer active:translate-y-0 active:scale-[0.99] select-none"
           >
             <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm pointer-events-none" />
             
@@ -1399,10 +1394,8 @@ export function StatusSection() {
                 <Gauge className="w-3.5 h-3.5 text-primary" />
                 Network
               </span>
-              <span className={`inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[7px] md:text-[8px] font-bold border ${
-                isOnline 
-                  ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/20" 
-                  : "bg-destructive/10 text-destructive border-destructive/20"
+              <span className={`inline-flex items-center gap-0.5 text-[7px] md:text-[8px] font-black uppercase tracking-wider ${
+                isOnline ? "text-emerald-500" : "text-destructive"
               }`}>
                 {isOnline ? "On" : "Off"}
               </span>
@@ -1493,7 +1486,7 @@ export function StatusSection() {
                  initial={{ opacity: 0, scale: 0.95, y: 15 }}
                  animate={{ opacity: 1, scale: 1, y: 0 }}
                  exit={{ opacity: 0, scale: 0.95, y: 15 }}
-                 className="relative w-full max-w-3xl bg-card border border-border rounded-2xl md:rounded-[28px] overflow-hidden shadow-2xl p-3 sm:p-6 md:p-8 squircle-lg my-4 md:my-8 focus:outline-none"
+                 className="relative w-full max-w-3xl bg-card border border-border rounded-xl md:rounded-2xl overflow-hidden shadow-2xl p-3 sm:p-6 md:p-8 squircle-lg my-4 md:my-8 focus:outline-none"
                >
                 {/* Close Button */}
                 <button

@@ -75,6 +75,7 @@ export function Contact() {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [viewAll, setViewAll] = useState(false);
+  const [feedOpen, setFeedOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // Fetch messages on mount
@@ -170,7 +171,7 @@ export function Contact() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch w-full">
           
           {/* COLUMN 1: Direct channels & Socials */}
-          <div className="flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-3xl p-5 sm:p-6 squircle-lg shadow-sm justify-between h-auto md:h-[500px]">
+          <div className="flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-xl md:rounded-2xl p-5 sm:p-6 squircle-lg shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform justify-between h-auto md:h-[500px]">
             <div className="space-y-4">
               <div className="flex items-center border-b border-border/40 pb-3">
                 <h3 className="font-extrabold text-sm text-foreground uppercase tracking-wider">
@@ -251,7 +252,7 @@ export function Contact() {
           </div>
 
           {/* COLUMN 2: Guestbook Input Form */}
-          <div className="flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-3xl p-5 sm:p-6 squircle-lg shadow-sm justify-between h-auto md:h-[500px]">
+          <div className="flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-xl md:rounded-2xl p-5 sm:p-6 squircle-lg shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform justify-between h-auto md:h-[500px]">
             <div className="space-y-4 w-full flex-1">
               <div className="flex items-center border-b border-border/40 pb-3">
                 <h3 className="font-extrabold text-sm text-foreground uppercase tracking-wider">
@@ -276,7 +277,7 @@ export function Contact() {
                     placeholder="Your name/alias..."
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg border border-border bg-background text-xs text-foreground placeholder-muted-foreground/60 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all squircle-sm"
+                    className="w-full px-3 py-2 rounded-md border border-border bg-background text-xs text-foreground placeholder-muted-foreground/60 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all squircle-sm"
                   />
                 </div>
 
@@ -293,13 +294,13 @@ export function Contact() {
                     placeholder="Write your message here..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg border border-border bg-background text-xs text-foreground placeholder-muted-foreground/60 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all resize-none squircle-sm"
+                    className="w-full px-3 py-2 rounded-md border border-border bg-background text-xs text-foreground placeholder-muted-foreground/60 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all resize-none squircle-sm"
                   />
                 </div>
 
                 {/* Error Banner */}
                 {error && (
-                  <div className="text-[10px] text-rose-500 font-semibold bg-rose-500/10 border border-rose-500/25 p-2 rounded-lg squircle-sm">
+                  <div className="text-[10px] text-rose-500 font-semibold bg-rose-500/10 border border-rose-500/25 p-2 rounded-md squircle-sm">
                     {error}
                   </div>
                 )}
@@ -320,94 +321,135 @@ export function Contact() {
           </div>
 
           {/* COLUMN 3: Scrollable Guestbook Messages Feed */}
-          <div className="flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-3xl p-5 sm:p-6 squircle-lg shadow-sm justify-between h-[500px]">
+          <div className="flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-xl md:rounded-2xl p-5 sm:p-6 squircle-lg shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform justify-between h-[500px]">
             <div className="flex flex-col h-full w-full overflow-hidden">
               <div className="flex items-center justify-between border-b border-border/40 pb-3 shrink-0">
-                <div className="flex items-center">
+                <div className="flex items-center gap-2">
                   <h3 className="font-extrabold text-sm text-foreground uppercase tracking-wider">
                     Message Feed
                   </h3>
+                  <span className="text-[10px] font-bold text-muted-foreground/80">
+                    {messages.length}
+                  </span>
                 </div>
-                <span className="text-[9px] font-bold text-muted-foreground bg-muted px-2 py-0.5 rounded-full border border-border/40">
-                  {messages.length}
-                </span>
-              </div>
-
-              {/* Feed scroll container */}
-              <div className="flex-1 overflow-y-auto no-scrollbar py-3 space-y-3">
-                {loading ? (
-                  <div className="space-y-3">
-                    {Array.from({ length: 4 }).map((_, i) => (
-                      <div key={i} className="h-16 rounded-xl border border-border/60 bg-card/25 animate-pulse" />
-                    ))}
-                  </div>
-                ) : messages.length === 0 ? (
-                  <div className="text-center py-16 rounded-2xl border border-dashed border-border/80 bg-card/10 squircle-md space-y-2 h-full flex flex-col justify-center">
-                    <p className="text-xs font-bold text-muted-foreground">No messages yet.</p>
-                    <p className="text-[10px] text-muted-foreground/60">Be the first to say hello!</p>
-                  </div>
-                ) : (
-                  <div className="space-y-2.5 font-sans">
-                    <AnimatePresence initial={false}>
-                      {displayedMessages.map((msg) => {
-                        const avatarColor = getAvatarColor(msg.name);
-                        const dateObj = new Date(msg.created_at);
-                        const formattedDate = dateObj.toLocaleDateString("en-US", {
-                          day: "numeric",
-                          month: "short",
-                          year: "numeric",
-                        });
-                        const formattedTime = dateObj.toLocaleTimeString("en-US", {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                          hour12: false,
-                        });
-
-                        return (
-                          <motion.div
-                            key={msg.id}
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0 }}
-                            className="p-3 rounded-xl border border-border/80 bg-card/35 hover:bg-card/65 transition-all duration-300 squircle-sm flex gap-3"
-                          >
-                            <div className={cn(
-                              "w-7 h-7 rounded-lg bg-gradient-to-br flex items-center justify-center text-white text-[10px] font-bold uppercase shadow-sm flex-shrink-0",
-                              avatarColor
-                            )}>
-                              {msg.name.charAt(0)}
-                            </div>
-                            <div className="space-y-0.5 flex-1 min-w-0">
-                              <div className="flex items-center justify-between gap-2">
-                                <h4 className="font-extrabold text-[11px] text-foreground truncate">
-                                  {msg.name}
-                                </h4>
-                                <span className="text-[8px] text-muted-foreground font-semibold shrink-0">
-                                  {formattedDate} • {formattedTime}
-                                </span>
-                              </div>
-                              <p className="text-[11px] text-muted-foreground leading-relaxed break-words whitespace-pre-wrap select-text font-normal">
-                                {msg.message}
-                              </p>
-                            </div>
-                          </motion.div>
-                        );
-                      })}
-                    </AnimatePresence>
-                  </div>
+                {feedOpen && (
+                  <button 
+                    onClick={() => setFeedOpen(false)}
+                    className="text-[9px] font-bold text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  >
+                    Close
+                  </button>
                 )}
               </div>
 
-              {/* View all toggle */}
-              {messages.length > 10 && (
-                <div className="pt-2 border-t border-border/40 shrink-0">
+              {!feedOpen ? (
+                <div className="flex-1 flex flex-col items-center justify-center text-center space-y-4 p-4">
+                  <div className="w-10 h-10 rounded-xl bg-muted/65 border border-border/60 flex items-center justify-center text-muted-foreground/60">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="w-5 h-5"
+                    >
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-xs font-bold text-foreground">Message Feed Hidden</p>
+                    <p className="text-[10px] text-muted-foreground/60 leading-normal max-w-[200px]">
+                      Click the button below to load messages from visitors.
+                    </p>
+                  </div>
                   <button
-                    onClick={() => setViewAll(!viewAll)}
-                    className="w-full py-1.5 rounded-lg border border-border bg-card/25 hover:bg-muted text-muted-foreground hover:text-foreground font-bold text-[10px] transition-colors flex items-center justify-center gap-1 cursor-pointer focus-visible:outline-none"
+                    onClick={() => setFeedOpen(true)}
+                    className="px-4 py-2 rounded-xl border border-border bg-card/60 hover:bg-muted text-muted-foreground hover:text-foreground font-bold text-[10px] transition-all cursor-pointer shadow-sm focus-visible:outline-none"
                   >
-                    {viewAll ? "Show Less" : `Show All (${messages.length - 10})`}
+                    Open Feed
                   </button>
                 </div>
+              ) : (
+                <>
+                  {/* Feed scroll container */}
+                  <div className="flex-1 overflow-y-auto no-scrollbar py-3 space-y-3">
+                    {loading ? (
+                      <div className="space-y-3">
+                        {Array.from({ length: 4 }).map((_, i) => (
+                          <div key={i} className="h-16 rounded-xl border border-border/60 bg-card/25 animate-pulse" />
+                        ))}
+                      </div>
+                    ) : messages.length === 0 ? (
+                      <div className="text-center py-16 rounded-2xl border border-dashed border-border/80 bg-card/10 squircle-md space-y-2 h-full flex flex-col justify-center">
+                        <p className="text-xs font-bold text-muted-foreground">No messages yet.</p>
+                        <p className="text-[10px] text-muted-foreground/60">Be the first to say hello!</p>
+                      </div>
+                    ) : (
+                      <div className="space-y-2.5 font-sans">
+                        <AnimatePresence initial={false}>
+                          {displayedMessages.map((msg) => {
+                            const avatarColor = getAvatarColor(msg.name);
+                            const dateObj = new Date(msg.created_at);
+                            const formattedDate = dateObj.toLocaleDateString("en-US", {
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                            });
+                            const formattedTime = dateObj.toLocaleTimeString("en-US", {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: false,
+                            });
+
+                            return (
+                              <motion.div
+                                key={msg.id}
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0 }}
+                                className="p-3 rounded-xl border border-border/80 bg-card/35 hover:bg-card/65 transition-all duration-300 squircle-sm flex gap-3"
+                              >
+                                <div className={cn(
+                                  "w-7 h-7 rounded-lg bg-gradient-to-br flex items-center justify-center text-white text-[10px] font-bold uppercase shadow-sm flex-shrink-0",
+                                  avatarColor
+                                )}>
+                                  {msg.name.charAt(0)}
+                                </div>
+                                <div className="space-y-0.5 flex-1 min-w-0">
+                                  <div className="flex items-center justify-between gap-2">
+                                    <h4 className="font-extrabold text-[11px] text-foreground truncate">
+                                      {msg.name}
+                                    </h4>
+                                    <span className="text-[8px] text-muted-foreground font-semibold shrink-0">
+                                      {formattedDate} • {formattedTime}
+                                    </span>
+                                  </div>
+                                  <p className="text-[11px] text-muted-foreground leading-relaxed break-words whitespace-pre-wrap select-text font-normal">
+                                    {msg.message}
+                                  </p>
+                                </div>
+                              </motion.div>
+                            );
+                          })}
+                        </AnimatePresence>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* View all toggle */}
+                  {messages.length > 10 && (
+                    <div className="pt-2 border-t border-border/40 shrink-0">
+                      <button
+                        onClick={() => setViewAll(!viewAll)}
+                        className="w-full py-1.5 rounded-lg border border-border bg-card/25 hover:bg-muted text-muted-foreground hover:text-foreground font-bold text-[10px] transition-colors flex items-center justify-center gap-1 cursor-pointer focus-visible:outline-none"
+                      >
+                        {viewAll ? "Show Less" : `Show All (${messages.length - 10})`}
+                      </button>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </div>

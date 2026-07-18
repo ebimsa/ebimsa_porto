@@ -30,7 +30,7 @@ export function Navbar() {
   return (
     <header className="fixed top-5 inset-x-4 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[95%] max-w-4xl z-50">
       {/* Floating Main Navbar Pill */}
-      <div className="flex items-center justify-between px-5 py-2.5 rounded-full border border-border/80 bg-background/75 dark:bg-card/75 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.25)] transition-all duration-300">
+      <div className="flex items-center justify-between px-5 py-2.5 rounded-xl md:rounded-2xl border border-border/80 bg-background/75 dark:bg-card/75 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.25)] transition-all duration-300">
         
         {/* Left: Brand Signature */}
         <a href="#" className="flex items-center gap-2.5 group focus-visible:outline-none">
