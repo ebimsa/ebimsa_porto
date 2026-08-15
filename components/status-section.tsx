@@ -239,7 +239,7 @@ export function StatusSection() {
     windSpeed: 0,
     weatherCode: 0,
     isDay: true,
-    city: "Jakarta",
+    city: "Bandar Lampung, ID",
     loading: true,
     error: false,
   });
@@ -714,106 +714,13 @@ export function StatusSection() {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        let lat = -6.2088;
-        let lon = 106.8456;
-        let cityName = "Jakarta, ID";
-        let tzName = "Asia/Jakarta";
-        let locationDetected = false;
+        // Fixed location: Bandar Lampung, Indonesia
+        const lat = -5.4292;
+        const lon = 105.2611;
+        const cityName = "Bandar Lampung, ID";
+        const tzName = "Asia/Jakarta";
 
-        // Try browser GPS/Wi-Fi Geolocation first (accurate)
-        try {
-          if (typeof window !== "undefined" && navigator.geolocation) {
-            const position = await new Promise<GeolocationPosition>((resolve, reject) => {
-              navigator.geolocation.getCurrentPosition(resolve, reject, {
-                enableHighAccuracy: false,
-                timeout: 4000, // Quick 4s timeout so it doesn't hang
-                maximumAge: 10 * 60 * 1000, // 10 minutes cache
-              });
-            });
-            lat = position.coords.latitude;
-            lon = position.coords.longitude;
-            tzName = Intl.DateTimeFormat().resolvedOptions().timeZone || "Asia/Jakarta";
-            locationDetected = true;
-
-            // Try to resolve city name using BigDataCloud free reverse geocoding API
-            try {
-              const revRes = await fetch(
-                `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`
-              );
-              if (revRes.ok) {
-                const revData = await revRes.json();
-                const city = revData.city || revData.locality || revData.principalSubdivision || "";
-                const country = revData.countryCode || "ID";
-                cityName = city ? `${city}, ${country}` : "Local Area, ID";
-              } else {
-                cityName = "Local Area, ID";
-              }
-            } catch (revError) {
-              console.warn("Reverse geocoding failed, using generic name:", revError);
-              cityName = "Local Area, ID";
-            }
-          }
-        } catch (geoError) {
-          console.warn("Browser Geolocation failed or denied, trying IP Geolocation:", geoError);
-        }
-
-        // If Browser Geolocation failed or was denied, fallback to IP-based geolocation
-        if (!locationDetected) {
-          try {
-            const geoRes = await fetch("https://freeipapi.com/api/json");
-            if (geoRes.ok) {
-              const geoData = await geoRes.json();
-              if (geoData.latitude && geoData.longitude) {
-                lat = geoData.latitude;
-                lon = geoData.longitude;
-                cityName = geoData.cityName 
-                  ? `${geoData.cityName}, ${geoData.countryCode || "ID"}` 
-                  : "Local Area";
-                if (geoData.timeZone) {
-                  tzName = geoData.timeZone;
-                }
-              }
-            } else {
-              // Backup: Try ipapi.co
-              const backupRes = await fetch("https://ipapi.co/json/");
-              if (backupRes.ok) {
-                const geoData = await backupRes.json();
-                if (geoData.latitude && geoData.longitude) {
-                  lat = geoData.latitude;
-                  lon = geoData.longitude;
-                  cityName = geoData.city 
-                    ? `${geoData.city}, ${geoData.country_code || "ID"}` 
-                    : "Local Area";
-                  if (geoData.timezone) {
-                    tzName = geoData.timezone;
-                  }
-                }
-              }
-            }
-          } catch (e) {
-            console.warn("Primary IP Geolocation failed, trying backup:", e);
-            try {
-              const backupRes = await fetch("https://ipapi.co/json/");
-              if (backupRes.ok) {
-                const geoData = await backupRes.json();
-                if (geoData.latitude && geoData.longitude) {
-                  lat = geoData.latitude;
-                  lon = geoData.longitude;
-                  cityName = geoData.city 
-                    ? `${geoData.city}, ${geoData.country_code || "ID"}` 
-                    : "Local Area";
-                  if (geoData.timezone) {
-                    tzName = geoData.timezone;
-                  }
-                }
-              }
-            } catch (err) {
-              console.warn("All IP Geolocation options failed, using fallback:", err);
-            }
-          }
-        }
-
-        // Fetch using current endpoint to get actual real-time humidity, temperature, is_day, weather_code
+        // Fetch real-time weather metrics from Open-Meteo API
         const res = await fetch(
           `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,wind_speed_10m&timezone=${encodeURIComponent(tzName)}`
         );

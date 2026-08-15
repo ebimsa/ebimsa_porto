@@ -17,15 +17,15 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ebimsa.com"),
-  title: "ebimsa | Software Engineer & AI Enthusiast",
-  description: "Portfolio of Enggal Bima Sakti (Ebimsa), a Computer Science Student, Full Stack Developer, and AI enthusiast from Indonesia building intelligent software with elegant engineering.",
+  title: "ebimsa | Software Engineer",
+  description: "Portofolio resmi Enggal Bima Sakti (Ebimsa) — Software Engineer dan Full Stack Developer dari Bandar Lampung. Lihat proyek, pengalaman, dan hubungi langsung.",
   keywords: [
     "Ebimsa",
     "Enggal Bima Sakti",
-    "Portfolio",
+    "Ebimsa Portfolio",
     "Software Engineer",
     "Full Stack Developer",
-    "AI Enthusiast",
+    "Bandar Lampung Developer",
     "Indonesia Developer",
     "Computer Science Student",
     "Next.js Developer"
@@ -34,24 +34,24 @@ export const metadata: Metadata = {
   creator: "Enggal Bima Sakti",
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "id_ID",
     url: "https://ebimsa.com",
-    title: "ebimsa | Software Engineer & AI Enthusiast",
-    description: "Building intelligent software with elegant engineering. Portfolio of Enggal Bima Sakti (Ebimsa).",
+    title: "ebimsa | Software Engineer",
+    description: "Portofolio resmi Enggal Bima Sakti (Ebimsa) — Software Engineer dan Full Stack Developer dari Bandar Lampung. Lihat proyek, pengalaman, dan hubungi langsung.",
     siteName: "Ebimsa Portfolio",
     images: [
       {
         url: "/ebimsa.png",
-        width: 512,
-        height: 512,
-        alt: "Ebimsa Logo",
+        width: 1200,
+        height: 630,
+        alt: "Ebimsa - Official Portfolio",
       },
     ],
   },
   twitter: {
-    card: "summary",
-    title: "ebimsa | Software Engineer & AI Enthusiast",
-    description: "Building intelligent software with elegant engineering. Portfolio of Enggal Bima Sakti (Ebimsa).",
+    card: "summary_large_image",
+    title: "ebimsa | Software Engineer",
+    description: "Portofolio resmi Enggal Bima Sakti (Ebimsa) — Software Engineer dan Full Stack Developer dari Bandar Lampung. Lihat proyek, pengalaman, dan hubungi langsung.",
     images: ["/ebimsa.png"],
   },
   icons: {

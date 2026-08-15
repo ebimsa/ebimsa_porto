@@ -10,7 +10,8 @@ import {
   Check,
   Copy,
   ArrowUpRight,
-  Send
+  Send,
+  Share2
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -65,6 +66,13 @@ export function Contact() {
       icon: FileText,
       color: "hover:border-primary/30 hover:text-primary",
       disabled: false,
+    },
+    {
+      name: "WhatsApp Share",
+      url: "https://api.whatsapp.com/send?text=Halo!%20Cek%20portofolio%20ebimsa%20-%20Software%20Engineer%20di%20https%3A%2F%2Febimsa.com",
+      handle: "Bagikan ke WhatsApp",
+      icon: Share2,
+      color: "hover:border-emerald-500/40 hover:text-emerald-500 dark:hover:text-emerald-400",
     },
   ];
 
@@ -168,7 +176,7 @@ export function Contact() {
         </div>
 
         {/* Modular 3-Column Grid Hub */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch w-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start w-full">
           
           {/* COLUMN 1: Direct channels & Socials */}
           <div className="flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-xl md:rounded-2xl p-5 sm:p-6 squircle-lg shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform justify-between h-auto md:h-[500px]">
@@ -321,7 +329,10 @@ export function Contact() {
           </div>
 
           {/* COLUMN 3: Scrollable Guestbook Messages Feed */}
-          <div className="flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-xl md:rounded-2xl p-5 sm:p-6 squircle-lg shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform justify-between h-[500px]">
+          <div className={cn(
+            "flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-xl md:rounded-2xl p-5 sm:p-6 squircle-lg shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform justify-between",
+            feedOpen ? "h-[500px]" : "h-auto md:h-[200px]"
+          )}>
             <div className="flex flex-col h-full w-full overflow-hidden">
               <div className="flex items-center justify-between border-b border-border/40 pb-3 shrink-0">
                 <div className="flex items-center gap-2">
@@ -343,8 +354,8 @@ export function Contact() {
               </div>
 
               {!feedOpen ? (
-                <div className="flex-1 flex flex-col items-center justify-center text-center space-y-4 p-4">
-                  <div className="w-10 h-10 rounded-xl bg-muted/65 border border-border/60 flex items-center justify-center text-muted-foreground/60">
+                <div className="flex-1 flex flex-col items-center justify-center text-center space-y-3 py-4 px-2">
+                  <div className="w-8 h-8 rounded-xl bg-muted/65 border border-border/60 flex items-center justify-center text-muted-foreground/60 shrink-0">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -353,7 +364,7 @@ export function Contact() {
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="w-5 h-5"
+                      className="w-4 h-4"
                     >
                       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                     </svg>
@@ -361,14 +372,14 @@ export function Contact() {
                   <div className="space-y-1">
                     <p className="text-xs font-bold text-foreground">Message Feed Hidden</p>
                     <p className="text-[10px] text-muted-foreground/60 leading-normal max-w-[200px]">
-                      Click the button below to load messages from visitors.
+                      Click below to load visitor messages.
                     </p>
                   </div>
                   <button
                     onClick={() => setFeedOpen(true)}
-                    className="px-4 py-2 rounded-xl border border-border bg-card/60 hover:bg-muted text-muted-foreground hover:text-foreground font-bold text-[10px] transition-all cursor-pointer shadow-sm focus-visible:outline-none"
+                    className="w-full max-w-[180px] py-1.5 rounded-xl border border-border bg-card/60 hover:bg-muted text-muted-foreground hover:text-foreground font-bold text-[10px] transition-all cursor-pointer shadow-sm focus-visible:outline-none"
                   >
-                    Open Feed
+                    Open Feed ({messages.length})
                   </button>
                 </div>
               ) : (
