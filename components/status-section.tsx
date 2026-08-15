@@ -1120,8 +1120,8 @@ export function StatusSection() {
                 Atmosphere & Time
               </span>
               <div className="flex items-center gap-1.5 shrink-0">
-                <span className="text-[7.5px] md:text-[8.5px] font-bold flex items-center gap-1 shrink-0 text-foreground">
-                  <Navigation className="w-2 h-2 text-sky-400" />
+                <span className={cn("text-[7.5px] md:text-[8.5px] font-bold flex items-center gap-1 shrink-0", atm.subtext)}>
+                  <Navigation className="w-2 h-2 text-sky-400 shrink-0" />
                   {weather.city}
                 </span>
               </div>
@@ -1175,7 +1175,7 @@ export function StatusSection() {
                       <span className={cn("text-xl md:text-3xl tabular-nums leading-none", atm.value)}>
                         {weather.temp}
                       </span>
-                      <span className="text-[8px] md:text-[10px] font-bold">&deg;C</span>
+                      <span className={cn("text-[8px] md:text-[10px] font-bold", atm.subtext)}>&deg;C</span>
                     </div>
                     <p className={cn("text-[9px] md:text-[10px] font-black uppercase tracking-wider", atm.value)}>
                       {getWeatherDesc(weather.weatherCode)}
