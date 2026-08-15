@@ -10,8 +10,7 @@ import {
   Check,
   Copy,
   ArrowUpRight,
-  Send,
-  Share2
+  Send
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -66,13 +65,6 @@ export function Contact() {
       icon: FileText,
       color: "hover:border-primary/30 hover:text-primary",
       disabled: false,
-    },
-    {
-      name: "WhatsApp Share",
-      url: "https://api.whatsapp.com/send?text=Halo!%20Cek%20portofolio%20ebimsa%20-%20Software%20Engineer%20di%20https%3A%2F%2Febimsa.com",
-      handle: "Bagikan ke WhatsApp",
-      icon: Share2,
-      color: "hover:border-emerald-500/40 hover:text-emerald-500 dark:hover:text-emerald-400",
     },
   ];
 

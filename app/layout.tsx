@@ -15,8 +15,14 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  ? (process.env.NEXT_PUBLIC_SITE_URL.startsWith("http")
+      ? process.env.NEXT_PUBLIC_SITE_URL
+      : `https://${process.env.NEXT_PUBLIC_SITE_URL}`)
+  : "https://ebimsa.my.id";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ebimsa.com"),
+  metadataBase: new URL(siteUrl),
   title: "ebimsa | Software Engineer",
   description: "Portofolio resmi Enggal Bima Sakti (Ebimsa) — Software Engineer dan Full Stack Developer dari Bandar Lampung. Lihat proyek, pengalaman, dan hubungi langsung.",
   keywords: [
@@ -30,21 +36,22 @@ export const metadata: Metadata = {
     "Computer Science Student",
     "Next.js Developer"
   ],
-  authors: [{ name: "Enggal Bima Sakti", url: "https://ebimsa.com" }],
+  authors: [{ name: "Enggal Bima Sakti", url: siteUrl }],
   creator: "Enggal Bima Sakti",
   openGraph: {
     type: "website",
     locale: "id_ID",
-    url: "https://ebimsa.com",
+    url: siteUrl,
     title: "ebimsa | Software Engineer",
     description: "Portofolio resmi Enggal Bima Sakti (Ebimsa) — Software Engineer dan Full Stack Developer dari Bandar Lampung. Lihat proyek, pengalaman, dan hubungi langsung.",
-    siteName: "Ebimsa Portfolio",
+    siteName: "ebimsa",
     images: [
       {
-        url: "/ebimsa.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Ebimsa - Official Portfolio",
+        type: "image/jpeg",
+        alt: "ebimsa - Official Portfolio",
       },
     ],
   },
@@ -52,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ebimsa | Software Engineer",
     description: "Portofolio resmi Enggal Bima Sakti (Ebimsa) — Software Engineer dan Full Stack Developer dari Bandar Lampung. Lihat proyek, pengalaman, dan hubungi langsung.",
-    images: ["/ebimsa.png"],
+    images: ["/og-image.jpg"],
   },
   icons: {
     icon: "/ebimsa.png",
