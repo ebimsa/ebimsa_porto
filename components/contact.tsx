@@ -176,7 +176,7 @@ export function Contact() {
         </div>
 
         {/* Modular 3-Column Grid Hub */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start w-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch w-full">
           
           {/* COLUMN 1: Direct channels & Socials */}
           <div className="flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-xl md:rounded-2xl p-5 sm:p-6 squircle-lg shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform justify-between h-auto md:h-[500px]">
@@ -330,8 +330,8 @@ export function Contact() {
 
           {/* COLUMN 3: Scrollable Guestbook Messages Feed */}
           <div className={cn(
-            "flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-xl md:rounded-2xl p-5 sm:p-6 squircle-lg shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform justify-between",
-            feedOpen ? "h-[500px]" : "h-auto md:h-[200px]"
+            "flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-xl md:rounded-2xl p-5 sm:p-6 squircle-lg shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform justify-between md:h-[500px]",
+            feedOpen ? "h-[500px]" : "h-auto"
           )}>
             <div className="flex flex-col h-full w-full overflow-hidden">
               <div className="flex items-center justify-between border-b border-border/40 pb-3 shrink-0">
