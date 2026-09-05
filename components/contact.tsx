@@ -72,17 +72,34 @@ export function Contact() {
   const [messages, setMessages] = useState<GuestMessage[]>([]);
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const [honeypot, setHoneypot] = useState("");
+  const [formMountedAt, setFormMountedAt] = useState<number>(() => Date.now());
+  const [cooldown, setCooldown] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [viewAll, setViewAll] = useState(false);
   const [feedOpen, setFeedOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch messages on mount
+  // Set form mounted timestamp on mount
+  useEffect(() => {
+    setFormMountedAt(Date.now());
+  }, []);
+
+  // Cooldown countdown timer
+  useEffect(() => {
+    if (cooldown <= 0) return;
+    const timer = setInterval(() => {
+      setCooldown((prev) => Math.max(0, prev - 1));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [cooldown]);
+
+  // Fetch messages on mount (safely capped at 100 max)
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const res = await fetch("/api/messages?limit=all");
+        const res = await fetch("/api/messages?limit=100");
         if (res.ok) {
           const data = await res.json();
           if (data.success && Array.isArray(data.messages)) {
@@ -101,6 +118,7 @@ export function Contact() {
   // Handle submit message
   const handleSubmitMessage = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (cooldown > 0 || submitting) return;
     if (!name.trim() || !message.trim()) return;
 
     setSubmitting(true);
@@ -113,18 +131,25 @@ export function Contact() {
       const res = await fetch("/api/messages", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: tempName, message: tempMsg }),
+        body: JSON.stringify({
+          name: tempName,
+          message: tempMsg,
+          website: honeypot,
+          timestamp: formMountedAt,
+        }),
       });
 
       const data = await res.json();
       if (data.success && data.message) {
         setMessages((prev) => [data.message, ...prev]);
         setMessage(""); // clear message input only
+        setCooldown(15); // 15-second cooldown
+        setFormMountedAt(Date.now());
       } else {
-        setError(data.error || "Failed to submit message");
+        setError(data.error || "Gagal mengirim pesan.");
       }
     } catch (err) {
-      setError("Network error. Please try again.");
+      setError("Terjadi kesalahan koneksi. Silakan coba lagi.");
       console.error(err);
     } finally {
       setSubmitting(false);
@@ -264,6 +289,20 @@ export function Contact() {
               </p>
 
               <form onSubmit={handleSubmitMessage} className="space-y-3 pt-2">
+                {/* Honeypot field - completely hidden from genuine users */}
+                <div className="opacity-0 absolute -z-50 pointer-events-none h-0 w-0 overflow-hidden" aria-hidden="true" tabIndex={-1}>
+                  <label htmlFor="guest-website">Website</label>
+                  <input
+                    id="guest-website"
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </div>
+
                 {/* Name Input */}
                 <div className="space-y-1">
                   <label htmlFor="guest-name" className="text-[9px] font-bold text-muted-foreground uppercase tracking-wider block">
@@ -311,11 +350,11 @@ export function Contact() {
             <div className="pt-4 md:pt-0">
               <button
                 onClick={handleSubmitMessage}
-                disabled={submitting || !name.trim() || !message.trim()}
+                disabled={submitting || cooldown > 0 || !name.trim() || !message.trim()}
                 className="w-full py-2.5 rounded-lg btn-logo-glossy font-bold text-xs flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow"
               >
                 <Send className={cn("w-3.5 h-3.5", submitting && "animate-pulse")} />
-                {submitting ? "Sending..." : "Send Message"}
+                {submitting ? "Sending..." : cooldown > 0 ? `Wait ${cooldown}s...` : "Send Message"}
               </button>
             </div>
           </div>
