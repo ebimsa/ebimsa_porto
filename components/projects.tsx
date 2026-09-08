@@ -78,14 +78,16 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
         
         {project.videoUrl ? (
           <video
-            src={project.videoUrl}
             poster={project.coverImage}
             autoPlay
             loop
             muted
             playsInline
             className="absolute inset-0 w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
-          />
+          >
+            <source src={project.videoUrl.replace(/\.mp4$/, ".webm")} type="video/webm" />
+            <source src={project.videoUrl} type="video/mp4" />
+          </video>
         ) : (
           <Image
             src={project.coverImage}
@@ -258,13 +260,15 @@ export function Projects() {
                   <div className="relative w-full aspect-video md:max-h-[320px] bg-black overflow-hidden flex items-center justify-center shrink-0">
                     {activeProject.videoUrl ? (
                       <video
-                        src={activeProject.videoUrl}
                         controls
                         autoPlay
                         muted
                         playsInline
                         className="w-full h-full object-contain"
-                      />
+                      >
+                        <source src={activeProject.videoUrl.replace(/\.mp4$/, ".webm")} type="video/webm" />
+                        <source src={activeProject.videoUrl} type="video/mp4" />
+                      </video>
                     ) : (
                       <>
                         <Image
