@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Menu } from "@base-ui/react/menu";
-import { FileText, Download, ChevronDown } from "lucide-react";
+import { FileText, ExternalLink, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const RESUME_OPTIONS = [
@@ -12,7 +12,6 @@ export const RESUME_OPTIONS = [
     sublabel: "Versi Indonesia • 121 KB",
     badge: "ID",
     url: "/CV_Enggal_Bima_Sakti_ID.pdf",
-    filename: "CV_Enggal_Bima_Sakti_ID.pdf",
   },
   {
     id: "en",
@@ -20,7 +19,6 @@ export const RESUME_OPTIONS = [
     sublabel: "English Version • 128 KB",
     badge: "EN",
     url: "/CV_Enggal_Bima_Sakti_EN.pdf",
-    filename: "CV_Enggal_Bima_Sakti_EN.pdf",
   },
 ] as const;
 
@@ -73,7 +71,6 @@ export function ResumeDropdown({
                   href={opt.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  download={opt.filename}
                   closeOnClick
                   className="group/item flex items-center justify-between gap-3 px-2.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-colors duration-150 hover:bg-muted/80 data-highlighted:bg-muted/80 select-none outline-hidden"
                 >
@@ -91,7 +88,7 @@ export function ResumeDropdown({
                     </div>
                   </div>
                   <div className="w-6 h-6 rounded-md bg-muted/60 border border-border/60 flex items-center justify-center text-muted-foreground group-hover/item:text-primary group-hover/item:border-primary/30 group-hover/item:bg-primary/10 transition-all shrink-0">
-                    <Download className="w-3 h-3 group-hover/item:translate-y-0.5 transition-transform" />
+                    <ExternalLink className="w-3 h-3 group-hover/item:translate-x-0.5 group-hover/item:-translate-y-0.5 transition-transform" />
                   </div>
                 </Menu.LinkItem>
               ))}
