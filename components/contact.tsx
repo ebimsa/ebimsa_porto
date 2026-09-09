@@ -10,8 +10,10 @@ import {
   Check,
   Copy,
   ArrowUpRight,
-  Send
+  Send,
+  ChevronDown,
 } from "lucide-react";
+import { ResumeDropdown } from "./resume-dropdown";
 import { cn } from "@/lib/utils";
 
 type GuestMessage = {
@@ -235,15 +237,58 @@ export function Contact() {
             <div className="space-y-2.5 mt-4 md:mt-0">
               {socials.map((soc) => {
                 const Icon = soc.icon;
-                const isLink = !soc.disabled;
+                const isResume = soc.name === "Resume";
+                const isLink = !soc.disabled && !isResume;
                 const Component = isLink ? "a" : "div";
                 const extraProps = isLink ? {
                   href: soc.url,
                   target: "_blank",
                   rel: "noopener noreferrer"
-                } : {
+                } : !isResume ? {
                   title: "Resume coming soon"
-                };
+                } : {};
+
+                const cardInner = (
+                  <>
+                    <div className="flex items-center gap-2.5 overflow-hidden">
+                      <div className="w-6.5 h-6.5 rounded-md bg-muted border border-border/85 flex items-center justify-center text-muted-foreground group-hover:text-inherit group-hover:bg-primary/5 dark:group-hover:bg-primary/10 transition-colors flex-shrink-0">
+                        <Icon className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="overflow-hidden text-left">
+                        <p className="font-bold text-foreground truncate leading-none">
+                          {soc.name}
+                        </p>
+                        <p className="text-[9px] text-muted-foreground truncate mt-0.5">
+                          {soc.handle}
+                        </p>
+                      </div>
+                    </div>
+                    {isResume ? (
+                      <ChevronDown className="w-3 h-3 text-muted-foreground group-hover:text-inherit transition-transform duration-200 group-data-popup-open:rotate-180" />
+                    ) : (
+                      isLink && (
+                        <ArrowUpRight className="w-3 h-3 text-muted-foreground group-hover:text-inherit group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                      )
+                    )}
+                  </>
+                );
+
+                if (isResume) {
+                  return (
+                    <ResumeDropdown
+                      key={soc.name}
+                      side="top"
+                      align="start"
+                      sideOffset={6}
+                      triggerClassName={cn(
+                        "group w-full p-2.5 rounded-xl border border-border/80 bg-card/40 hover:bg-card hover:shadow-inner transition-all squircle-sm flex items-center justify-between text-xs cursor-pointer",
+                        soc.color
+                      )}
+                    >
+                      {cardInner}
+                    </ResumeDropdown>
+                  );
+                }
 
                 return (
                   <Component
@@ -254,22 +299,7 @@ export function Contact() {
                       soc.color
                     )}
                   >
-                    <div className="flex items-center gap-2.5 overflow-hidden">
-                      <div className="w-6.5 h-6.5 rounded-md bg-muted border border-border/85 flex items-center justify-center text-muted-foreground group-hover:text-inherit group-hover:bg-primary/5 dark:group-hover:bg-primary/10 transition-colors flex-shrink-0">
-                        <Icon className="w-3.5 h-3.5" />
-                      </div>
-                      <div className="overflow-hidden">
-                        <p className="font-bold text-foreground truncate leading-none">
-                          {soc.name}
-                        </p>
-                        <p className="text-[9px] text-muted-foreground truncate mt-0.5">
-                          {soc.handle}
-                        </p>
-                      </div>
-                    </div>
-                    {isLink && (
-                      <ArrowUpRight className="w-3 h-3 text-muted-foreground group-hover:text-inherit group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                    )}
+                    {cardInner}
                   </Component>
                 );
               })}
