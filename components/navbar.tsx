@@ -3,11 +3,14 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTheme } from "./theme-provider";
+import { useT } from "@/lib/i18n";
+import { LanguageToggle } from "./language-toggle";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sun, Moon, Menu, X } from "lucide-react";
+import { SunIllustration, MoonIllustration, CloseIconIllustration } from "@/components/ui-icons";
 
 export function Navbar() {
   const { theme, setTheme } = useTheme();
+  const { t } = useT();
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -16,10 +19,10 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Experience", href: "#experience" },
-    { name: "Contact", href: "#contact" },
+    { name: t("nav.about"), href: "#about" },
+    { name: t("nav.projects"), href: "#projects" },
+    { name: t("nav.experience"), href: "#experience" },
+    { name: t("nav.contact"), href: "#contact" },
   ];
 
   // Hydration-safe theme toggle (Light / Dark only)
@@ -63,24 +66,30 @@ export function Navbar() {
         </nav>
 
         {/* Right: Controls Panel */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-2.5">
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event("open-command-palette"))}
+            className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-border/80 bg-background/50 hover:bg-muted/80 text-[10px] font-mono font-bold text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            title="Open Command Palette (Ctrl+K)"
+            aria-label="Open Command Palette"
+          >
+            <span>⌘K</span>
+          </button>
+          <LanguageToggle />
 
-          {/* Theme Switcher Toggle Button (Light/Dark only) */}
+          {/* Theme Switcher Toggle Button (Illustrated Sun/Moon) */}
           <button
             onClick={toggleTheme}
             className="p-1.5 rounded-full border border-border/80 bg-background/50 hover:bg-muted/80 text-muted-foreground hover:text-foreground focus-visible:outline-none transition-colors cursor-pointer"
             aria-label="Toggle theme"
           >
             {!mounted ? (
-              <Sun className="w-3.5 h-3.5" />
+              <SunIllustration className="w-3.5 h-3.5" />
+            ) : theme === "light" ? (
+              <SunIllustration className="w-3.5 h-3.5" />
             ) : (
-              <>
-                {theme === "light" ? (
-                  <Sun className="w-3.5 h-3.5" />
-                ) : (
-                  <Moon className="w-3.5 h-3.5" />
-                )}
-              </>
+              <MoonIllustration className="w-3.5 h-3.5" />
             )}
           </button>
 
@@ -90,7 +99,13 @@ export function Navbar() {
             className="sm:hidden p-1.5 rounded-full border border-border/80 bg-background/50 hover:bg-muted/80 text-muted-foreground hover:text-foreground focus-visible:outline-none transition-colors"
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="w-3.5 h-3.5" /> : <Menu className="w-3.5 h-3.5" />}
+            {mobileMenuOpen ? (
+              <CloseIconIllustration className="w-3.5 h-3.5" />
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" className="w-3.5 h-3.5" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+              </svg>
+            )}
           </button>
         </div>
       </div>

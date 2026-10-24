@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { LanguageProvider } from "@/lib/i18n";
+import { CustomCursor } from "@/components/cursor";
+import { CommandPalette } from "@/components/command-palette";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
@@ -81,7 +84,11 @@ export default function RootLayout({
     >
       <body className={`${plusJakartaSans.className} min-h-full flex flex-col bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary`}>
         <ThemeProvider defaultTheme="system" storageKey="ebimsa-theme">
-          {children}
+          <LanguageProvider>
+            <CustomCursor />
+            <CommandPalette />
+            {children}
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

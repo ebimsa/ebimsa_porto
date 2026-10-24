@@ -1,58 +1,48 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Navbar } from "@/components/navbar";
 import { About } from "@/components/about";
+import { Hero } from "@/components/hero";
 import { Projects } from "@/components/projects";
 import { Experience } from "@/components/experience";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
-import { StatusSection } from "@/components/status-section";
-import { LoadingScreen } from "@/components/loading-screen";
-import { motion, AnimatePresence } from "framer-motion";
+import { StatusStrip } from "@/components/status-strip";
+import { TechMarquee } from "@/components/tech-marquee";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
-
   return (
-    <>
-      <AnimatePresence mode="wait">
-        {loading ? (
-          <LoadingScreen key="loader" onComplete={() => setLoading(false)} />
-        ) : (
-          <motion.div
-            key="content"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="min-h-screen flex flex-col"
-          >
-            {/* Sticky Blurred Glassmorphism Navigation */}
-            <Navbar />
+    <div className="min-h-screen flex flex-col">
+      {/* Sticky Navigation */}
+      <Navbar />
 
-            {/* Main Single Page Content Flow */}
-            <main className="flex-1 w-full bg-background transition-colors duration-300">
-              {/* Interactive Status Section (Hero Dashboard) */}
-              <StatusSection />
+      {/* Main Single Page Content Flow */}
+      <main className="flex-1 w-full bg-background transition-colors duration-300">
+        {/* Creative Hero (with merged Enggal Bima Sakti -> ebimsa morph) */}
+        <Hero />
 
-              {/* About Section */}
-              <About />
+        {/* Interactive Status Section */}
+        <StatusStrip />
 
-              {/* Projects Section */}
-              <Projects />
+        {/* About Section */}
+        <About />
 
-              {/* Experience Section */}
-              <Experience />
+        {/* Infinite Tech Stack Marquee */}
+        <TechMarquee />
 
-              {/* Contact & Guestbook Section */}
-              <Contact />
-            </main>
+        {/* Projects Section */}
+        <Projects />
 
-            {/* Footer Section */}
-            <Footer />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+        {/* Experience Section */}
+        <Experience />
+
+        {/* Contact & Guestbook Section */}
+        <Contact />
+      </main>
+
+      {/* Footer Section */}
+      <Footer />
+    </div>
   );
 }

@@ -2,8 +2,14 @@
 
 import * as React from "react";
 import { Menu } from "@base-ui/react/menu";
-import { FileText, ExternalLink, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  FlagEN,
+  FlagID,
+  DocCaseStudyIllustration,
+  ExternalLinkIllustration,
+  ArrowDownIllustration,
+} from "@/components/ui-icons";
 
 export const RESUME_OPTIONS = [
   {
@@ -49,9 +55,9 @@ export function ResumeDropdown({
           children
         ) : (
           <>
-            <FileText className="w-3 h-3 md:w-3.5 md:h-3.5 text-muted-foreground group-hover:text-primary group-data-popup-open:text-primary transition-colors" />
+            <DocCaseStudyIllustration className="w-3.5 h-3.5 md:w-4 md:h-4" />
             <span>Resume</span>
-            <ChevronDown className="w-3 h-3 md:w-3.5 md:h-3.5 text-muted-foreground/70 group-hover:text-primary group-data-popup-open:rotate-180 group-data-popup-open:text-primary transition-transform duration-200" />
+            <ArrowDownIllustration className="w-3 h-3 md:w-3.5 md:h-3.5 transition-transform duration-200 group-data-popup-open:rotate-180" />
           </>
         )}
       </Menu.Trigger>
@@ -75,8 +81,12 @@ export function ResumeDropdown({
                   className="group/item flex items-center justify-between gap-3 px-2.5 py-2 rounded-lg text-xs font-medium cursor-pointer transition-colors duration-150 hover:bg-muted/80 data-highlighted:bg-muted/80 select-none outline-hidden"
                 >
                   <div className="flex items-center gap-2.5">
-                    <span className="w-7 h-7 rounded-md bg-muted/80 border border-border/85 font-black text-[10px] tracking-wider flex items-center justify-center text-muted-foreground group-hover/item:text-primary group-hover/item:border-primary/40 group-hover/item:bg-primary/10 transition-colors shrink-0 select-none">
-                      {opt.badge}
+                    <span className="w-7 h-7 rounded-md bg-muted/80 border border-border/85 flex items-center justify-center shrink-0 select-none">
+                      {opt.id === "id" ? (
+                        <FlagID className="w-4 h-3" />
+                      ) : (
+                        <FlagEN className="w-4 h-3" />
+                      )}
                     </span>
                     <div className="flex flex-col text-left">
                       <span className="font-bold text-foreground group-hover/item:text-primary data-highlighted:text-primary transition-colors">
@@ -88,7 +98,7 @@ export function ResumeDropdown({
                     </div>
                   </div>
                   <div className="w-6 h-6 rounded-md bg-muted/60 border border-border/60 flex items-center justify-center text-muted-foreground group-hover/item:text-primary group-hover/item:border-primary/30 group-hover/item:bg-primary/10 transition-all shrink-0">
-                    <ExternalLink className="w-3 h-3 group-hover/item:translate-x-0.5 group-hover/item:-translate-y-0.5 transition-transform" />
+                    <ExternalLinkIllustration className="w-3.5 h-3.5 group-hover/item:translate-x-0.5 group-hover/item:-translate-y-0.5 transition-transform" />
                   </div>
                 </Menu.LinkItem>
               ))}

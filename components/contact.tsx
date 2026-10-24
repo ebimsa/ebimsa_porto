@@ -2,19 +2,22 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Github,
-  Linkedin,
-  Instagram,
-  FileText,
-  Check,
-  Copy,
-  ArrowUpRight,
-  Send,
-  ChevronDown,
-} from "lucide-react";
 import { ResumeDropdown } from "./resume-dropdown";
 import { cn } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
+import { SectionHeading } from "@/components/section-heading";
+import { TechIcon } from "@/components/tech-icons";
+import {
+  MailboxIllustration,
+  PenWriteIllustration,
+  ChatBubblesIllustration,
+  DocCaseStudyIllustration,
+  CheckMarkIllustration,
+  CopyClipboardIllustration,
+  SendPaperPlaneIllustration,
+  ExternalLinkIllustration,
+  ArrowDownIllustration,
+} from "@/components/ui-icons";
 
 type GuestMessage = {
   id: number;
@@ -24,6 +27,8 @@ type GuestMessage = {
 };
 
 export function Contact() {
+  const { t } = useT();
+
   // --- Contact Logic ---
   const [copied, setCopied] = useState(false);
   const emailAddress = "enggalbimas8@gmail.com";
@@ -43,29 +48,24 @@ export function Contact() {
       name: "GitHub",
       url: "https://github.com/ebimsa",
       handle: "@ebimsa",
-      icon: Github,
-      color: "hover:border-foreground/30 hover:text-foreground",
+      logoName: "github",
     },
     {
       name: "LinkedIn",
       url: "https://www.linkedin.com/in/enggal-bima-sakti-67902a305/",
       handle: "Enggal Bima",
-      icon: Linkedin,
-      color: "hover:border-primary/30 hover:text-primary",
+      logoName: "linkedin",
     },
     {
       name: "Instagram",
       url: "https://instagram.com/ebimsa",
       handle: "@ebimsa",
-      icon: Instagram,
-      color: "hover:border-foreground/30 hover:text-foreground",
+      logoName: "instagram",
     },
     {
       name: "Resume",
       url: "/resume.pdf",
       handle: "Download PDF",
-      icon: FileText,
-      color: "hover:border-primary/30 hover:text-primary",
       disabled: false,
     },
   ];
@@ -82,11 +82,6 @@ export function Contact() {
   const [viewAll, setViewAll] = useState(false);
   const [feedOpen, setFeedOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  // Set form mounted timestamp on mount
-  useEffect(() => {
-    setFormMountedAt(Date.now());
-  }, []);
 
   // Cooldown countdown timer
   useEffect(() => {
@@ -160,12 +155,9 @@ export function Contact() {
 
   const getAvatarColor = (guestName: string) => {
     const colors = [
-      "from-sky-400 to-blue-500",
-      "from-emerald-400 to-teal-500",
-      "from-amber-400 to-orange-500",
-      "from-rose-400 to-pink-500",
-      "from-indigo-400 to-purple-500",
-      "from-violet-400 to-fuchsia-500",
+      "bg-[#0284c7]",
+      "bg-[#0ea5e9]",
+      "bg-[#1e293b] border border-[#38bdf8]",
     ];
     let sum = 0;
     for (let i = 0; i < guestName.length; i++) {
@@ -177,42 +169,41 @@ export function Contact() {
   const displayedMessages = viewAll ? messages : messages.slice(0, 10);
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden bg-dot-pattern border-t border-border/40">
-      {/* Background Glows */}
-      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-primary/3 blur-[110px] pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-emerald-500/3 blur-[110px] pointer-events-none" />
-
+    <section id="contact" className="py-24 relative overflow-hidden border-t border-border/40 bg-background">
       <div className="max-w-6xl mx-auto px-4 md:px-6 space-y-12">
-        
         {/* Section Header */}
-        <div className="text-center md:text-left space-y-3">
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-foreground leading-tight">
-            Say Hello & Guestbook
-          </h2>
-          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl">
-            Leave a message in the guestbook, copy my direct email, or connect with me via your preferred social media channels.
-          </p>
-        </div>
+        <SectionHeading
+          index="04"
+          label={t("contact.label")}
+          title={t("contact.heading")}
+          subtitle={t("contact.subheading")}
+        />
 
         {/* Modular 3-Column Grid Hub */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch w-full">
-          
           {/* COLUMN 1: Direct channels & Socials */}
-          <div className="flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-xl md:rounded-2xl p-5 sm:p-6 squircle-lg shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform justify-between h-auto md:h-[500px]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col bg-card/45 backdrop-blur-md border border-border/60 hover:border-primary/40 rounded-xl md:rounded-2xl p-5 sm:p-6 squircle-lg shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform justify-between h-auto md:h-[500px]"
+          >
             <div className="space-y-4">
-              <div className="flex items-center border-b border-border/40 pb-3">
+              <div className="flex items-center gap-2 border-b border-border/40 pb-3">
+                <MailboxIllustration className="w-4 h-4" />
                 <h3 className="font-extrabold text-sm text-foreground uppercase tracking-wider">
-                  Direct Channels
+                  {t("contact.directChannels")}
                 </h3>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Copy my direct email address below or connect with me via social handles.
+                {t("contact.directDesc")}
               </p>
 
               {/* Direct Email Card */}
               <div className="p-3 rounded-xl border border-border/80 bg-background/50 space-y-2">
                 <span className="text-[9px] font-black uppercase tracking-widest text-muted-foreground block">
-                  Copy Email
+                  {t("contact.copyEmail")}
                 </span>
                 <div className="flex items-center justify-between gap-3 p-2 rounded-lg border border-border bg-background squircle-sm">
                   <span className="font-mono text-xs font-medium text-foreground truncate select-all">
@@ -224,35 +215,42 @@ export function Contact() {
                     aria-label="Copy email"
                   >
                     {copied ? (
-                      <Check className="w-3.5 h-3.5 text-emerald-500" />
+                      <CheckMarkIllustration className="w-3.5 h-3.5" />
                     ) : (
-                      <Copy className="w-3.5 h-3.5" />
+                      <CopyClipboardIllustration className="w-3.5 h-3.5" />
                     )}
                   </button>
                 </div>
               </div>
             </div>
 
-            {/* Social List */}
+            {/* Social List with Original Brand Logos & Illustrated Icons */}
             <div className="space-y-2.5 mt-4 md:mt-0">
               {socials.map((soc) => {
-                const Icon = soc.icon;
                 const isResume = soc.name === "Resume";
                 const isLink = !soc.disabled && !isResume;
                 const Component = isLink ? "a" : "div";
-                const extraProps = isLink ? {
-                  href: soc.url,
-                  target: "_blank",
-                  rel: "noopener noreferrer"
-                } : !isResume ? {
-                  title: "Resume coming soon"
-                } : {};
+                const extraProps = isLink
+                  ? {
+                      href: soc.url,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    }
+                  : !isResume
+                  ? {
+                      title: "Resume coming soon",
+                    }
+                  : {};
 
                 const cardInner = (
                   <>
                     <div className="flex items-center gap-2.5 overflow-hidden">
-                      <div className="w-6.5 h-6.5 rounded-md bg-muted border border-border/85 flex items-center justify-center text-muted-foreground group-hover:text-inherit group-hover:bg-primary/5 dark:group-hover:bg-primary/10 transition-colors flex-shrink-0">
-                        <Icon className="w-3.5 h-3.5" />
+                      <div className="w-7 h-7 rounded-md bg-muted border border-border/85 flex items-center justify-center flex-shrink-0">
+                        {soc.logoName ? (
+                          <TechIcon name={soc.logoName} className="w-4 h-4" />
+                        ) : (
+                          <DocCaseStudyIllustration className="w-4 h-4" />
+                        )}
                       </div>
                       <div className="overflow-hidden text-left">
                         <p className="font-bold text-foreground truncate leading-none">
@@ -264,10 +262,10 @@ export function Contact() {
                       </div>
                     </div>
                     {isResume ? (
-                      <ChevronDown className="w-3 h-3 text-muted-foreground group-hover:text-inherit transition-transform duration-200 group-data-popup-open:rotate-180" />
+                      <ArrowDownIllustration className="w-3.5 h-3.5 transition-transform duration-200 group-data-popup-open:rotate-180" />
                     ) : (
                       isLink && (
-                        <ArrowUpRight className="w-3 h-3 text-muted-foreground group-hover:text-inherit group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                        <ExternalLinkIllustration className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                       )
                     )}
                   </>
@@ -280,10 +278,7 @@ export function Contact() {
                       side="top"
                       align="start"
                       sideOffset={6}
-                      triggerClassName={cn(
-                        "group w-full p-2.5 rounded-xl border border-border/80 bg-card/40 hover:bg-card hover:shadow-inner transition-all squircle-sm flex items-center justify-between text-xs cursor-pointer",
-                        soc.color
-                      )}
+                      triggerClassName="group w-full p-2.5 rounded-xl border border-border/80 bg-card/40 hover:bg-card hover:border-primary/30 hover:shadow-inner transition-all squircle-sm flex items-center justify-between text-xs cursor-pointer"
                     >
                       {cardInner}
                     </ResumeDropdown>
@@ -294,28 +289,32 @@ export function Contact() {
                   <Component
                     key={soc.name}
                     {...extraProps}
-                    className={cn(
-                      "group p-2.5 rounded-xl border border-border/80 bg-card/40 hover:bg-card hover:shadow-inner transition-all squircle-sm flex items-center justify-between text-xs",
-                      soc.color
-                    )}
+                    className="group p-2.5 rounded-xl border border-border/80 bg-card/40 hover:bg-card hover:border-primary/30 hover:shadow-inner transition-all squircle-sm flex items-center justify-between text-xs"
                   >
                     {cardInner}
                   </Component>
                 );
               })}
             </div>
-          </div>
+          </motion.div>
 
           {/* COLUMN 2: Guestbook Input Form */}
-          <div className="flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-xl md:rounded-2xl p-5 sm:p-6 squircle-lg shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform justify-between h-auto md:h-[500px]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="flex flex-col bg-card/45 backdrop-blur-md border border-border/60 hover:border-primary/40 rounded-xl md:rounded-2xl p-5 sm:p-6 squircle-lg shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform justify-between h-auto md:h-[500px]"
+          >
             <div className="space-y-4 w-full flex-1">
-              <div className="flex items-center border-b border-border/40 pb-3">
+              <div className="flex items-center gap-2 border-b border-border/40 pb-3">
+                <PenWriteIllustration className="w-4 h-4" />
                 <h3 className="font-extrabold text-sm text-foreground uppercase tracking-wider">
-                  Write New Message
+                  {t("contact.writeNew")}
                 </h3>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Have feedback, suggestions, or just want to say hello? Send your message to this guestbook.
+                {t("contact.writeDesc")}
               </p>
 
               <form onSubmit={handleSubmitMessage} className="space-y-3 pt-2">
@@ -336,14 +335,14 @@ export function Contact() {
                 {/* Name Input */}
                 <div className="space-y-1">
                   <label htmlFor="guest-name" className="text-[9px] font-bold text-muted-foreground uppercase tracking-wider block">
-                    Your Name
+                    {t("contact.yourName")}
                   </label>
                   <input
                     id="guest-name"
                     type="text"
                     required
                     maxLength={50}
-                    placeholder="Your name/alias..."
+                    placeholder={t("contact.namePlaceholder")}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="w-full px-3 py-2 rounded-md border border-border bg-background text-xs text-foreground placeholder-muted-foreground/60 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all squircle-sm"
@@ -353,14 +352,14 @@ export function Contact() {
                 {/* Message Input */}
                 <div className="space-y-1">
                   <label htmlFor="guest-message" className="text-[9px] font-bold text-muted-foreground uppercase tracking-wider block">
-                    Your Message
+                    {t("contact.yourMessage")}
                   </label>
                   <textarea
                     id="guest-message"
                     required
                     maxLength={500}
                     rows={4}
-                    placeholder="Write your message here..."
+                    placeholder={t("contact.messagePlaceholder")}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     className="w-full px-3 py-2 rounded-md border border-border bg-background text-xs text-foreground placeholder-muted-foreground/60 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all resize-none squircle-sm"
@@ -383,64 +382,60 @@ export function Contact() {
                 disabled={submitting || cooldown > 0 || !name.trim() || !message.trim()}
                 className="w-full py-2.5 rounded-lg btn-logo-glossy font-bold text-xs flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow"
               >
-                <Send className={cn("w-3.5 h-3.5", submitting && "animate-pulse")} />
-                {submitting ? "Sending..." : cooldown > 0 ? `Wait ${cooldown}s...` : "Send Message"}
+                <SendPaperPlaneIllustration className="w-3.5 h-3.5" />
+                <span>{submitting ? t("contact.sending") : cooldown > 0 ? `Wait ${cooldown}s...` : t("contact.send")}</span>
               </button>
             </div>
-          </div>
+          </motion.div>
 
           {/* COLUMN 3: Scrollable Guestbook Messages Feed */}
-          <div className={cn(
-            "flex flex-col bg-card/45 backdrop-blur-md border border-border/60 rounded-xl md:rounded-2xl p-5 sm:p-6 squircle-lg shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform justify-between md:h-[500px]",
-            feedOpen ? "h-[500px]" : "h-auto"
-          )}>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className={cn(
+              "flex flex-col bg-card/45 backdrop-blur-md border border-border/60 hover:border-primary/40 rounded-xl md:rounded-2xl p-5 sm:p-6 squircle-lg shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform justify-between md:h-[500px]",
+              feedOpen ? "h-[500px]" : "h-auto"
+            )}
+          >
             <div className="flex flex-col h-full w-full overflow-hidden">
               <div className="flex items-center justify-between border-b border-border/40 pb-3 shrink-0">
                 <div className="flex items-center gap-2">
+                  <ChatBubblesIllustration className="w-4 h-4" />
                   <h3 className="font-extrabold text-sm text-foreground uppercase tracking-wider">
-                    Message Feed
+                    {t("contact.feed")}
                   </h3>
                   <span className="text-[10px] font-bold text-muted-foreground/80">
                     {messages.length}
                   </span>
                 </div>
                 {feedOpen && (
-                  <button 
+                  <button
                     onClick={() => setFeedOpen(false)}
                     className="text-[9px] font-bold text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                   >
-                    Close
+                    {t("contact.close")}
                   </button>
                 )}
               </div>
 
               {!feedOpen ? (
                 <div className="flex-1 flex flex-col items-center justify-center text-center space-y-3 py-4 px-2">
-                  <div className="w-8 h-8 rounded-xl bg-muted/65 border border-border/60 flex items-center justify-center text-muted-foreground/60 shrink-0">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="w-4 h-4"
-                    >
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>
+                  <div className="w-9 h-9 rounded-xl bg-muted/65 border border-border/60 flex items-center justify-center shrink-0">
+                    <ChatBubblesIllustration className="w-5 h-5" />
                   </div>
                   <div className="space-y-1">
-                    <p className="text-xs font-bold text-foreground">Message Feed Hidden</p>
+                    <p className="text-xs font-bold text-foreground">{t("contact.feedHidden")}</p>
                     <p className="text-[10px] text-muted-foreground/60 leading-normal max-w-[200px]">
-                      Click below to load visitor messages.
+                      {t("contact.feedClick")}
                     </p>
                   </div>
                   <button
                     onClick={() => setFeedOpen(true)}
                     className="w-full max-w-[180px] py-1.5 rounded-xl border border-border bg-card/60 hover:bg-muted text-muted-foreground hover:text-foreground font-bold text-[10px] transition-all cursor-pointer shadow-sm focus-visible:outline-none"
                   >
-                    Open Feed ({messages.length})
+                    {t("contact.openFeed")} ({messages.length})
                   </button>
                 </div>
               ) : (
@@ -483,10 +478,12 @@ export function Contact() {
                                 exit={{ opacity: 0 }}
                                 className="p-3 rounded-xl border border-border/80 bg-card/35 hover:bg-card/65 transition-all duration-300 squircle-sm flex gap-3"
                               >
-                                <div className={cn(
-                                  "w-7 h-7 rounded-lg bg-gradient-to-br flex items-center justify-center text-white text-[10px] font-bold uppercase shadow-sm flex-shrink-0",
-                                  avatarColor
-                                )}>
+                                <div
+                                  className={cn(
+                                    "w-7 h-7 rounded-lg flex items-center justify-center text-white text-[10px] font-bold uppercase shadow-sm flex-shrink-0",
+                                    avatarColor
+                                  )}
+                                >
                                   {msg.name.charAt(0)}
                                 </div>
                                 <div className="space-y-0.5 flex-1 min-w-0">
@@ -524,10 +521,8 @@ export function Contact() {
                 </>
               )}
             </div>
-          </div>
-
+          </motion.div>
         </div>
-
       </div>
     </section>
   );

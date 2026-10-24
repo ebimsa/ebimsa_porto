@@ -1,10 +1,66 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { Server, Database, Code, Cpu } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useT } from "@/lib/i18n";
+import { SectionHeading } from "@/components/section-heading";
+import { TechBadge } from "@/components/tech-icons";
+import {
+  ServerRackIllustration,
+  DatabaseCylinderIllustration,
+  BrowserCodeIllustration,
+  CloudNodesIllustration,
+} from "@/components/ui-icons";
+
+function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-20px" });
+
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const duration = 1000;
+    const stepTime = 30;
+    const steps = duration / stepTime;
+    const increment = value / steps;
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= value) {
+        setCount(value);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, stepTime);
+    return () => clearInterval(timer);
+  }, [inView, value]);
+
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  );
+}
+
+const PRIMARY_STACK = [
+  "React 19",
+  "Next.js",
+  "Svelte",
+  "TypeScript",
+  "Tailwind CSS",
+  "Go",
+  "Laravel 12",
+  "PostgreSQL",
+  "Redis",
+  "Docker",
+  "gRPC",
+];
 
 export function About() {
+  const { t } = useT();
+
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -16,32 +72,29 @@ export function About() {
 
   const pillars = [
     {
-      icon: Server,
-      title: "Backend Development",
-      desc: "Building performant API services, optimizing database schemas, and handling distributed transaction states using Go, Redis, and PostgreSQL.",
+      icon: ServerRackIllustration,
+      title: t("about.pillar1.title"),
+      desc: t("about.pillar1.desc"),
     },
     {
-      icon: Database,
-      title: "Database & Caching",
-      desc: "Designing clean relational structures, indexes, and strategic caching layers to ensure high data consistency and sub-millisecond query responses.",
+      icon: DatabaseCylinderIllustration,
+      title: t("about.pillar2.title"),
+      desc: t("about.pillar2.desc"),
     },
     {
-      icon: Code,
-      title: "Web Development",
-      desc: "Crafting highly responsive user interfaces and modular web apps using Next.js, React, and standard CSS styles.",
+      icon: BrowserCodeIllustration,
+      title: t("about.pillar3.title"),
+      desc: t("about.pillar3.desc"),
     },
     {
-      icon: Cpu,
-      title: "Systems & Cloud",
-      desc: "Containerizing service environments using Docker and designing type-safe service communications via gRPC schemas.",
+      icon: CloudNodesIllustration,
+      title: t("about.pillar4.title"),
+      desc: t("about.pillar4.desc"),
     },
   ];
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden border-t border-border/40">
-      {/* Subtle Background Glow */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-primary/3 blur-[90px] pointer-events-none" />
-
+    <section id="about" className="py-24 relative overflow-hidden border-t border-border/40 bg-background">
       <div className="max-w-6xl mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
@@ -53,38 +106,71 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5 space-y-6"
           >
-            <div className="space-y-3">
-              <h2 className="text-3xl md:text-5xl font-black tracking-tight text-foreground leading-tight">
-                Engineering Focus & Philosophy
-              </h2>
-            </div>
+            <SectionHeading
+              index="01"
+              label={t("about.label")}
+              title={t("about.heading")}
+            />
 
             <div className="space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
               <p>
-                My approach to software engineering centers around simplicity, typesafety, and architectural scalability. Rather than chasing trends, I focus on building reliable backend systems, optimizing databases, and writing clean, maintainable code.
+                {t("about.p1")}
               </p>
               <p>
-                Whether it is reducing API latencies with caching strategies or containerizing web services for modern cloud deployment, I enjoy exploring the boundary where systems engineering meets clean product implementation.
+                {t("about.p2")}
               </p>
             </div>
 
-            {/* Quick Stats/Spec Box */}
-            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-border/60">
-              <div>
-                <p className="text-sm font-bold text-foreground">Core Focus</p>
-                <p className="text-xs text-muted-foreground font-medium">Backend & Web Engineering</p>
+            {/* Live Numerical Stats Counter */}
+            <div className="grid grid-cols-3 gap-3 py-4 border-y border-border/60">
+              <div className="space-y-0.5">
+                <div className="text-2xl sm:text-3xl font-black text-foreground font-mono">
+                  <Counter value={2} />
+                </div>
+                <p className="text-[11px] font-medium text-muted-foreground leading-tight">
+                  {t("about.stat.projects")}
+                </p>
               </div>
-              <div>
-                <p className="text-sm font-bold text-foreground">Primary Stack</p>
-                <p className="text-xs text-muted-foreground font-medium">Go, PHP (Laravel), PostgreSQL, React/Next.js, Svelte</p>
+              <div className="space-y-0.5">
+                <div className="text-2xl sm:text-3xl font-black text-foreground font-mono">
+                  <Counter value={2} />
+                </div>
+                <p className="text-[11px] font-medium text-muted-foreground leading-tight">
+                  {t("about.stat.stacks")}
+                </p>
+              </div>
+              <div className="space-y-0.5">
+                <div className="text-2xl sm:text-3xl font-black text-foreground font-mono">
+                  <Counter value={3} />
+                </div>
+                <p className="text-[11px] font-medium text-muted-foreground leading-tight">
+                  {t("about.stat.providers")}
+                </p>
+              </div>
+            </div>
+
+            {/* Primary Stack with Official Logos */}
+            <div className="space-y-3 pt-1">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-bold text-foreground">
+                  {t("about.stackTitle")}
+                </p>
+                <span className="text-xs text-muted-foreground font-medium">
+                  {t("about.focusDesc")}
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {PRIMARY_STACK.map((tech) => (
+                  <TechBadge key={tech} name={tech} size="sm" />
+                ))}
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Engineering Pillars Grid - Restructured 2x2 for mobile */}
+          {/* Right Column: Engineering Pillars Grid */}
           <div className="lg:col-span-7 grid grid-cols-2 gap-3 sm:gap-6">
             {pillars.map((pillar) => {
-              const IconComponent = pillar.icon;
+              const Illustration = pillar.icon;
               return (
                 <motion.div
                   key={pillar.title}
@@ -92,14 +178,11 @@ export function About() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-50px" }}
-                  className="group relative p-3 sm:p-6 rounded-xl sm:rounded-2xl border border-border bg-card hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform squircle-lg flex flex-col justify-between min-h-[140px] sm:min-h-[220px]"
+                  className="group relative p-3 sm:p-6 rounded-xl sm:rounded-2xl border border-border bg-card hover:-translate-y-1.5 hover:border-primary/60 transition-all duration-300 transform-gpu will-change-transform squircle-lg flex flex-col justify-between min-h-[140px] sm:min-h-[220px]"
                 >
-                  {/* Subtle Glowing Corner Decoration on Hover */}
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm pointer-events-none" />
-
                   <div className="space-y-2 sm:space-y-4">
-                    <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-md sm:rounded-xl bg-muted border border-border flex items-center justify-center text-foreground group-hover:text-primary group-hover:border-primary/25 transition-all duration-300 squircle-sm">
-                      <IconComponent className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-md sm:rounded-xl bg-muted border border-border flex items-center justify-center group-hover:border-primary/25 transition-all duration-300 squircle-sm">
+                      <Illustration className="w-4 h-4 sm:w-6 sm:h-6" />
                     </div>
                     <div className="space-y-1 sm:space-y-2">
                       <h3 className="font-bold text-[11px] sm:text-base md:text-lg text-foreground tracking-tight">

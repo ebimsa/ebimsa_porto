@@ -2,136 +2,123 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ExternalLink, Github, X, Code, ShieldCheck, Cpu, GitBranch, Lightbulb, ArrowRight, Play } from "lucide-react";
-
-type Project = {
-  id: string;
-  title: string;
-  tagline: string;
-  coverImage: string;
-  category: "AI/ML" | "Systems & Cloud" | "Full Stack";
-  tags: string[];
-  overview: string;
-  problem: string;
-  solution: string;
-  architecture: string;
-  techStack: string[];
-  process: string;
-  challenges: string;
-  lessons: string;
-  githubUrl: string;
-  demoUrl: string;
-  videoUrl?: string;
-};
-
-const PROJECTS_DATA: Project[] = [
-  {
-    id: "saidata",
-    title: "Saidata",
-    tagline: "Integrated administrative services hub and e-Government platform",
-    coverImage: "/saidata.png",
-    category: "Full Stack",
-    tags: ["React 19", "Laravel 12", "Octane", "PostgreSQL", "CAS SSO"],
-    overview: "An e-Government portal (e-ULT Unila) that automates administrative services, workflows, and document generation for all Lampung University divisions.",
-    problem: "Legacy academic databases were siloed and administrative approvals were slow, paper-heavy, and untrackable in real-time.",
-    solution: "Developed a unified administrative entrypoint with dynamic multi-stage workflow engines, automatic Word/PDF generators, and Telegram validator notifications.",
-    architecture: "React 19 client (Recharts/Quill), Laravel 12 + Laravel Octane (RoadRunner) backend, and a hybrid relational-document PostgreSQL schema.",
-    techStack: ["React 19", "Vite", "Tailwind CSS", "Laravel 12", "Octane", "RoadRunner", "PostgreSQL", "CAS SSO"],
-    process: "Mapped complex organizational approval chains, built dynamic PDF generators with verification QR codes, and integrated SSO CAS 2.0 authentication.",
-    challenges: "Synchronizing data across conflicting campus systems and bypassing Cloudflare. Solved by implementing Node.js + Playwright bypass microservices and GIN index optimizations.",
-    lessons: "Mastered stateful PHP architectures (Octane), CAS token single sign-on protocols, and indexing performance tuning on massive JSONB datasets.",
-    githubUrl: "https://github.com/enggalbima/saidata",
-    demoUrl: "https://saidata.unila.ac.id",
-    videoUrl: "/saidata.mp4",
-  },
-  {
-    id: "doripay",
-    title: "DoriPay",
-    tagline: "PPOB billing and digital product payment platform",
-    coverImage: "/doripay.png",
-    category: "Full Stack",
-    tags: ["Go", "Fiber", "Svelte", "PostgreSQL", "Tripay", "Digiflazz"],
-    overview: "A full-stack PPOB payment system designed for secure, automated online billing and digital product transactions (credit, data packages, electricity tokens).",
-    problem: "Processing concurrent wallet transactions and avoiding race conditions on balance mutations during heavy customer traffic peaks.",
-    solution: "Implemented idempotent transaction requests with pessimistic row-locking in PostgreSQL, integrated with Tripay payment gateway and Digiflazz/Orkut PPOB provider APIs.",
-    architecture: "Svelte client dashboard (Svelte Stores), Golang Fiber backend structured in Clean Architecture, PostgreSQL database with high-performance pgx driver.",
-    techStack: ["Go", "Fiber", "Svelte", "PostgreSQL", "Tripay", "Digiflazz", "Orkut"],
-    process: "Implemented ACID-compliant wallet mutation logic, mapped tiered pricing systems for agents, designed granular RBAC controls, and established reliable webhook callbacks.",
-    challenges: "Managing double-spend attempts on instant wallet deductions. Mitigated by enforcing strict database locks and request idempotency validations.",
-    lessons: "Gained deep knowledge in secure financial ledger engineering, Svelte stores state synchronization, and integrating external payment gateway API endpoints.",
-    githubUrl: "https://github.com/enggalbima/doripay",
-    demoUrl: "https://doripay.com",
-    videoUrl: "/doripay.mp4",
-  },
-];
+import { useT } from "@/lib/i18n";
+import { SectionHeading } from "@/components/section-heading";
+import { PROJECTS_DATA, type Project } from "@/lib/projects";
+import { ArchitectureDiagram } from "@/components/architecture-diagram";
+import { TechBadge } from "@/components/tech-icons";
+import {
+  DocCaseStudyIllustration,
+  CompassIllustration,
+  ShieldAlertIllustration,
+  LightbulbIdeaIllustration,
+  ArchitectureNodesIllustration,
+  PuzzlePieceIllustration,
+  ArrowRightIllustration,
+  ExternalLinkIllustration,
+  CloseIconIllustration,
+} from "@/components/ui-icons";
 
 function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
+  const { lang, t } = useT();
+
+  const handleMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = e.currentTarget;
+    const r = el.getBoundingClientRect();
+    const x = e.clientX - r.left;
+    const y = e.clientY - r.top;
+    el.style.setProperty("--mx", `${x}px`);
+    el.style.setProperty("--my", `${y}px`);
+    el.style.setProperty("--ry", `${(x / r.width - 0.5) * 8}deg`);
+    el.style.setProperty("--rx", `${(0.5 - y / r.height) * 8}deg`);
+  };
+
+  const handleLeave = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.currentTarget.style.setProperty("--rx", "0deg");
+    e.currentTarget.style.setProperty("--ry", "0deg");
+  };
+
+  const currentTagline = lang === "id" && project.taglineId ? project.taglineId : project.tagline;
+
   return (
     <motion.div
       layoutId={`project-container-${project.id}`}
       onClick={onClick}
-      className="group flex flex-col bg-card/45 dark:bg-card/35 backdrop-blur-md border border-border rounded-xl md:rounded-2xl overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform squircle-lg cursor-pointer h-full active:translate-y-0 active:scale-[0.99]"
+      className="cursor-pointer h-full active:scale-[0.99] [perspective:900px]"
     >
-      {/* Top: Browser Mockup with Cover Image / Always Playing Video */}
-      <div className="relative w-full aspect-video bg-muted border-b border-border/40 overflow-hidden shrink-0">
-        
-        {project.videoUrl ? (
-          <video
-            poster={project.coverImage}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
-          >
-            <source src={project.videoUrl.replace(/\.mp4$/, ".webm")} type="video/webm" />
-            <source src={project.videoUrl} type="video/mp4" />
-          </video>
-        ) : (
-          <Image
-            src={project.coverImage}
-            alt={project.title}
-            fill
-            sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover group-hover:scale-102 transition-transform duration-500"
-          />
-        )}
-      </div>
-
-      {/* Bottom: Card Body Details */}
-      <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-        <div className="space-y-2">
-          <div className="flex items-center justify-end">
-            <span className="text-[10px] font-mono text-muted-foreground/60">{project.demoUrl.replace("https://", "")}</span>
-          </div>
-          <h3 className="text-lg font-black tracking-tight text-foreground group-hover:text-primary transition-colors">
-            {project.title}
-          </h3>
-          <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
-            {project.tagline}
-          </p>
+      <div
+        onPointerMove={handleMove}
+        onPointerLeave={handleLeave}
+        style={{ transform: "rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg))" }}
+        className="group relative flex flex-col bg-card border border-border hover:border-primary rounded-xl md:rounded-2xl overflow-hidden transition-[border-color,transform] duration-300 transform-gpu will-change-transform squircle-lg h-full"
+      >
+        {/* Top: Browser Mockup with Cover Video */}
+        <div className="relative w-full aspect-video bg-muted border-b border-border/40 overflow-hidden shrink-0">
+          {project.videoUrl ? (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
+            >
+              <source src={project.videoUrl.replace(/\.mp4$/, ".webm")} type="video/webm" />
+              <source src={project.videoUrl} type="video/mp4" />
+            </video>
+          ) : (
+            <Image
+              src={project.coverImage}
+              alt={project.title}
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              className="object-cover group-hover:scale-102 transition-transform duration-500"
+            />
+          )}
         </div>
 
-        <div className="space-y-4">
-          {/* Tech tags list */}
-          <div className="flex flex-wrap gap-1">
-            {project.tags.slice(0, 3).map((tag) => (
-              <span key={tag} className="text-[9px] px-2 py-0.5 bg-muted/65 text-muted-foreground border border-border/45 rounded font-mono">
-                {tag}
+        {/* Bottom: Card Body Details */}
+        <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+          <div className="space-y-2">
+            <div className="flex items-center justify-end">
+              <span className="text-[10px] font-mono text-muted-foreground/60">
+                {project.demoUrl.replace("https://", "")}
               </span>
-            ))}
-            {project.tags.length > 3 && (
-              <span className="text-[9px] px-2 py-0.5 bg-muted/65 text-muted-foreground/80 border border-border/45 rounded font-mono">
-                +{project.tags.length - 3}
-              </span>
-            )}
+            </div>
+            <h3 className="text-lg font-black tracking-tight text-foreground group-hover:text-primary transition-colors">
+              {project.title}
+            </h3>
+            <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+              {currentTagline}
+            </p>
           </div>
 
-          {/* Action Link */}
-          <div className="pt-3 border-t border-border/40 flex items-center justify-between text-xs font-bold text-primary">
-            <span>Read Case Study</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+          <div className="space-y-4">
+            {/* Tech tags list with official logos */}
+            <div className="flex flex-wrap gap-1.5">
+              {project.tags.slice(0, 4).map((tag) => (
+                <TechBadge key={tag} name={tag} size="xs" />
+              ))}
+              {project.tags.length > 4 && (
+                <span className="text-[9px] px-2 py-0.5 bg-muted/65 text-muted-foreground/80 border border-border/45 rounded font-mono">
+                  +{project.tags.length - 4}
+                </span>
+              )}
+            </div>
+
+            {/* Action Link to full case study page */}
+            <div className="pt-3 border-t border-border/40 flex items-center justify-between text-xs font-bold text-primary">
+              <Link
+                href={`/projects/${project.id}`}
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-1.5 hover:underline"
+              >
+                <DocCaseStudyIllustration className="w-3.5 h-3.5" />
+                <span>{t("projects.readCaseStudy")}</span>
+                <ArrowRightIllustration className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -140,92 +127,32 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
 }
 
 export function Projects() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const { lang, t } = useT();
   const [activeProject, setActiveProject] = useState<Project | null>(null);
-
-  const categories = ["all", "Full Stack"];
-
-  const filteredProjects = PROJECTS_DATA.filter((project) => {
-    const matchesSearch =
-      project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.tagline.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()));
-
-    const matchesCategory =
-      selectedCategory === "all" || project.category === selectedCategory;
-
-    return matchesSearch && matchesCategory;
-  });
 
   return (
     <section id="projects" className="py-24 relative border-t border-border/40">
       <div className="max-w-6xl mx-auto px-4 md:px-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <div className="space-y-3">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-foreground">
-              Featured Projects
-            </h2>
-            <p className="text-sm sm:text-base text-muted-foreground max-w-xl">
-              A selection of coding projects I built to learn new concepts, frameworks, and programming patterns.
-            </p>
-          </div>
-
-          {/* Filtering & Search Bar */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
-            {/* Search Input */}
-            <div className="relative flex-1 sm:w-64">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input
-                type="text"
-                placeholder="Search projects or tech..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 text-sm rounded-lg border border-border bg-card/50 focus:bg-card focus-visible:outline-none transition-colors squircle-sm"
-              />
-            </div>
-
-            {/* Tabs */}
-            <div className="flex gap-1 p-1 rounded-lg border border-border bg-card/60 no-scrollbar overflow-x-auto">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition-colors focus-visible:outline-none ${
-                    selectedCategory === cat
-                      ? "bg-foreground text-background shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {cat === "all" ? "All" : cat}
-                </button>
-              ))}
-            </div>
-          </div>
+        <div className="mb-16">
+          <SectionHeading
+            index="02"
+            label={t("projects.label")}
+            title={t("projects.heading")}
+            subtitle={t("projects.subheading")}
+          />
         </div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                onClick={() => setActiveProject(project)}
-              />
-            ))}
-          </AnimatePresence>
+          {PROJECTS_DATA.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onClick={() => setActiveProject(project)}
+            />
+          ))}
         </div>
-
-        {/* Empty state */}
-        {filteredProjects.length === 0 && (
-          <div className="text-center py-20 border border-dashed border-border rounded-3xl">
-            <p className="text-muted-foreground text-sm font-medium">
-              No projects match your current search criteria.
-            </p>
-          </div>
-        )}
 
         {/* Interactive Overlay modal for project details */}
         <AnimatePresence>
@@ -250,10 +177,10 @@ export function Projects() {
                   {/* Close button */}
                   <button
                     onClick={() => setActiveProject(null)}
-                    className="absolute top-4 right-4 z-20 p-2 rounded-full border border-border/80 bg-background/60 backdrop-blur-md text-muted-foreground hover:text-foreground focus-visible:outline-none hover:bg-muted/80 transition-all"
+                    className="absolute top-4 right-4 z-20 p-2 rounded-full border border-border/80 bg-background/60 backdrop-blur-md text-muted-foreground hover:text-foreground focus-visible:outline-none hover:bg-muted/80 transition-all cursor-pointer"
                     aria-label="Close details"
                   >
-                    <X className="w-4 h-4" />
+                    <CloseIconIllustration className="w-4 h-4" />
                   </button>
 
                   {/* Header Cover Banner */}
@@ -266,7 +193,10 @@ export function Projects() {
                         playsInline
                         className="w-full h-full object-contain"
                       >
-                        <source src={activeProject.videoUrl.replace(/\.mp4$/, ".webm")} type="video/webm" />
+                        <source
+                          src={activeProject.videoUrl.replace(/\.mp4$/, ".webm")}
+                          type="video/webm"
+                        />
                         <source src={activeProject.videoUrl} type="video/mp4" />
                       </video>
                     ) : (
@@ -283,18 +213,25 @@ export function Projects() {
                     )}
                   </div>
 
-                  {/* Project Title Block (Below banner) */}
-                  <div className="px-6 pt-5 sm:px-8 sm:pt-6 md:px-10 border-b border-border/40 pb-3 shrink-0">
+                  {/* Project Title Block */}
+                  <div className="px-6 pt-5 sm:px-8 sm:pt-6 md:px-10 border-b border-border/40 pb-3 shrink-0 flex items-center justify-between gap-4">
                     <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
                       {activeProject.title}
                     </h2>
+                    <Link
+                      href={`/projects/${activeProject.id}`}
+                      className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-primary hover:underline"
+                    >
+                      <DocCaseStudyIllustration className="w-3.5 h-3.5" />
+                      <span>{t("projects.readCaseStudy")}</span>
+                    </Link>
                   </div>
 
                   {/* Content details scroll block */}
-                  <div className="p-6 sm:p-8 md:p-10 pt-4 sm:pt-4 md:pt-4 space-y-8 overflow-y-auto no-scrollbar flex-1">
+                  <div className="p-6 sm:p-8 md:p-10 pt-4 space-y-8 overflow-y-auto no-scrollbar flex-1">
                     {/* Headline Tagline */}
                     <p className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-foreground leading-snug">
-                      {activeProject.tagline}
+                      {lang === "id" ? activeProject.taglineId : activeProject.tagline}
                     </p>
 
                     {/* Overview & Quick Specs Grid */}
@@ -303,81 +240,89 @@ export function Projects() {
                       <div className="md:col-span-8 space-y-6">
                         <div className="space-y-2.5">
                           <h4 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground">
-                            <Cpu className="w-4 h-4" />
-                            Overview
+                            <CompassIllustration className="w-4 h-4" />
+                            {t("projects.overview")}
                           </h4>
                           <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                            {activeProject.overview}
+                            {lang === "id" ? activeProject.overviewId : activeProject.overview}
                           </p>
                         </div>
-                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                           <div className="space-y-2">
                             <h4 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground">
-                              <ShieldCheck className="w-4 h-4" />
-                              The Problem
+                              <ShieldAlertIllustration className="w-4 h-4" />
+                              {t("projects.problem")}
                             </h4>
                             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                              {activeProject.problem}
+                              {lang === "id" ? activeProject.problemId : activeProject.problem}
                             </p>
                           </div>
                           <div className="space-y-2">
                             <h4 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground">
-                              <Code className="w-4 h-4" />
-                              The Solution
+                              <LightbulbIdeaIllustration className="w-4 h-4" />
+                              {t("projects.solution")}
                             </h4>
                             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                              {activeProject.solution}
+                              {lang === "id" ? activeProject.solutionId : activeProject.solution}
                             </p>
                           </div>
                         </div>
 
                         <div className="space-y-2.5">
                           <h4 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground">
-                            <GitBranch className="w-4 h-4" />
-                            System Architecture
+                            <ArchitectureNodesIllustration className="w-4 h-4" />
+                            {t("projects.architecture")}
                           </h4>
                           <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                            {activeProject.architecture}
+                            {lang === "id"
+                              ? activeProject.architectureId
+                              : activeProject.architecture}
                           </p>
+                          <ArchitectureDiagram projectId={activeProject.id} />
                         </div>
 
                         <div className="space-y-2.5">
                           <h4 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground">
-                            <Lightbulb className="w-4 h-4" />
-                            Challenges & Learnings
+                            <PuzzlePieceIllustration className="w-4 h-4" />
+                            {t("projects.challenges")}
                           </h4>
                           <div className="space-y-3">
                             <div className="bg-muted/40 p-4 rounded-2xl border border-border/40 squircle-sm">
-                              <span className="text-xs font-bold text-foreground block mb-1">Engineering Challenge:</span>
-                              <p className="text-xs text-muted-foreground leading-relaxed">{activeProject.challenges}</p>
+                              <span className="text-xs font-bold text-foreground block mb-1">
+                                {t("projects.engChallenge")}
+                              </span>
+                              <p className="text-xs text-muted-foreground leading-relaxed">
+                                {lang === "id"
+                                  ? activeProject.challengesId
+                                  : activeProject.challenges}
+                              </p>
                             </div>
                             <div className="bg-muted/40 p-4 rounded-2xl border border-border/40 squircle-sm">
-                              <span className="text-xs font-bold text-foreground block mb-1">Key Takeaway:</span>
-                              <p className="text-xs text-muted-foreground leading-relaxed">{activeProject.lessons}</p>
+                              <span className="text-xs font-bold text-foreground block mb-1">
+                                {t("projects.keyTakeaway")}
+                              </span>
+                              <p className="text-xs text-muted-foreground leading-relaxed">
+                                {lang === "id" ? activeProject.lessonsId : activeProject.lessons}
+                              </p>
                             </div>
                           </div>
                         </div>
                       </div>
 
-                      {/* Right Side: Tech Stack list & Links */}
+                      {/* Right Side: Tech Stack list with Official Logos & Links */}
                       <div className="md:col-span-4 space-y-6">
                         <div className="space-y-3 p-5 rounded-2xl border border-border bg-card/30 squircle-md">
                           <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                            Technology Stack
+                            {t("projects.techStack")}
                           </h4>
                           <div className="flex flex-wrap gap-1.5">
                             {activeProject.techStack.map((tech) => (
-                              <span
-                                key={tech}
-                                className="px-2.5 py-1 text-xs font-medium border border-border/80 bg-card rounded-md text-foreground"
-                              >
-                                {tech}
-                              </span>
+                              <TechBadge key={tech} name={tech} size="sm" />
                             ))}
                           </div>
                         </div>
 
-                        {/* Demo/Code Actions */}
+                        {/* Demo/Case Study Actions */}
                         <div className="flex flex-col gap-2">
                           <a
                             href={activeProject.demoUrl}
@@ -385,9 +330,16 @@ export function Projects() {
                             rel="noopener noreferrer"
                             className="flex items-center justify-center gap-2 w-full py-3 rounded-xl btn-logo-glossy font-semibold text-sm"
                           >
-                            <ExternalLink className="w-4 h-4" />
-                            Live Demonstration
+                            <ExternalLinkIllustration className="w-4 h-4" />
+                            <span>{t("projects.liveDemo")}</span>
                           </a>
+                          <Link
+                            href={`/projects/${activeProject.id}`}
+                            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-border bg-card hover:border-primary/50 font-semibold text-sm text-foreground transition-colors"
+                          >
+                            <DocCaseStudyIllustration className="w-4 h-4" />
+                            <span>{t("projects.readCaseStudy")}</span>
+                          </Link>
                         </div>
                       </div>
                     </div>
