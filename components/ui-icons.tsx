@@ -207,6 +207,70 @@ export function ClockIllustration({
   );
 }
 
+export function InternetSpeedIllustration({
+  ping,
+  className = "w-4 h-4",
+}: {
+  ping?: number;
+  className?: string;
+}) {
+  const p = typeof ping === "number" ? ping : 14;
+  // Lower latency (8ms-30ms) tilts needle into high-speed optimal zone
+  const angle = Math.max(-50, Math.min(65, 52 - (p - 10) * 2));
+
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={cn("shrink-0", className)} aria-hidden="true">
+      {/* Outer Gauge Frame */}
+      <circle cx="12" cy="12" r="10" fill="#1E293B" stroke="#38BDF8" strokeWidth="1.2" />
+
+      {/* Speedometer Arc Track (Background inactive track) */}
+      <path
+        d="M5.5 15.5A8 8 0 1 1 18.5 15.5"
+        stroke="#0F172A"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      />
+
+      {/* Speedometer Active Arc (Deep Sky to Sky Cyan) */}
+      <path
+        d="M5.5 15.5A8 8 0 0 1 12 4"
+        stroke="#0284C7"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      />
+      <path
+        d="M12 4A8 8 0 0 1 18.5 15.5"
+        stroke="#38BDF8"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      />
+
+      {/* Speed Level Indicator Dots */}
+      <circle cx="6.5" cy="14" r="0.8" fill="#0284C7" />
+      <circle cx="8" cy="8" r="0.9" fill="#0EA5E9" />
+      <circle cx="12" cy="5.8" r="1" fill="#38BDF8" />
+      <circle cx="16" cy="8" r="1" fill="#A7F3D0" />
+      <circle cx="17.5" cy="14" r="1" fill="#FBBF24" />
+
+      {/* Dynamic Speedometer Needle */}
+      <line
+        x1="12"
+        y1="13.5"
+        x2="12"
+        y2="5.5"
+        stroke="#FBBF24"
+        strokeWidth="2"
+        strokeLinecap="round"
+        transform={`rotate(${angle} 12 13.5)`}
+      />
+
+      {/* Center Pivot Hub */}
+      <circle cx="12" cy="13.5" r="2.4" fill="#0EA5E9" />
+      <circle cx="12" cy="13.5" r="1" fill="#FFFFFF" />
+    </svg>
+  );
+}
+
 // --- PILLARS & CORE ARCHITECTURE ---
 export function ServerRackIllustration({ className = "w-5 h-5" }: { className?: string }) {
   return (

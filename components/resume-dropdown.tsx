@@ -43,14 +43,13 @@ export function ResumeDropdown({
   triggerClassName,
   children,
 }: ResumeDropdownProps) {
+  const baseTriggerClass = children
+    ? "outline-hidden cursor-pointer select-none w-full"
+    : "group flex items-center justify-center gap-1.5 px-4 py-2 md:px-5 md:py-2.5 rounded-lg md:rounded-xl border border-border/80 bg-card/40 text-muted-foreground hover:text-primary hover:border-primary/30 font-bold text-[10px] md:text-xs squircle-sm transition-all duration-300 cursor-pointer select-none outline-hidden data-popup-open:border-primary/40 data-popup-open:text-primary data-popup-open:bg-card/70";
+
   return (
     <Menu.Root>
-      <Menu.Trigger
-        className={cn(
-          "group flex items-center justify-center gap-1.5 px-4 py-2 md:px-5 md:py-2.5 rounded-lg md:rounded-xl border border-border/80 bg-card/40 text-muted-foreground hover:text-primary hover:border-primary/30 font-bold text-[10px] md:text-xs squircle-sm transition-all duration-300 cursor-pointer select-none outline-hidden data-popup-open:border-primary/40 data-popup-open:text-primary data-popup-open:bg-card/70",
-          triggerClassName
-        )}
-      >
+      <Menu.Trigger className={cn(baseTriggerClass, triggerClassName)}>
         {children ? (
           children
         ) : (

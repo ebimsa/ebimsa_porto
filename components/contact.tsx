@@ -244,15 +244,15 @@ export function Contact() {
 
                 const cardInner = (
                   <>
-                    <div className="flex items-center gap-2.5 overflow-hidden">
-                      <div className="w-7 h-7 rounded-md bg-muted border border-border/85 flex items-center justify-center flex-shrink-0">
+                    <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                      <div className="w-7 h-7 rounded-md bg-muted border border-border/85 flex items-center justify-center shrink-0">
                         {soc.logoName ? (
                           <TechIcon name={soc.logoName} className="w-4 h-4" />
                         ) : (
                           <DocCaseStudyIllustration className="w-4 h-4" />
                         )}
                       </div>
-                      <div className="overflow-hidden text-left">
+                      <div className="min-w-0 text-left">
                         <p className="font-bold text-foreground truncate leading-none">
                           {soc.name}
                         </p>
@@ -262,14 +262,17 @@ export function Contact() {
                       </div>
                     </div>
                     {isResume ? (
-                      <ArrowDownIllustration className="w-3.5 h-3.5 transition-transform duration-200 group-data-popup-open:rotate-180" />
+                      <ArrowDownIllustration className="w-3.5 h-3.5 shrink-0 transition-transform duration-200 group-data-popup-open:rotate-180" />
                     ) : (
                       isLink && (
-                        <ExternalLinkIllustration className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                        <ExternalLinkIllustration className="w-3.5 h-3.5 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                       )
                     )}
                   </>
                 );
+
+                const itemClass =
+                  "group w-full p-2.5 rounded-xl border border-border/80 bg-card/40 hover:bg-card hover:border-primary/30 hover:shadow-xs transition-all squircle-sm flex items-center justify-between text-xs cursor-pointer select-none";
 
                 if (isResume) {
                   return (
@@ -278,7 +281,7 @@ export function Contact() {
                       side="top"
                       align="start"
                       sideOffset={6}
-                      triggerClassName="group w-full p-2.5 rounded-xl border border-border/80 bg-card/40 hover:bg-card hover:border-primary/30 hover:shadow-inner transition-all squircle-sm flex items-center justify-between text-xs cursor-pointer"
+                      triggerClassName={itemClass}
                     >
                       {cardInner}
                     </ResumeDropdown>
@@ -289,7 +292,7 @@ export function Contact() {
                   <Component
                     key={soc.name}
                     {...extraProps}
-                    className="group p-2.5 rounded-xl border border-border/80 bg-card/40 hover:bg-card hover:border-primary/30 hover:shadow-inner transition-all squircle-sm flex items-center justify-between text-xs"
+                    className={itemClass}
                   >
                     {cardInner}
                   </Component>

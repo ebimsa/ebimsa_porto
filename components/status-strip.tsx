@@ -6,6 +6,7 @@ import {
   LocationPinIllustration,
   ClockIllustration,
   WeatherIllustration,
+  InternetSpeedIllustration,
 } from "@/components/ui-icons";
 
 interface WeatherState {
@@ -106,14 +107,17 @@ export function StatusStrip() {
             </div>
           </div>
 
-          {/* Right: Live Online Ping */}
+          {/* Right: Live Network Speed / Latency */}
           <div className="flex items-center gap-2 sm:gap-3 ml-auto">
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-muted/60 border border-border text-foreground text-[11px]">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#a7f3d0] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#38bdf8]" />
-              </span>
-              <span className="font-semibold">{ping}ms</span>
+            <div
+              className="flex items-center gap-2 px-3 py-1 rounded-full bg-muted/60 border border-border text-foreground text-[11px] select-none"
+              title={`Network Latency: ${ping}ms`}
+            >
+              <InternetSpeedIllustration ping={ping} className="w-4 h-4" />
+              <div className="flex items-center gap-1 font-mono">
+                <span className="font-bold tracking-tight">{ping}ms</span>
+                <span className="text-[9px] text-muted-foreground font-semibold">PING</span>
+              </div>
             </div>
           </div>
         </div>

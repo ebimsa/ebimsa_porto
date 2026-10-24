@@ -3,6 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useT } from "@/lib/i18n";
+import { PROJECTS_DATA } from "@/lib/projects";
+import { EXPERIENCE_ENTRIES } from "@/lib/experience";
 import { SectionHeading } from "@/components/section-heading";
 import { TechBadge } from "@/components/tech-icons";
 import {
@@ -122,29 +124,21 @@ export function About() {
             </div>
 
             {/* Live Numerical Stats Counter */}
-            <div className="grid grid-cols-3 gap-3 py-4 border-y border-border/60">
+            <div className="grid grid-cols-2 gap-4 py-4 border-y border-border/60">
               <div className="space-y-0.5">
                 <div className="text-2xl sm:text-3xl font-black text-foreground font-mono">
-                  <Counter value={2} />
+                  <Counter value={PROJECTS_DATA.length} />
                 </div>
-                <p className="text-[11px] font-medium text-muted-foreground leading-tight">
+                <p className="text-xs font-medium text-muted-foreground leading-snug">
                   {t("about.stat.projects")}
                 </p>
               </div>
-              <div className="space-y-0.5">
+              <div className="space-y-0.5 pl-4 border-l border-border/60">
                 <div className="text-2xl sm:text-3xl font-black text-foreground font-mono">
-                  <Counter value={2} />
+                  <Counter value={EXPERIENCE_ENTRIES.length} />
                 </div>
-                <p className="text-[11px] font-medium text-muted-foreground leading-tight">
-                  {t("about.stat.stacks")}
-                </p>
-              </div>
-              <div className="space-y-0.5">
-                <div className="text-2xl sm:text-3xl font-black text-foreground font-mono">
-                  <Counter value={3} />
-                </div>
-                <p className="text-[11px] font-medium text-muted-foreground leading-tight">
-                  {t("about.stat.providers")}
+                <p className="text-xs font-medium text-muted-foreground leading-snug">
+                  {t("about.stat.experience")}
                 </p>
               </div>
             </div>
