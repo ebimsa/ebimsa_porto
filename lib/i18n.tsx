@@ -13,7 +13,7 @@ const dict: Record<Lang, Record<string, string>> = {
     "nav.contact": "Contact",
 
     // Hero
-    "hero.status": "OPEN TO WORK · BANDAR LAMPUNG, ID · REMOTE-FRIENDLY",
+    "hero.status": "OPEN TO WORK · REMOTE-FRIENDLY",
     "hero.role1": "Computer Science Graduate",
     "hero.role2": "Backend Engineer · Go & Laravel",
     "hero.role3": "Building payment & workflow systems",
@@ -49,9 +49,6 @@ const dict: Record<Lang, Record<string, string>> = {
     "about.pillar4.title": "DevOps & Architecture",
     "about.pillar4.desc":
       "Containerizing full-stack environments with Docker, integrating third-party webhooks, and designing type-safe service contracts.",
-
-    // Status
-    "status.liveTime": "Bandar Lampung, ID",
 
     // Projects
     "projects.label": "Projects",
@@ -128,7 +125,7 @@ const dict: Record<Lang, Record<string, string>> = {
     "nav.contact": "Kontak",
 
     // Hero
-    "hero.status": "TERBUKA UNTUK KERJA · BANDAR LAMPUNG, ID · BISA REMOTE",
+    "hero.status": "TERBUKA UNTUK KERJA · BISA REMOTE",
     "hero.role1": "Lulusan Ilmu Komputer",
     "hero.role2": "Backend Engineer · Go & Laravel",
     "hero.role3": "Membangun sistem pembayaran & alur kerja",
@@ -164,9 +161,6 @@ const dict: Record<Lang, Record<string, string>> = {
     "about.pillar4.title": "DevOps & Architecture",
     "about.pillar4.desc":
       "Menjalankan containerisasi aplikasi full-stack dengan Docker, integrasi webhook pihak ketiga, dan kontrak layanan tipe-aman.",
-
-    // Status
-    "status.liveTime": "Bandar Lampung, ID",
 
     // Projects
     "projects.label": "Proyek",
