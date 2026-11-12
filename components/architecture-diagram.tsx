@@ -13,7 +13,7 @@ export function ArchitectureDiagram({ projectId }: ArchitectureDiagramProps) {
         <div className="min-w-[600px]">
           <svg
             viewBox="0 0 720 260"
-            className="w-full h-auto select-none font-mono"
+            className="w-full h-auto select-none"
             role="img"
             aria-label="Saidata System Architecture Diagram"
           >
@@ -194,7 +194,7 @@ export function ArchitectureDiagram({ projectId }: ArchitectureDiagramProps) {
       <div className="min-w-[600px]">
         <svg
           viewBox="0 0 720 260"
-          className="w-full h-auto select-none font-mono"
+          className="w-full h-auto select-none"
           role="img"
           aria-label="DoriPay System Architecture Diagram"
         >

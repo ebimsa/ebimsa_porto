@@ -45,7 +45,7 @@ function ExperienceTag({ tag }: { tag: string }) {
   const hasTechLogo =
     tag.toLowerCase().includes("android") || tag.toLowerCase().includes("mobile");
   return (
-    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10px] font-mono bg-muted/70 text-foreground/90 border border-border/60 rounded-md">
+    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10px] font-medium bg-muted/70 text-foreground/90 border border-border/60 rounded-md">
       {hasTechLogo && <TechIcon name={tag} className="w-3 h-3 shrink-0" />}
       <span>{tag}</span>
     </span>
@@ -136,7 +136,7 @@ function Experience3DCard({
       <div className="  absolute left-0 md:left-1/2 top-8 md:top-1/2 -translate-y-1/2 md:-translate-x-1/2 z-20 flex items-center justify-center">
         <div className="relative flex items-center justify-center w-9 h-9 rounded-xl border border-[#38bdf8] bg-[#1e293b] shadow-[0_0_20px_rgba(56,189,248,0.35)]">
           <span className="absolute inset-0 rounded-xl bg-[#38bdf8]/15 animate-ping opacity-40" />
-          <span className="relative font-mono text-[11px] font-black text-[#fbbf24]">
+          <span className="relative text-[11px] font-black text-[#fbbf24]">
             {entry.index}
           </span>
         </div>
@@ -151,12 +151,12 @@ function Experience3DCard({
             : "md:col-span-5 md:col-start-1 md:row-start-1 md:items-end md:pr-6 text-right"
         )}
       >
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg border border-border/80 bg-card/60 backdrop-blur-sm font-mono text-xs font-bold text-foreground shadow-xs">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg border border-border/80 bg-card/60 backdrop-blur-sm text-xs font-bold text-foreground shadow-xs">
           <CalendarIllustration className="w-3.5 h-3.5" />
           <span>{period}</span>
           <span className="text-muted-foreground">· {duration}</span>
         </div>
-        <span className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
+        <span className="text-[11px] uppercase tracking-widest text-muted-foreground font-semibold">
           {entry.organization}
         </span>
       </div>
@@ -194,13 +194,13 @@ function Experience3DCard({
               <div className="relative z-10 space-y-3.5">
                 <div className="flex items-center justify-between gap-2 flex-wrap">
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-primary">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-primary">
                       {typeLabel}
                     </span>
                   </div>
 
                   {/* Mobile Date Pill */}
-                  <span className="md:hidden inline-flex items-center gap-1 text-[10px] font-mono font-semibold text-muted-foreground">
+                  <span className="md:hidden inline-flex items-center gap-1 text-[10px] font-semibold text-muted-foreground">
                     <CalendarIllustration className="w-3 h-3" />
                     {period}
                   </span>
@@ -215,7 +215,7 @@ function Experience3DCard({
                     <h3 className="text-lg sm:text-xl font-black tracking-tight text-foreground group-hover:text-primary transition-colors leading-snug">
                       {role}
                     </h3>
-                    <p className="text-xs font-mono font-semibold text-muted-foreground">
+                    <p className="text-xs font-semibold text-muted-foreground">
                       {entry.organization} · {duration}
                     </p>
                   </div>
@@ -234,7 +234,7 @@ function Experience3DCard({
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between text-[11px] font-mono font-bold text-primary pt-0.5">
+                <div className="flex items-center justify-between text-[11px] font-bold text-primary pt-0.5">
                   <span className="inline-flex items-center gap-1.5 group-hover:underline">
                     <Flip3DIllustration className="w-4 h-4" />
                     <span>{t("experience.flipToDetails")}</span>
@@ -256,12 +256,12 @@ function Experience3DCard({
                       {role} — {entry.organization}
                     </h4>
                   </div>
-                  <span className="text-[10px] font-mono font-bold text-primary shrink-0">
+                  <span className="text-[10px] font-bold text-primary shrink-0">
                     {period}
                   </span>
                 </div>
 
-                <p className="text-[10px] font-mono font-bold uppercase tracking-widest text-primary">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-primary">
                   {t("experience.responsibilities")}
                 </p>
 
@@ -274,7 +274,7 @@ function Experience3DCard({
                 </ul>
               </div>
 
-              <div className="pt-3 border-t border-border/50 flex items-center justify-between text-[11px] font-mono font-bold text-primary">
+              <div className="pt-3 border-t border-border/50 flex items-center justify-between text-[11px] font-bold text-primary">
                 <span className="inline-flex items-center gap-1.5 hover:underline">
                   <Flip3DIllustration className="w-4 h-4" />
                   <span>{t("experience.flipToFront")}</span>
@@ -348,7 +348,7 @@ export function Experience() {
                   type="button"
                   onClick={() => setSelectedCategory(f.id)}
                   className={cn(
-                    "relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-colors cursor-pointer focus-visible:outline-none",
+                    "relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors cursor-pointer focus-visible:outline-none",
                     active
                       ? "text-background"
                       : "text-muted-foreground hover:text-foreground"

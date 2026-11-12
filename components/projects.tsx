@@ -35,7 +35,7 @@ function ProjectArchitectureBlueprint({
 }) {
   if (projectId === "saidata") {
     return (
-      <div className="w-full h-full p-3 sm:p-4 flex flex-col justify-between bg-card text-foreground select-none font-mono">
+      <div className="w-full h-full p-3 sm:p-4 flex flex-col justify-between bg-card text-foreground select-none">
         <div className="flex items-center justify-between border-b border-border/80 pb-2 text-[10px]">
           <span className="text-[#38bdf8] font-bold">TOPOLOGY :: SAIDATA</span>
           <span className="text-muted-foreground text-[9px]">CAS 2.0 SSO</span>
@@ -70,7 +70,7 @@ function ProjectArchitectureBlueprint({
   }
 
   return (
-    <div className="w-full h-full p-3 sm:p-4 flex flex-col justify-between bg-card text-foreground select-none font-mono">
+    <div className="w-full h-full p-3 sm:p-4 flex flex-col justify-between bg-card text-foreground select-none">
       <div className="flex items-center justify-between border-b border-border/80 pb-2 text-[10px]">
         <span className="text-[#38bdf8] font-bold">TOPOLOGY :: DORIPAY</span>
         <span className="text-muted-foreground text-[9px]">ACID Ledger</span>
@@ -161,12 +161,12 @@ function Project3DCard({
           className="flex items-center justify-between gap-3 border-b border-border/80 pb-3"
         >
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-primary">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-primary">
               {project.category}
             </span>
           </div>
 
-          <div className="flex items-center gap-2 text-[10px] font-mono text-muted-foreground">
+          <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
             <span className="w-2 h-2 rounded-full bg-[#a7f3d0] animate-pulse" />
             <span className="truncate max-w-[150px] sm:max-w-[200px]">
               {project.demoUrl.replace("https://", "")}
@@ -197,7 +197,7 @@ function Project3DCard({
                 type="button"
                 onClick={() => setViewMode("ui")}
                 className={cn(
-                  "relative inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-mono font-bold transition-colors cursor-pointer select-none",
+                  "relative inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-bold transition-colors cursor-pointer select-none",
                   viewMode === "ui"
                     ? "text-white"
                     : "text-muted-foreground hover:text-foreground"
@@ -220,7 +220,7 @@ function Project3DCard({
                 type="button"
                 onClick={() => setViewMode("arch")}
                 className={cn(
-                  "relative inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-mono font-bold transition-colors cursor-pointer select-none",
+                  "relative inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-bold transition-colors cursor-pointer select-none",
                   viewMode === "arch"
                     ? "text-[#38bdf8]"
                     : "text-muted-foreground hover:text-foreground"
@@ -283,7 +283,7 @@ function Project3DCard({
                 )}
 
                 {/* Corner Quick Tag */}
-                <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[#1e293b]/85 border border-[#38bdf8]/40 text-[9px] font-mono font-bold text-[#e0f2fe] backdrop-blur-xs select-none">
+                <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[#1e293b]/85 border border-[#38bdf8]/40 text-[9px] font-bold text-[#e0f2fe] backdrop-blur-xs select-none">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8] animate-pulse" />
                   <span>{isId ? "Tinjauan Langsung" : "Live Interface"}</span>
                 </div>
@@ -326,7 +326,7 @@ function Project3DCard({
               <TechBadge key={tag} name={tag} size="xs" />
             ))}
             {project.tags.length > 5 && (
-              <span className="text-[9px] px-2 py-0.5 bg-muted/80 text-muted-foreground border border-border rounded font-mono font-bold">
+              <span className="text-[9px] px-2 py-0.5 bg-muted/80 text-muted-foreground border border-border rounded font-bold">
                 +{project.tags.length - 5}
               </span>
             )}
@@ -348,7 +348,7 @@ function Project3DCard({
             <ArrowRightIllustration className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </Link>
 
-          <span className="text-[10px] font-mono text-muted-foreground font-semibold group-hover:text-foreground transition-colors">
+          <span className="text-[10px] text-muted-foreground font-semibold group-hover:text-foreground transition-colors">
             {t("projects.viewDetails")} ↗
           </span>
         </div>
@@ -419,13 +419,13 @@ export function Projects() {
                         <span className="w-2.5 h-2.5 rounded-full bg-[#a7f3d0]" />
                         <span className="w-2.5 h-2.5 rounded-full bg-[#fbbf24]" />
                       </div>
-                      <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-primary">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-primary">
                         {activeProject.category} :: {activeProject.title}
                       </span>
                     </div>
 
                     <div className="flex items-center gap-3">
-                      <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-mono text-muted-foreground">
+                      <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] text-muted-foreground">
                         <span className="w-2 h-2 rounded-full bg-[#a7f3d0] animate-pulse" />
                         {activeProject.demoUrl.replace("https://", "")}
                       </span>
@@ -475,7 +475,7 @@ export function Projects() {
                     </div>
                     <Link
                       href={`/projects/${activeProject.id}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-primary hover:underline"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
                     >
                       <DocCaseStudyIllustration className="w-3.5 h-3.5" />
                       <span>{t("projects.readCaseStudy")}</span>
@@ -494,7 +494,7 @@ export function Projects() {
                       {/* Left: Deep Dive sections */}
                       <div className="md:col-span-8 space-y-6">
                         <div className="space-y-2 p-4 rounded-xl border border-border bg-muted/40">
-                          <h4 className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-foreground">
+                          <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-foreground">
                             <CompassIllustration className="w-4 h-4" />
                             {t("projects.overview")}
                           </h4>
@@ -505,7 +505,7 @@ export function Projects() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div className="space-y-2 p-4 rounded-xl border border-border bg-muted/40">
-                            <h4 className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-foreground">
+                            <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-foreground">
                               <ShieldAlertIllustration className="w-4 h-4" />
                               {t("projects.problem")}
                             </h4>
@@ -514,7 +514,7 @@ export function Projects() {
                             </p>
                           </div>
                           <div className="space-y-2 p-4 rounded-xl border border-border bg-muted/40">
-                            <h4 className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-foreground">
+                            <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-foreground">
                               <LightbulbIdeaIllustration className="w-4 h-4" />
                               {t("projects.solution")}
                             </h4>
@@ -525,7 +525,7 @@ export function Projects() {
                         </div>
 
                         <div className="space-y-3 p-4 rounded-xl border border-border bg-muted/30">
-                          <h4 className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-foreground">
+                          <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-foreground">
                             <ArchitectureNodesIllustration className="w-4 h-4" />
                             {t("projects.architecture")}
                           </h4>
@@ -540,13 +540,13 @@ export function Projects() {
                         </div>
 
                         <div className="space-y-3">
-                          <h4 className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-foreground">
+                          <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-foreground">
                             <PuzzlePieceIllustration className="w-4 h-4" />
                             {t("projects.challenges")}
                           </h4>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div className="bg-muted/50 p-4 rounded-xl border border-border space-y-1">
-                              <span className="text-[11px] font-mono font-bold text-foreground block">
+                              <span className="text-[11px] font-bold text-foreground block">
                                 {t("projects.engChallenge")}
                               </span>
                               <p className="text-xs text-muted-foreground leading-relaxed">
@@ -556,7 +556,7 @@ export function Projects() {
                               </p>
                             </div>
                             <div className="bg-muted/50 p-4 rounded-xl border border-border space-y-1">
-                              <span className="text-[11px] font-mono font-bold text-[#fbbf24] block">
+                              <span className="text-[11px] font-bold text-[#fbbf24] block">
                                 {t("projects.keyTakeaway")}
                               </span>
                               <p className="text-xs text-muted-foreground leading-relaxed">
@@ -570,7 +570,7 @@ export function Projects() {
                       {/* Right Side: Tech Stack list & Links */}
                       <div className="md:col-span-4 space-y-5">
                         <div className="space-y-3 p-5 rounded-xl border-2 border-border bg-card">
-                          <h4 className="text-[10px] font-mono font-bold uppercase tracking-widest text-muted-foreground">
+                          <h4 className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                             {t("projects.techStack")}
                           </h4>
                           <div className="flex flex-wrap gap-1.5">

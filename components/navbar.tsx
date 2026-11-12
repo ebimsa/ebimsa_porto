@@ -70,7 +70,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => window.dispatchEvent(new Event("open-command-palette"))}
-            className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-border/80 bg-background/50 hover:bg-muted/80 text-[10px] font-mono font-bold text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-border/80 bg-background/50 hover:bg-muted/80 text-[10px] font-bold text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             title="Open Command Palette (Ctrl+K)"
             aria-label="Open Command Palette"
           >

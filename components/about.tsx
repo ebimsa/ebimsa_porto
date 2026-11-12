@@ -124,7 +124,7 @@ export function About() {
             {/* Live Numerical Stats Counter */}
             <div className="grid grid-cols-2 gap-4 py-4 border-y border-border/60">
               <div className="space-y-0.5">
-                <div className="text-2xl sm:text-3xl font-black text-foreground font-mono">
+                <div className="text-2xl sm:text-3xl font-black text-foreground">
                   <Counter value={PROJECTS_DATA.length} />
                 </div>
                 <p className="text-xs font-medium text-muted-foreground leading-snug">
@@ -132,7 +132,7 @@ export function About() {
                 </p>
               </div>
               <div className="space-y-0.5 pl-4 border-l border-border/60">
-                <div className="text-2xl sm:text-3xl font-black text-foreground font-mono">
+                <div className="text-2xl sm:text-3xl font-black text-foreground">
                   <Counter value={EXPERIENCE_ENTRIES.length} />
                 </div>
                 <p className="text-xs font-medium text-muted-foreground leading-snug">

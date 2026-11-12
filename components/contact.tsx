@@ -204,7 +204,7 @@ export function Contact() {
                   {t("contact.copyEmail")}
                 </span>
                 <div className="flex items-center justify-between gap-3 p-2 rounded-lg border border-border bg-background squircle-sm">
-                  <span className="font-mono text-xs font-medium text-foreground truncate select-all">
+                  <span className="text-xs font-medium text-foreground truncate select-all">
                     {emailAddress}
                   </span>
                   <button

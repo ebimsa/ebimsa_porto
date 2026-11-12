@@ -264,7 +264,7 @@ export function CommandPalette() {
               {/* Action List */}
               <div className="max-h-[320px] overflow-y-auto p-2 no-scrollbar space-y-1">
                 {filtered.length === 0 ? (
-                  <div className="py-10 text-center text-xs font-mono text-muted-foreground">
+                  <div className="py-10 text-center text-xs text-muted-foreground">
                     {isId ? "Tidak ada perintah yang cocok." : "No matching commands found."}
                   </div>
                 ) : (
@@ -288,7 +288,7 @@ export function CommandPalette() {
                           <span className="truncate">{item.label}</span>
                         </div>
                         <div className="flex items-center gap-2 shrink-0">
-                          <span className="text-[10px] font-mono text-muted-foreground">
+                          <span className="text-[10px] text-muted-foreground font-medium">
                             {item.group}
                           </span>
                           {active && <ArrowRightIllustration className="w-3.5 h-3.5 opacity-90" />}
@@ -300,7 +300,7 @@ export function CommandPalette() {
               </div>
 
               {/* Footer Hints */}
-              <div className="flex items-center justify-between px-4 py-2 border-t border-border/50 bg-muted/30 text-[10px] font-mono text-muted-foreground">
+              <div className="flex items-center justify-between px-4 py-2 border-t border-border/50 bg-muted/30 text-[10px] text-muted-foreground font-medium">
                 <span>↑↓ {isId ? "navigasi" : "navigate"} · ↵ {isId ? "pilih" : "select"}</span>
                 <span>ESC {isId ? "tutup" : "close"}</span>
               </div>

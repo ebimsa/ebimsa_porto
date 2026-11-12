@@ -39,7 +39,7 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
         <div className="max-w-5xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between gap-4">
           <Link
             href="/#projects"
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-muted-foreground hover:text-primary transition-colors"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-muted-foreground hover:text-primary transition-colors"
           >
             <ArrowLeftIllustration className="w-4 h-4" />
             <span>{isId ? "Kembali ke Proyek" : "Back to Projects"}</span>
@@ -64,7 +64,7 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
       <main className="flex-1 max-w-5xl w-full mx-auto px-4 md:px-6 py-12 md:py-16 space-y-12">
         {/* Title & Summary */}
         <div className="space-y-4">
-          <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-primary font-semibold">
+          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary font-semibold">
             <span>CASE STUDY</span>
             <span className="opacity-40">/</span>
             <span>{project.category}</span>
@@ -110,7 +110,7 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
 
         {/* Overview */}
         <section className="space-y-3 border-t border-border/60 pt-10">
-          <h2 className="flex items-center gap-2 text-sm font-mono font-bold uppercase tracking-wider text-primary">
+          <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-primary">
             <CompassIllustration className="w-4 h-4" />
             {t("projects.overview")}
           </h2>
@@ -122,7 +122,7 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
         {/* Problem -> Decision/Solution -> Impact/Results */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-6 border-t border-border/60 pt-10">
           <div className="p-6 rounded-2xl border border-border bg-card/40 space-y-3">
-            <h3 className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-primary">
+            <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary">
               <ShieldAlertIllustration className="w-4 h-4" />
               01 · {t("projects.problem")}
             </h3>
@@ -132,7 +132,7 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
           </div>
 
           <div className="p-6 rounded-2xl border border-border bg-card/40 space-y-3">
-            <h3 className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-primary">
+            <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary">
               <LightbulbIdeaIllustration className="w-4 h-4" />
               02 · {isId ? "Keputusan & Solusi" : "Decisions & Solution"}
             </h3>
@@ -142,11 +142,11 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
           </div>
 
           <div className="p-6 rounded-2xl border border-primary/30 bg-primary/5 space-y-3">
-            <h3 className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-primary">
+            <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary">
               <ChartGrowthIllustration className="w-4 h-4" />
               03 · {isId ? "Dampak & Hasil" : "Impact & Results"}
             </h3>
-            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed font-mono">
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
               {results}
             </p>
           </div>
@@ -154,7 +154,7 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
 
         {/* System Architecture + SVG Diagram */}
         <section className="space-y-4 border-t border-border/60 pt-10">
-          <h2 className="flex items-center gap-2 text-sm font-mono font-bold uppercase tracking-wider text-primary">
+          <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-primary">
             <ArchitectureNodesIllustration className="w-4 h-4" />
             {t("projects.architecture")}
           </h2>
@@ -166,7 +166,7 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
 
         {/* Challenges & Key Takeaways */}
         <section className="space-y-4 border-t border-border/60 pt-10">
-          <h2 className="flex items-center gap-2 text-sm font-mono font-bold uppercase tracking-wider text-primary">
+          <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-primary">
             <PuzzlePieceIllustration className="w-4 h-4" />
             {t("projects.challenges")}
           </h2>

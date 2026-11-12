@@ -225,12 +225,12 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Left: Copyright & Top Button */}
           <div className="flex items-center gap-4 text-center md:text-left">
-            <span className="text-xs sm:text-sm text-muted-foreground font-mono">
+            <span className="text-xs sm:text-sm text-muted-foreground">
               &copy; ebimsa 2026. {t("footer.rights")}
             </span>
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-1.5 text-xs font-mono font-semibold text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none rounded-md p-1 cursor-pointer"
+              className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none rounded-md p-1 cursor-pointer"
               aria-label="Back to top"
             >
               <span>{t("footer.top")}</span>
@@ -251,7 +251,7 @@ export function Footer() {
                 <p className="text-[9px] text-muted-foreground uppercase font-bold tracking-wider leading-none">
                   {t("footer.visits")}
                 </p>
-                <p className="text-xs font-black text-foreground mt-0.5 leading-none font-mono">
+                <p className="text-xs font-black text-foreground mt-0.5 leading-none">
                   {pageViews.toLocaleString()}
                 </p>
               </div>
@@ -266,7 +266,7 @@ export function Footer() {
                 <p className="text-[9px] text-muted-foreground uppercase font-bold tracking-wider leading-none">
                   {t("footer.online")}
                 </p>
-                <p className="text-xs font-black text-foreground mt-0.5 leading-none font-mono">
+                <p className="text-xs font-black text-foreground mt-0.5 leading-none">
                   {activeUsers}
                 </p>
               </div>

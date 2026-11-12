@@ -186,7 +186,7 @@ export function Certifications() {
                       <div className="bg-muted/40 p-4 rounded-xl border border-border/40 squircle-sm space-y-2">
                         <div className="flex items-center justify-between text-xs">
                           <span className="text-muted-foreground font-semibold">Credential ID:</span>
-                          <span className="font-mono text-foreground font-medium">{activeCert.credentialId}</span>
+                          <span className="text-foreground font-medium">{activeCert.credentialId}</span>
                         </div>
                         <div className="flex items-center justify-between text-xs">
                           <span className="text-muted-foreground font-semibold">Issued Date:</span>

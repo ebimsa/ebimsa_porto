@@ -38,7 +38,7 @@ export function TechMarquee() {
         {repeated.map((tech, idx) => (
           <div
             key={`${tech}-${idx}`}
-            className="flex items-center gap-2.5 px-5 text-xs sm:text-sm font-mono font-semibold text-muted-foreground hover:text-foreground transition-colors"
+            className="flex items-center gap-2.5 px-5 text-xs sm:text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
           >
             <TechIcon name={tech} className="w-4 h-4 shrink-0" />
             <span>{tech}</span>

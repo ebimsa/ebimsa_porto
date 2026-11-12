@@ -276,7 +276,7 @@ export function Hero() {
       <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-6 text-center space-y-7">
         <HeroNameMorph />
 
-        <p className="text-base sm:text-xl md:text-2xl font-mono text-muted-foreground min-h-[2lh]">
+        <p className="text-base sm:text-xl md:text-2xl font-medium text-muted-foreground min-h-[2lh]">
           <span className="text-[#fbbf24] font-bold">&gt;</span> <Typewriter words={roles} />
         </p>
 

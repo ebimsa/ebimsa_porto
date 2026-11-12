@@ -41,7 +41,7 @@ export function StatusStrip() {
   return (
     <section id="console" className="relative py-4 z-20">
       <div className="max-w-5xl mx-auto px-4 md:px-6">
-        <div className="flex flex-wrap items-center justify-between gap-3 p-3 sm:px-5 sm:py-3 rounded-2xl border border-border/80 bg-card/60 dark:bg-card/40 backdrop-blur-md shadow-sm text-xs font-mono">
+        <div className="flex flex-wrap items-center justify-between gap-3 p-3 sm:px-5 sm:py-3 rounded-2xl border border-border/80 bg-card/60 dark:bg-card/40 backdrop-blur-md shadow-sm text-xs font-medium">
           {/* Left: Real-time Clock */}
           <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
             <div className="flex items-center gap-1.5 text-muted-foreground">
@@ -58,7 +58,7 @@ export function StatusStrip() {
               title={`Network Latency: ${ping}ms`}
             >
               <InternetSpeedIllustration ping={ping} className="w-4 h-4" />
-              <div className="flex items-center gap-1 font-mono">
+              <div className="flex items-center gap-1 font-semibold">
                 <span className="font-bold tracking-tight">{ping}ms</span>
                 <span className="text-[9px] text-muted-foreground font-semibold">PING</span>
               </div>
