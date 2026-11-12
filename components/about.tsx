@@ -109,8 +109,6 @@ export function About() {
             className="lg:col-span-5 space-y-6"
           >
             <SectionHeading
-              index="01"
-              label={t("about.label")}
               title={t("about.heading")}
             />
 

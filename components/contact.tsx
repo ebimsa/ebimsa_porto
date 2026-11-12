@@ -173,8 +173,6 @@ export function Contact() {
       <div className="max-w-6xl mx-auto px-4 md:px-6 space-y-12">
         {/* Section Header */}
         <SectionHeading
-          index="04"
-          label={t("contact.label")}
           title={t("contact.heading")}
           subtitle={t("contact.subheading")}
         />

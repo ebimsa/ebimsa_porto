@@ -367,8 +367,6 @@ export function Projects() {
         {/* Header */}
         <div className="mb-14">
           <SectionHeading
-            index="02"
-            label={t("projects.label")}
             title={t("projects.heading")}
             subtitle={t("projects.subheading")}
           />

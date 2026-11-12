@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface SectionHeadingProps {
-  index: string;
+  index?: string;
   label?: string;
   title: string;
   subtitle?: string;
@@ -13,8 +13,6 @@ interface SectionHeadingProps {
 }
 
 export function SectionHeading({
-  index,
-  label,
   title,
   subtitle,
   className,
@@ -27,11 +25,6 @@ export function SectionHeading({
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={cn("space-y-2.5", className)}
     >
-      <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-primary font-semibold">
-        <span className="text-[#fbbf24] font-black">{index}</span>
-        <span className="text-primary/60">/</span>
-        <span>{label ?? title}</span>
-      </div>
       <h2 className="text-3xl md:text-5xl font-black tracking-tight text-foreground leading-tight">
         {title}
       </h2>

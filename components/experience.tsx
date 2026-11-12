@@ -333,8 +333,6 @@ export function Experience() {
         {/* Header & Category Filter Chips */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <SectionHeading
-            index="03"
-            label={t("experience.label")}
             title={t("experience.heading")}
             subtitle={t("experience.subheading")}
           />
