@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Award, Calendar, ExternalLink, MapPin, Sparkles, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Award, Calendar, ExternalLink, Landmark, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useT } from "@/lib/i18n";
 import { SectionHeading } from "@/components/section-heading";
 import { cn } from "@/lib/utils";
@@ -142,10 +142,6 @@ export function Achievements() {
             <div className="lg:col-span-6 space-y-5">
               <div className="space-y-2.5">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#fbbf24]/15 border border-[#fbbf24]/35 text-[11px] font-bold text-amber-600 dark:text-[#fbbf24]">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    <span>{isId ? "Juara Favorit Nasional" : "National Favorite Award"}</span>
-                  </span>
                   <span className="inline-flex items-center gap-1 text-xs font-semibold text-muted-foreground">
                     <Calendar className="w-3.5 h-3.5" />
                     <span>Nov 2026</span>
@@ -159,11 +155,11 @@ export function Achievements() {
                 </h3>
 
                 <p className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary">
-                  <MapPin className="w-3.5 h-3.5 shrink-0" />
+                  <Landmark className="w-3.5 h-3.5 shrink-0" />
                   <span>
                     {isId
-                      ? "Belmawa, Ditjen Dikti, Kemdiktisaintek · Indonesia"
-                      : "Ditjen Dikti, Kemdiktisaintek · Indonesia"}
+                      ? "Penyelenggara: Belmawa, Ditjen Dikti, Kemdiktisaintek"
+                      : "Organized by Belmawa, Ditjen Dikti, Kemdiktisaintek"}
                   </span>
                 </p>
               </div>
