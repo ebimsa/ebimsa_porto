@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import Image from "next/image";
+import { Award, ExternalLink, ImageIcon, X, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   motion,
   AnimatePresence,
@@ -15,6 +17,7 @@ import {
   EXPERIENCE_ENTRIES,
   type ExperienceCategory,
   type ExperienceEntry,
+  type ExperiencePhoto,
 } from "@/lib/experience";
 import { TechIcon } from "@/components/tech-icons";
 import {
@@ -35,6 +38,7 @@ function EntryIllustration({
   id: string;
   className?: string;
 }) {
+  if (id === "exp-pimnas") return <Award className={cn("text-[#fbbf24]", className)} />;
   if (id === "exp-ta") return <GradCapIllustration className={className} />;
   if (id === "exp-pkl") return <OfficeBuildingIllustration className={className} />;
   if (id === "exp-bem") return <MegaphoneIllustration className={className} />;
@@ -57,11 +61,13 @@ function Experience3DCard({
   idx,
   isId,
   t,
+  onOpenPhoto,
 }: {
   entry: ExperienceEntry;
   idx: number;
   isId: boolean;
   t: (k: string) => string;
+  onOpenPhoto: (photos: ExperiencePhoto[], index: number) => void;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const tiltRef = useRef<HTMLDivElement>(null);
@@ -197,6 +203,12 @@ function Experience3DCard({
                     <span className="text-[10px] font-bold uppercase tracking-widest text-primary">
                       {typeLabel}
                     </span>
+                    {entry.photos && entry.photos.length > 0 && (
+                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-muted text-[9px] font-bold text-muted-foreground border border-border/60">
+                        <ImageIcon className="w-2.5 h-2.5 text-primary" />
+                        <span>{entry.photos.length}</span>
+                      </span>
+                    )}
                   </div>
 
                   {/* Mobile Date Pill */}
@@ -272,16 +284,55 @@ function Experience3DCard({
                     </li>
                   ))}
                 </ul>
+
+                {entry.photos && entry.photos.length > 0 && (
+                  <div className="grid grid-cols-2 gap-2 pt-1">
+                    {entry.photos.map((photo, pIdx) => (
+                      <button
+                        key={photo.src}
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onOpenPhoto(entry.photos!, pIdx);
+                        }}
+                        className="group/photo relative aspect-[16/10] w-full rounded-lg overflow-hidden border border-border/80 hover:border-primary transition-colors cursor-pointer"
+                        title={isId ? photo.captionId : photo.captionEn}
+                      >
+                        <Image
+                          src={photo.src}
+                          alt={isId ? photo.captionId : photo.captionEn}
+                          fill
+                          sizes="160px"
+                          className="object-cover group-hover/photo:scale-105 transition-transform duration-300"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
 
-              <div className="pt-3 border-t border-border/50 flex items-center justify-between text-[11px] font-bold text-primary">
+              <div className="pt-3 border-t border-border/50 flex items-center justify-between gap-2 text-[11px] font-bold text-primary">
                 <span className="inline-flex items-center gap-1.5 hover:underline">
                   <Flip3DIllustration className="w-4 h-4" />
                   <span>{t("experience.flipToFront")}</span>
                 </span>
-                <span className="text-[10px] text-muted-foreground">
-                  {entry.index} / 04
-                </span>
+                <div className="flex items-center gap-2.5">
+                  {entry.link && (
+                    <a
+                      href={entry.link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary/10 hover:bg-primary/20 text-primary text-[10px] font-bold transition-colors"
+                    >
+                      <ExternalLink className="w-3 h-3" />
+                      <span>{isId ? entry.link.labelId : entry.link.labelEn}</span>
+                    </a>
+                  )}
+                  <span className="text-[10px] text-muted-foreground">
+                    {entry.index} / {String(EXPERIENCE_ENTRIES.length).padStart(2, "0")}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -296,6 +347,7 @@ export function Experience() {
   const isId = lang === "id";
   const sectionRef = useRef<HTMLElement>(null);
   const [selectedCategory, setSelectedCategory] = useState<"all" | ExperienceCategory>("all");
+  const [lightbox, setLightbox] = useState<{ photos: ExperiencePhoto[]; index: number } | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -314,6 +366,7 @@ export function Experience() {
     icon: React.ComponentType<{ className?: string }>;
   }[] = [
     { id: "all", label: t("experience.filterAll"), icon: CompassIllustration },
+    { id: "achievement", label: t("experience.filterAchievement"), icon: Award },
     { id: "teaching", label: t("experience.filterTeaching"), icon: GradCapIllustration },
     { id: "work", label: t("experience.filterWork"), icon: OfficeBuildingIllustration },
     { id: "leadership", label: t("experience.filterLeadership"), icon: MegaphoneIllustration },
@@ -389,12 +442,82 @@ export function Experience() {
                   idx={idx}
                   isId={isId}
                   t={t}
+                  onOpenPhoto={(photos, index) => setLightbox({ photos, index })}
                 />
               ))}
             </AnimatePresence>
           </div>
         </div>
       </div>
+
+      {/* Photo Lightbox Modal */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightbox(null)}
+            className="fixed inset-0 z-[150] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-4xl w-full rounded-2xl overflow-hidden border border-border bg-card shadow-2xl"
+            >
+              <button
+                type="button"
+                onClick={() => setLightbox(null)}
+                aria-label="Close lightbox"
+                className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-background/80 border border-border flex items-center justify-center text-foreground hover:text-primary cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+              <div className="relative aspect-[16/10] w-full bg-black">
+                <Image
+                  src={lightbox.photos[lightbox.index].src}
+                  alt={isId ? lightbox.photos[lightbox.index].captionId : lightbox.photos[lightbox.index].captionEn}
+                  fill
+                  sizes="90vw"
+                  className="object-contain"
+                />
+              </div>
+              <div className="px-4 py-3 bg-card border-t border-border flex items-center justify-between gap-4">
+                <p className="text-xs font-medium text-foreground">
+                  {isId ? lightbox.photos[lightbox.index].captionId : lightbox.photos[lightbox.index].captionEn}
+                </p>
+                {lightbox.photos.length > 1 && (
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setLightbox((prev) =>
+                          prev ? { ...prev, index: (prev.index - 1 + prev.photos.length) % prev.photos.length } : null
+                        )
+                      }
+                      className="p-1.5 rounded-lg border border-border hover:bg-muted cursor-pointer"
+                      aria-label="Previous photo"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setLightbox((prev) =>
+                          prev ? { ...prev, index: (prev.index + 1) % prev.photos.length } : null
+                        )
+                      }
+                      className="p-1.5 rounded-lg border border-border hover:bg-muted cursor-pointer"
+                      aria-label="Next photo"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

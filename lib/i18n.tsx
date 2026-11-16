@@ -9,7 +9,6 @@ const dict: Record<Lang, Record<string, string>> = {
     // Nav
     "nav.about": "About",
     "nav.projects": "Projects",
-    "nav.achievements": "Awards",
     "nav.experience": "Experience",
     "nav.contact": "Contact",
 
@@ -74,17 +73,13 @@ const dict: Record<Lang, Record<string, string>> = {
     "projects.engChallenge": "Engineering Challenge:",
     "projects.keyTakeaway": "Key Takeaway:",
 
-    // Achievements
-    "achievements.heading": "Awards & Achievements",
-    "achievements.subheading":
-      "National recognition for engineering off-grid communication systems and real-time command dashboards.",
-
     // Experience
     "experience.label": "Experience",
     "experience.heading": "Experience & Organizations",
     "experience.subheading":
       "Explore my 3D timeline—tilt cards with your cursor and flip any card in 3D to inspect full responsibilities.",
     "experience.filterAll": "All",
+    "experience.filterAchievement": "Awards",
     "experience.filterWork": "Internship",
     "experience.filterLeadership": "Leadership",
     "experience.filterTeaching": "Teaching",
@@ -127,7 +122,6 @@ const dict: Record<Lang, Record<string, string>> = {
     // Nav
     "nav.about": "Tentang",
     "nav.projects": "Proyek",
-    "nav.achievements": "Penghargaan",
     "nav.experience": "Pengalaman",
     "nav.contact": "Kontak",
 
@@ -192,17 +186,13 @@ const dict: Record<Lang, Record<string, string>> = {
     "projects.engChallenge": "Tantangan Rekayasa:",
     "projects.keyTakeaway": "Pelajaran Utama:",
 
-    // Achievements
-    "achievements.heading": "Penghargaan & Pencapaian",
-    "achievements.subheading":
-      "Apresiasi nasional atas pengembangan sistem komunikasi taktis tanpa internet dan dashboard pemantauan real-time.",
-
     // Experience
     "experience.label": "Pengalaman",
     "experience.heading": "Pengalaman & Organisasi",
     "experience.subheading":
       "Telusuri linimasa 3D—arahkan kursor untuk efek tilt 3D dan balik kartu untuk membaca rincian tanggung jawab.",
     "experience.filterAll": "Semua",
+    "experience.filterAchievement": "Penghargaan",
     "experience.filterWork": "Magang",
     "experience.filterLeadership": "Organisasi",
     "experience.filterTeaching": "Akademik",

@@ -77,13 +77,6 @@ export function CommandPalette() {
       onSelect: () => scrollTo("#projects"),
     },
     {
-      id: "nav-achievements",
-      label: isId ? "Ke Bagian Penghargaan (PIMNAS 39)" : "Go to Awards (PIMNAS 39)",
-      group: isId ? "Navigasi" : "Navigation",
-      icon: GradCapIllustration,
-      onSelect: () => scrollTo("#achievements"),
-    },
-    {
       id: "nav-experience",
       label: isId ? "Ke Bagian Pengalaman" : "Go to Experience",
       group: isId ? "Navigasi" : "Navigation",

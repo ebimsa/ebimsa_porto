@@ -1,4 +1,10 @@
-export type ExperienceCategory = "work" | "leadership" | "teaching";
+export type ExperienceCategory = "work" | "leadership" | "teaching" | "achievement";
+
+export type ExperiencePhoto = {
+  src: string;
+  captionEn: string;
+  captionId: string;
+};
 
 export type ExperienceEntry = {
   id: string;
@@ -18,13 +24,64 @@ export type ExperienceEntry = {
   details: string[];
   detailsId: string[];
   tags: string[];
+  photos?: ExperiencePhoto[];
+  link?: {
+    url: string;
+    labelEn: string;
+    labelId: string;
+  };
   isLatest?: boolean;
 };
 
 export const EXPERIENCE_ENTRIES: ExperienceEntry[] = [
   {
-    id: "exp-ta",
+    id: "exp-pimnas",
     index: "01",
+    role: "Favorite Award – PIMNAS 39 (PKM-KC 2)",
+    roleId: "Juara Favorit PIMNAS ke-39 (PKM-KC 2)",
+    organization: "Belmawa, Ditjen Dikti, Kemdiktisaintek",
+    period: "Nov 2026",
+    periodId: "Nov 2026",
+    duration: "National",
+    durationId: "Nasional",
+    category: "achievement",
+    typeLabel: "Award & Achievement",
+    typeLabelId: "Penghargaan",
+    summary:
+      "Awarded Favorite Award at the 39th National Student Scientific Week (PIMNAS 2026) for ResQ-NET, an off-grid LoRa Mesh & Passive WiFi Sniffing SAR system.",
+    summaryId:
+      "Meraih Juara Favorit pada Pekan Ilmiah Mahasiswa Nasional (PIMNAS) ke-39 melalui karya ResQ-NET untuk operasi SAR di area blank spot.",
+    details: [
+      "Received the Favorite Award at PIMNAS 39 for \"ResQ-NET: An Independent Tactical Communication System Based on LoRa Mesh Network and Passive WiFi Sniffing for Search and Rescue Operations in Network Blackout Areas\".",
+      "Served as Software Developer, developing binary communication protocols, ESP32 device-to-device communication integration, and a Dashboard Command Center for real-time monitoring without internet connectivity.",
+    ],
+    detailsId: [
+      "Meraih Juara Favorit pada PIMNAS ke-39 melalui karya \"ResQ-NET: Sistem Komunikasi Taktis Mandiri Berbasis LoRa Mesh Network dan Passive WiFi Sniffing untuk Operasi SAR di Area Blank Spot\".",
+      "Berperan sebagai pengembang perangkat lunak: mengembangkan protokol komunikasi biner, integrasi komunikasi antarperangkat ESP32, serta Dashboard Command Center untuk pemantauan lokasi korban dan tim SAR secara real-time tanpa koneksi internet.",
+    ],
+    tags: ["ResQ-NET", "LoRa Mesh", "ESP32", "Command Center"],
+    photos: [
+      {
+        src: "/pimnas-1.jpg",
+        captionEn: "Universitas Lampung Delegation — Favorite Award PKM-KC 2 at PIMNAS 39",
+        captionId: "Tim Universitas Lampung — Juara Favorit PKM-KC 2 pada PIMNAS ke-39",
+      },
+      {
+        src: "/pimnas-2.jpg",
+        captionEn: "Closing Ceremony & Awarding Stage — PIMNAS 39 (2026)",
+        captionId: "Panggung Closing Ceremony & Awarding — PIMNAS ke-39 Tahun 2026",
+      },
+    ],
+    link: {
+      url: "https://resq-net.online/",
+      labelEn: "Visit ResQ-NET",
+      labelId: "Kunjungi ResQ-NET",
+    },
+    isLatest: true,
+  },
+  {
+    id: "exp-ta",
+    index: "02",
     role: "Teaching Assistant",
     roleId: "Asisten Dosen",
     organization: "Universitas Lampung",
@@ -50,11 +107,10 @@ export const EXPERIENCE_ENTRIES: ExperienceEntry[] = [
       "Mengevaluasi tugas praktikum, memberikan umpan balik terstruktur pada perancangan perangkat lunak, dan menyusun materi modul.",
     ],
     tags: ["Systems Analysis", "Mobile Apps", "Android", "Troubleshooting"],
-    isLatest: true,
   },
   {
     id: "exp-pkl",
-    index: "02",
+    index: "03",
     role: "Data Management Intern",
     roleId: "Magang Manajemen Data",
     organization: "Telkom Insfrastruktur Indonesia",
@@ -81,7 +137,7 @@ export const EXPERIENCE_ENTRIES: ExperienceEntry[] = [
   },
   {
     id: "exp-bem",
-    index: "03",
+    index: "04",
     role: "Head of Media & Information",
     roleId: "Kepala Dinas Media & Informasi",
     organization: "BEM FMIPA Unila",
@@ -108,7 +164,7 @@ export const EXPERIENCE_ENTRIES: ExperienceEntry[] = [
   },
   {
     id: "exp-himakom",
-    index: "04",
+    index: "05",
     role: "Secretary of Media & Information",
     roleId: "Sekretaris Divisi Media & Informasi",
     organization: "HIMAKOM Unila",

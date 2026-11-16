@@ -5,7 +5,6 @@ import { Navbar } from "@/components/navbar";
 import { About } from "@/components/about";
 import { Hero } from "@/components/hero";
 import { Projects } from "@/components/projects";
-import { Achievements } from "@/components/achievements";
 import { Experience } from "@/components/experience";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
@@ -34,9 +33,6 @@ export default function Home() {
 
         {/* Projects Section */}
         <Projects />
-
-        {/* Achievements & Awards Section (PIMNAS 39) */}
-        <Achievements />
 
         {/* Experience Section */}
         <Experience />
