@@ -30,7 +30,7 @@ function ProjectArchitectureBlueprint({
   projectId,
   isId,
 }: {
-  projectId: "saidata" | "doripay";
+  projectId: "saidata" | "doripay" | "rasi" | "resqnet";
   isId: boolean;
 }) {
   if (projectId === "saidata") {
@@ -63,6 +63,78 @@ function ProjectArchitectureBlueprint({
           </span>
           <span className="font-bold text-[#fbbf24] text-[9px] sm:text-[10px]">
             {isId ? "Multi-Stage + QR Verifikasi" : "Multi-Stage + QR Signed"}
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  if (projectId === "rasi") {
+    return (
+      <div className="w-full h-full p-3 sm:p-4 flex flex-col justify-between bg-card text-foreground select-none">
+        <div className="flex items-center justify-between border-b border-border/80 pb-2 text-[10px]">
+          <span className="text-[#38bdf8] font-bold">TOPOLOGY :: RASI</span>
+          <span className="text-muted-foreground text-[9px]">Hackathon UI</span>
+        </div>
+        <div className="grid grid-cols-3 gap-1.5 sm:gap-2 py-2 text-center">
+          <div className="p-2 rounded-lg border border-border bg-muted/60 flex flex-col items-center justify-center gap-1">
+            <BrowserCodeIllustration className="w-4 h-4" />
+            <span className="text-[10px] font-bold text-foreground">Next.js</span>
+            <span className="text-[8px] text-muted-foreground">App Router</span>
+          </div>
+          <div className="p-2 rounded-lg border border-[#38bdf8]/60 bg-muted/60 flex flex-col items-center justify-center gap-1">
+            <ServerRackIllustration className="w-4 h-4" />
+            <span className="text-[10px] font-bold text-[#38bdf8]">TypeScript</span>
+            <span className="text-[8px] text-muted-foreground">Adaptive UI</span>
+          </div>
+          <div className="p-2 rounded-lg border border-border bg-muted/60 flex flex-col items-center justify-center gap-1">
+            <DatabaseCylinderIllustration className="w-4 h-4" />
+            <span className="text-[10px] font-bold text-foreground">Unit Tests</span>
+            <span className="text-[8px] text-muted-foreground">Verified Metrics</span>
+          </div>
+        </div>
+        <div className="pt-2 border-t border-border/80 flex items-center justify-between text-[10px]">
+          <span className="text-muted-foreground">
+            {isId ? "Fokus Riset" : "Research Flow"}
+          </span>
+          <span className="font-bold text-[#a7f3d0] text-[9px] sm:text-[10px]">
+            {isId ? "4 Tahap + Radar Pasar" : "4-Stage + Market Radar"}
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  if (projectId === "resqnet") {
+    return (
+      <div className="w-full h-full p-3 sm:p-4 flex flex-col justify-between bg-card text-foreground select-none">
+        <div className="flex items-center justify-between border-b border-border/80 pb-2 text-[10px]">
+          <span className="text-[#38bdf8] font-bold">TOPOLOGY :: RESQ-NET</span>
+          <span className="text-[#fbbf24] text-[9px] font-bold">PIMNAS 39</span>
+        </div>
+        <div className="grid grid-cols-3 gap-1.5 sm:gap-2 py-2 text-center">
+          <div className="p-2 rounded-lg border border-border bg-muted/60 flex flex-col items-center justify-center gap-1">
+            <ServerRackIllustration className="w-4 h-4" />
+            <span className="text-[10px] font-bold text-foreground">ESP32</span>
+            <span className="text-[8px] text-muted-foreground">WiFi Sniffing</span>
+          </div>
+          <div className="p-2 rounded-lg border border-[#38bdf8]/60 bg-muted/60 flex flex-col items-center justify-center gap-1">
+            <DatabaseCylinderIllustration className="w-4 h-4" />
+            <span className="text-[10px] font-bold text-[#38bdf8]">LoRa Mesh</span>
+            <span className="text-[8px] text-muted-foreground">Binary Protocol</span>
+          </div>
+          <div className="p-2 rounded-lg border border-border bg-muted/60 flex flex-col items-center justify-center gap-1">
+            <BrowserCodeIllustration className="w-4 h-4" />
+            <span className="text-[10px] font-bold text-foreground">Command UI</span>
+            <span className="text-[8px] text-muted-foreground">Offline SAR Map</span>
+          </div>
+        </div>
+        <div className="pt-2 border-t border-border/80 flex items-center justify-between text-[10px]">
+          <span className="text-muted-foreground">
+            {isId ? "Konektivitas" : "Connectivity"}
+          </span>
+          <span className="font-bold text-[#fbbf24] text-[9px] sm:text-[10px]">
+            {isId ? "Zero-Internet Multi-Hop" : "Zero-Internet Multi-Hop"}
           </span>
         </div>
       </div>

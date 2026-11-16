@@ -3,7 +3,7 @@
 import React from "react";
 
 interface ArchitectureDiagramProps {
-  projectId: "saidata" | "doripay";
+  projectId: "saidata" | "doripay" | "rasi" | "resqnet";
 }
 
 export function ArchitectureDiagram({ projectId }: ArchitectureDiagramProps) {
@@ -183,6 +183,114 @@ export function ArchitectureDiagram({ projectId }: ArchitectureDiagramProps) {
             <text x="565" y="219" textAnchor="middle" className="fill-muted-foreground text-[9px]">
               Real-time Validator Alerts
             </text>
+          </svg>
+        </div>
+      </div>
+    );
+  }
+
+  if (projectId === "rasi") {
+    return (
+      <div className="w-full overflow-x-auto rounded-2xl border border-border bg-card/40 p-4 sm:p-6">
+        <div className="min-w-[600px]">
+          <svg
+            viewBox="0 0 720 240"
+            className="w-full h-auto select-none"
+            role="img"
+            aria-label="RASI System Architecture Diagram"
+          >
+            <defs>
+              <marker
+                id="arrow-rasi"
+                viewBox="0 0 10 10"
+                refX="8"
+                refY="5"
+                markerWidth="6"
+                markerHeight="6"
+                orient="auto-start-reverse"
+              >
+                <path d="M 0 1 L 10 5 L 0 9 z" className="fill-primary" />
+              </marker>
+            </defs>
+
+            <line x1="175" y1="110" x2="255" y2="110" className="stroke-primary" strokeWidth="2" markerEnd="url(#arrow-rasi)" />
+            <line x1="445" y1="110" x2="525" y2="110" className="stroke-primary" strokeWidth="2" markerEnd="url(#arrow-rasi)" />
+            <line x1="350" y1="148" x2="210" y2="180" className="stroke-primary/70" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrow-rasi)" />
+            <line x1="350" y1="148" x2="490" y2="180" className="stroke-primary/70" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrow-rasi)" />
+
+            <rect x="25" y="75" width="150" height="70" rx="12" className="fill-card stroke-border" strokeWidth="1.5" />
+            <text x="100" y="106" textAnchor="middle" className="fill-foreground text-[12px] font-bold">Next.js App</text>
+            <text x="100" y="124" textAnchor="middle" className="fill-muted-foreground text-[10px]">TypeScript · Tailwind</text>
+
+            <rect x="260" y="70" width="180" height="78" rx="12" className="fill-card stroke-primary" strokeWidth="2" />
+            <text x="350" y="103" textAnchor="middle" className="fill-foreground text-[12px] font-bold">4-Stage Research UI</text>
+            <text x="350" y="121" textAnchor="middle" className="fill-primary text-[9.5px] font-semibold">Risk · Broker · Radar · AI</text>
+
+            <rect x="530" y="75" width="160" height="70" rx="12" className="fill-card stroke-border" strokeWidth="1.5" />
+            <text x="610" y="106" textAnchor="middle" className="fill-foreground text-[12px] font-bold">Market Data</text>
+            <text x="610" y="124" textAnchor="middle" className="fill-muted-foreground text-[10px]">IDX Ticker Analytics</text>
+
+            <rect x="80" y="178" width="210" height="44" rx="10" className="fill-background stroke-border" strokeWidth="1.25" />
+            <text x="185" y="198" textAnchor="middle" className="fill-foreground text-[10.5px] font-bold">Adaptive Design System</text>
+            <text x="185" y="212" textAnchor="middle" className="fill-muted-foreground text-[9px]">Light / Dark Mode + Motion</text>
+
+            <rect x="420" y="178" width="210" height="44" rx="10" className="fill-background stroke-border" strokeWidth="1.25" />
+            <text x="525" y="198" textAnchor="middle" className="fill-foreground text-[10.5px] font-bold">Unit Test Suite</text>
+            <text x="525" y="212" textAnchor="middle" className="fill-muted-foreground text-[9px]">Verified Metric Calculations</text>
+          </svg>
+        </div>
+      </div>
+    );
+  }
+
+  if (projectId === "resqnet") {
+    return (
+      <div className="w-full overflow-x-auto rounded-2xl border border-border bg-card/40 p-4 sm:p-6">
+        <div className="min-w-[600px]">
+          <svg
+            viewBox="0 0 720 240"
+            className="w-full h-auto select-none"
+            role="img"
+            aria-label="ResQ-NET Tactical Mesh Architecture Diagram"
+          >
+            <defs>
+              <marker
+                id="arrow-resqnet"
+                viewBox="0 0 10 10"
+                refX="8"
+                refY="5"
+                markerWidth="6"
+                markerHeight="6"
+                orient="auto-start-reverse"
+              >
+                <path d="M 0 1 L 10 5 L 0 9 z" className="fill-primary" />
+              </marker>
+            </defs>
+
+            <line x1="175" y1="110" x2="255" y2="110" className="stroke-primary" strokeWidth="2" markerEnd="url(#arrow-resqnet)" />
+            <line x1="445" y1="110" x2="525" y2="110" className="stroke-primary" strokeWidth="2" markerEnd="url(#arrow-resqnet)" />
+            <line x1="350" y1="148" x2="210" y2="180" className="stroke-primary/70" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrow-resqnet)" />
+            <line x1="350" y1="148" x2="490" y2="180" className="stroke-primary/70" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrow-resqnet)" />
+
+            <rect x="25" y="75" width="150" height="70" rx="12" className="fill-card stroke-border" strokeWidth="1.5" />
+            <text x="100" y="106" textAnchor="middle" className="fill-foreground text-[12px] font-bold">Field ESP32 Node</text>
+            <text x="100" y="124" textAnchor="middle" className="fill-muted-foreground text-[10px]">Passive WiFi Sniffing</text>
+
+            <rect x="260" y="70" width="180" height="78" rx="12" className="fill-card stroke-primary" strokeWidth="2" />
+            <text x="350" y="103" textAnchor="middle" className="fill-foreground text-[12px] font-bold">LoRa Mesh 433MHz</text>
+            <text x="350" y="121" textAnchor="middle" className="fill-primary text-[9.5px] font-semibold">Binary Protocol · Multi-Hop</text>
+
+            <rect x="530" y="75" width="160" height="70" rx="12" className="fill-card stroke-border" strokeWidth="1.5" />
+            <text x="610" y="106" textAnchor="middle" className="fill-foreground text-[12px] font-bold">Command Center</text>
+            <text x="610" y="124" textAnchor="middle" className="fill-muted-foreground text-[10px]">Offline SAR Map UI</text>
+
+            <rect x="80" y="178" width="210" height="44" rx="10" className="fill-background stroke-border" strokeWidth="1.25" />
+            <text x="185" y="198" textAnchor="middle" className="fill-foreground text-[10.5px] font-bold">Victim Detection</text>
+            <text x="185" y="212" textAnchor="middle" className="fill-muted-foreground text-[9px]">Blank Spot Probe Telemetry</text>
+
+            <rect x="420" y="178" width="210" height="44" rx="10" className="fill-background stroke-border" strokeWidth="1.25" />
+            <text x="525" y="198" textAnchor="middle" className="fill-foreground text-[10.5px] font-bold">Gateway Serial Link</text>
+            <text x="525" y="212" textAnchor="middle" className="fill-muted-foreground text-[9px]">Zero-Internet Real-Time Sync</text>
           </svg>
         </div>
       </div>

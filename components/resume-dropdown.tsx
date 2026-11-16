@@ -15,14 +15,14 @@ export const RESUME_OPTIONS = [
   {
     id: "id",
     label: "Bahasa Indonesia",
-    sublabel: "Versi Indonesia • 148 KB",
+    sublabel: "Versi Indonesia • 65 KB",
     badge: "ID",
     url: "/CV_Enggal_Bima_Sakti_ID.pdf",
   },
   {
     id: "en",
     label: "English",
-    sublabel: "English Version • 127 KB",
+    sublabel: "English Version • 67 KB",
     badge: "EN",
     url: "/CV_Enggal_Bima_Sakti_EN.pdf",
   },

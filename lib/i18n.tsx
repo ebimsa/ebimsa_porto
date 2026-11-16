@@ -9,6 +9,7 @@ const dict: Record<Lang, Record<string, string>> = {
     // Nav
     "nav.about": "About",
     "nav.projects": "Projects",
+    "nav.achievements": "Awards",
     "nav.experience": "Experience",
     "nav.contact": "Contact",
 
@@ -26,9 +27,9 @@ const dict: Record<Lang, Record<string, string>> = {
     "about.heading": "How I build",
     "about.subheading": "Full-Stack Engineering Focus",
     "about.p1":
-      "I'm a Computer Science graduate and Full-Stack Engineer who builds end-to-end web applications—pairing responsive, interactive frontends (React 19, Next.js, Svelte, TypeScript, Tailwind CSS) with reliable backends (Go, Laravel 12, PostgreSQL, Redis) where data integrity matters.",
+      "I'm a Computer Science graduate (GPA 3.67, With Honors) from the University of Lampung and a Favorite Award winner at PIMNAS 39 (2026). I build end-to-end web applications in production—pairing responsive frontends (React, Next.js, Svelte, TypeScript, Tailwind CSS) with reliable backends (Go, Laravel, PostgreSQL).",
     "about.p2":
-      "I built Saidata, an e-Government portal for Universitas Lampung featuring an interactive React 19 + Inertia.js interface, multi-stage approval workflows, QR-verified PDFs, and CAS SSO. I also built DoriPay, a PPOB payment platform combining a reactive SvelteKit storefront and dashboard with an idempotent Go payment engine.",
+      "I built Saidata (Universitas Lampung's e-ULT portal), DoriPay (an idempotent Go + Svelte PPOB platform), RASI (a structured Indonesian stock research web app), and the software & Command Center for ResQ-NET, an off-grid LoRa Mesh SAR communication system.",
     "about.stat.projects": "Featured Projects",
     "about.stat.experience": "Experience & Organizations",
     "about.stat.stacks": "Full-Stack Tracks",
@@ -72,6 +73,11 @@ const dict: Record<Lang, Record<string, string>> = {
     "projects.techStack": "Technology Stack",
     "projects.engChallenge": "Engineering Challenge:",
     "projects.keyTakeaway": "Key Takeaway:",
+
+    // Achievements
+    "achievements.heading": "Awards & Achievements",
+    "achievements.subheading":
+      "National recognition for engineering off-grid communication systems and real-time command dashboards.",
 
     // Experience
     "experience.label": "Experience",
@@ -121,6 +127,7 @@ const dict: Record<Lang, Record<string, string>> = {
     // Nav
     "nav.about": "Tentang",
     "nav.projects": "Proyek",
+    "nav.achievements": "Penghargaan",
     "nav.experience": "Pengalaman",
     "nav.contact": "Kontak",
 
@@ -138,9 +145,9 @@ const dict: Record<Lang, Record<string, string>> = {
     "about.heading": "Cara saya membangun",
     "about.subheading": "Fokus Rekayasa Full-Stack",
     "about.p1":
-      "Saya lulusan Ilmu Komputer dan Full-Stack Engineer yang membangun aplikasi web secara menyeluruh (end-to-end)—memadukan antarmuka frontend yang interaktif dan responsif (React 19, Next.js, Svelte, TypeScript, Tailwind CSS) dengan sistem backend yang andal (Go, Laravel 12, PostgreSQL, Redis).",
+      "Saya lulusan S1 Ilmu Komputer Universitas Lampung (IPK 3.67, Pujian) serta peraih Juara Favorit PIMNAS ke-39 Tahun 2026. Saya membangun aplikasi web full-stack di lingkungan production—memadukan frontend responsif (React, Next.js, Svelte, TypeScript, Tailwind CSS) dengan backend andal (Go, Laravel, PostgreSQL).",
     "about.p2":
-      "Saya membangun Saidata, portal e-Government Universitas Lampung dengan antarmuka interaktif React 19 + Inertia.js, alur persetujuan bertahap, PDF berverifikasi QR, dan SSO CAS. Saya juga membangun DoriPay, platform pembayaran PPOB yang menggabungkan antarmuka reaktif SvelteKit dengan mesin pembayaran Go yang idempoten.",
+      "Saya membangun Saidata (portal e-ULT Universitas Lampung), DoriPay (platform PPOB Go + Svelte yang idempoten), RASI (aplikasi web riset saham Indonesia), serta protokol komunikasi dan Dashboard Command Center untuk ResQ-NET pada ajang PIMNAS ke-39.",
     "about.stat.projects": "Proyek Pilihan",
     "about.stat.experience": "Pengalaman & Organisasi",
     "about.stat.stacks": "Jalur Full-Stack",
@@ -184,6 +191,11 @@ const dict: Record<Lang, Record<string, string>> = {
     "projects.techStack": "Tumpukan Teknologi",
     "projects.engChallenge": "Tantangan Rekayasa:",
     "projects.keyTakeaway": "Pelajaran Utama:",
+
+    // Achievements
+    "achievements.heading": "Penghargaan & Pencapaian",
+    "achievements.subheading":
+      "Apresiasi nasional atas pengembangan sistem komunikasi taktis tanpa internet dan dashboard pemantauan real-time.",
 
     // Experience
     "experience.label": "Pengalaman",

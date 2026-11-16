@@ -33,6 +33,18 @@ function getDeviconUrl(name: string): { url: string; invertDark?: boolean } | nu
   if (key.includes("tailwind")) {
     return { url: `${DEVICON_BASE}/tailwindcss/tailwindcss-original.svg` };
   }
+  if (key.includes("typescript") || key === "ts") {
+    return { url: `${DEVICON_BASE}/typescript/typescript-original.svg` };
+  }
+  if (key.includes("flutter")) {
+    return { url: `${DEVICON_BASE}/flutter/flutter-original.svg` };
+  }
+  if (key.includes("dart")) {
+    return { url: `${DEVICON_BASE}/dart/dart-original.svg` };
+  }
+  if (key.includes("figma")) {
+    return { url: `${DEVICON_BASE}/figma/figma-original.svg` };
+  }
   if (key.includes("docker")) {
     return { url: `${DEVICON_BASE}/docker/docker-original.svg` };
   }
