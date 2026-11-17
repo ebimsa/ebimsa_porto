@@ -506,6 +506,53 @@ export function GradCapIllustration({ className = "w-4 h-4" }: { className?: str
   );
 }
 
+export function TrophyAwardIllustration({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={cn("shrink-0", className)} aria-hidden="true">
+      {/* Left & Right Handles */}
+      <path
+        d="M6.5 5.5H4.2a1.7 1.7 0 0 0-1.7 1.7v1.1a3.5 3.5 0 0 0 3.5 3.5h1"
+        stroke="#38BDF8"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M17.5 5.5h2.3a1.7 1.7 0 0 1 1.7 1.7v1.1a3.5 3.5 0 0 1-3.5 3.5h-1"
+        stroke="#38BDF8"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Cup Body */}
+      <path
+        d="M6.5 3.8h11v5.8a5.5 5.5 0 0 1-11 0V3.8Z"
+        fill="#0EA5E9"
+        stroke="#38BDF8"
+        strokeWidth="1.2"
+      />
+      {/* Stem */}
+      <rect x="10.5" y="15" width="3" height="3" fill="#0284C7" />
+      {/* Pedestal Base */}
+      <rect
+        x="7"
+        y="17.8"
+        width="10"
+        height="3.2"
+        rx="1.2"
+        fill="#1E293B"
+        stroke="#38BDF8"
+        strokeWidth="1.2"
+      />
+      {/* Gold Star Focal Accent */}
+      <polygon
+        points="12,6.2 12.9,8.1 15,8.4 13.5,9.8 13.8,11.9 12,10.9 10.2,11.9 10.5,9.8 9,8.4 11.1,8.1"
+        fill="#FBBF24"
+      />
+    </svg>
+  );
+}
+
 // --- CONTACT & FORMS ---
 export function MailboxIllustration({ className = "w-4 h-4" }: { className?: string }) {
   return (

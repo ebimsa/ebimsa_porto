@@ -20,6 +20,7 @@ const dict: Record<Lang, Record<string, string>> = {
     "hero.role4": "Full Stack · React, Next.js, Svelte",
     "hero.viewProjects": "View Projects",
     "hero.github": "GitHub",
+    "hero.resume": "Resume",
 
     // About
     "about.label": "About",
@@ -133,6 +134,7 @@ const dict: Record<Lang, Record<string, string>> = {
     "hero.role4": "Full Stack · React, Next.js, Svelte",
     "hero.viewProjects": "Lihat Proyek",
     "hero.github": "GitHub",
+    "hero.resume": "Resume",
 
     // About
     "about.label": "Tentang",

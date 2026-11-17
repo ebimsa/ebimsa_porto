@@ -3,8 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useT } from "@/lib/i18n";
-import { ArrowDownIllustration } from "@/components/ui-icons";
-import { TechIcon } from "@/components/tech-icons";
+import { ArrowDownIllustration, DocCaseStudyIllustration } from "@/components/ui-icons";
+import { ResumeDropdown } from "@/components/resume-dropdown";
 
 const LETTERS = [
   { char: "E", targetChar: "e", keep: true },
@@ -293,15 +293,16 @@ export function Hero() {
             <span>{t("hero.viewProjects")}</span>
             <ArrowDownIllustration className="w-4 h-4" />
           </a>
-          <a
-            href="https://github.com/enggalbima"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border border-border bg-card hover:border-primary transition-all"
+          <ResumeDropdown
+            align="center"
+            side="bottom"
+            sideOffset={8}
+            triggerClassName="group w-auto inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border border-border bg-card hover:border-primary transition-all cursor-pointer select-none outline-hidden data-popup-open:border-primary data-popup-open:text-primary"
           >
-            <TechIcon name="github" className="w-4 h-4" />
-            <span>{t("hero.github")}</span>
-          </a>
+            <DocCaseStudyIllustration className="w-4 h-4" />
+            <span>{t("hero.resume")}</span>
+            <ArrowDownIllustration className="w-3.5 h-3.5 transition-transform duration-200 group-data-popup-open:rotate-180" />
+          </ResumeDropdown>
         </motion.div>
       </div>
 

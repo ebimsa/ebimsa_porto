@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import Image from "next/image";
-import { Award, ExternalLink, ImageIcon, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ExternalLink, ImageIcon, X, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   motion,
   AnimatePresence,
@@ -26,6 +26,7 @@ import {
   MegaphoneIllustration,
   OfficeBuildingIllustration,
   GradCapIllustration,
+  TrophyAwardIllustration,
   CompassIllustration,
   Flip3DIllustration,
 } from "@/components/ui-icons";
@@ -38,7 +39,7 @@ function EntryIllustration({
   id: string;
   className?: string;
 }) {
-  if (id === "exp-pimnas") return <Award className={cn("text-[#fbbf24]", className)} />;
+  if (id === "exp-pimnas") return <TrophyAwardIllustration className={className} />;
   if (id === "exp-ta") return <GradCapIllustration className={className} />;
   if (id === "exp-pkl") return <OfficeBuildingIllustration className={className} />;
   if (id === "exp-bem") return <MegaphoneIllustration className={className} />;
@@ -366,7 +367,7 @@ export function Experience() {
     icon: React.ComponentType<{ className?: string }>;
   }[] = [
     { id: "all", label: t("experience.filterAll"), icon: CompassIllustration },
-    { id: "achievement", label: t("experience.filterAchievement"), icon: Award },
+    { id: "achievement", label: t("experience.filterAchievement"), icon: TrophyAwardIllustration },
     { id: "teaching", label: t("experience.filterTeaching"), icon: GradCapIllustration },
     { id: "work", label: t("experience.filterWork"), icon: OfficeBuildingIllustration },
     { id: "leadership", label: t("experience.filterLeadership"), icon: MegaphoneIllustration },
