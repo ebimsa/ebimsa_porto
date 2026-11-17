@@ -3,7 +3,7 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useT } from "@/lib/i18n";
 import { SectionHeading } from "@/components/section-heading";
 import { PROJECTS_DATA, type Project } from "@/lib/projects";
@@ -186,8 +186,30 @@ function Project3DCard({
   const { lang, t } = useT();
   const isId = lang === "id";
   const [viewMode, setViewMode] = useState<"ui" | "arch">("ui");
+  const scrollTargetRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: scrollTargetRef,
+    offset: ["start 95%", "end 5%"],
+  });
+
+  const scrollRotateX = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    prefersReducedMotion ? [0, 0, 0, 0] : [10, 0, 0, -10]
+  );
+  const scrollScale = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    prefersReducedMotion ? [1, 1, 1, 1] : [0.94, 1, 1, 0.95]
+  );
+  const scrollOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.8, 1],
+    [0.45, 1, 1, 0.45]
+  );
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (prefersReducedMotion || !cardRef.current) return;
@@ -210,7 +232,16 @@ function Project3DCard({
   const currentTagline = isId && project.taglineId ? project.taglineId : project.tagline;
 
   return (
-    <div className="h-full [perspective:1400px]">
+    <motion.div
+      ref={scrollTargetRef}
+      style={{
+        rotateX: scrollRotateX,
+        scale: scrollScale,
+        opacity: scrollOpacity,
+        transformPerspective: 1200,
+      }}
+      className="h-full [perspective:1400px] will-change-transform"
+    >
       <div
         ref={cardRef}
         onPointerMove={handlePointerMove}
@@ -424,7 +455,7 @@ function Project3DCard({
           </span>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

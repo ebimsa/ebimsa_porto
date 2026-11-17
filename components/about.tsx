@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useT } from "@/lib/i18n";
 import { PROJECTS_DATA } from "@/lib/projects";
 import { EXPERIENCE_ENTRIES } from "@/lib/experience";
@@ -13,6 +13,68 @@ import {
   BrowserCodeIllustration,
   CloudNodesIllustration,
 } from "@/components/ui-icons";
+
+function AboutPillarCard({
+  pillar,
+}: {
+  pillar: {
+    icon: React.ComponentType<{ className?: string }>;
+    title: string;
+    desc: string;
+  };
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start 95%", "end 5%"],
+  });
+
+  const scrollRotateX = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    prefersReducedMotion ? [0, 0, 0, 0] : [8, 0, 0, -8]
+  );
+  const scrollScale = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    prefersReducedMotion ? [1, 1, 1, 1] : [0.95, 1, 1, 0.95]
+  );
+  const scrollOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.8, 1],
+    [0.5, 1, 1, 0.5]
+  );
+
+  const Illustration = pillar.icon;
+
+  return (
+    <motion.div
+      ref={cardRef}
+      style={{
+        rotateX: scrollRotateX,
+        scale: scrollScale,
+        opacity: scrollOpacity,
+        transformPerspective: 1200,
+      }}
+      className="group relative p-3 sm:p-6 rounded-xl sm:rounded-2xl border border-border/60 bg-card/45 backdrop-blur-md hover:-translate-y-1.5 hover:border-primary/40 shadow-sm hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform squircle-lg flex flex-col justify-between min-h-[140px] sm:min-h-[220px]"
+    >
+      <div className="space-y-2 sm:space-y-4">
+        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-md sm:rounded-xl bg-muted border border-border flex items-center justify-center group-hover:border-primary/25 transition-all duration-300 squircle-sm">
+          <Illustration className="w-4 h-4 sm:w-6 sm:h-6" />
+        </div>
+        <div className="space-y-1 sm:space-y-2">
+          <h3 className="font-bold text-[11px] sm:text-base md:text-lg text-foreground tracking-tight">
+            {pillar.title}
+          </h3>
+          <p className="text-[9px] sm:text-xs md:text-sm text-muted-foreground leading-normal sm:leading-relaxed">
+            {pillar.desc}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -62,15 +124,6 @@ const PRIMARY_STACK = [
 
 export function About() {
   const { t } = useT();
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { type: "spring" as const, stiffness: 80, damping: 15 },
-    },
-  };
 
   const pillars = [
     {
@@ -161,33 +214,9 @@ export function About() {
 
           {/* Right Column: Engineering Pillars Grid */}
           <div className="lg:col-span-7 grid grid-cols-2 gap-3 sm:gap-6">
-            {pillars.map((pillar) => {
-              const Illustration = pillar.icon;
-              return (
-                <motion.div
-                  key={pillar.title}
-                  variants={cardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-50px" }}
-                  className="group relative p-3 sm:p-6 rounded-xl sm:rounded-2xl border border-border/60 bg-card/45 backdrop-blur-md hover:-translate-y-1.5 hover:border-primary/40 shadow-sm hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform squircle-lg flex flex-col justify-between min-h-[140px] sm:min-h-[220px]"
-                >
-                  <div className="space-y-2 sm:space-y-4">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-md sm:rounded-xl bg-muted border border-border flex items-center justify-center group-hover:border-primary/25 transition-all duration-300 squircle-sm">
-                      <Illustration className="w-4 h-4 sm:w-6 sm:h-6" />
-                    </div>
-                    <div className="space-y-1 sm:space-y-2">
-                      <h3 className="font-bold text-[11px] sm:text-base md:text-lg text-foreground tracking-tight">
-                        {pillar.title}
-                      </h3>
-                      <p className="text-[9px] sm:text-xs md:text-sm text-muted-foreground leading-normal sm:leading-relaxed">
-                        {pillar.desc}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+            {pillars.map((pillar) => (
+              <AboutPillarCard key={pillar.title} pillar={pillar} />
+            ))}
           </div>
 
         </div>
