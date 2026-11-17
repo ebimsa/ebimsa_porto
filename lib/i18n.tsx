@@ -205,7 +205,7 @@ const dict: Record<Lang, Record<string, string>> = {
 
     // Contact
     "contact.label": "Kontak",
-    "contact.heading": "Sapa Saya & Buku Tamu",
+    "contact.heading": "Sapa Saya",
     "contact.subheading":
       "Tinggalkan pesan di buku tamu, salin email langsung saya, atau terhubung melalui kanal sosial pilihan Anda.",
     "contact.directChannels": "Kanal Langsung",

@@ -106,7 +106,7 @@ function HeroNameMorph() {
 
       {/* Solid Accent Underline */}
       <motion.div
-        className="h-1 bg-[#38bdf8] mt-4 rounded-full"
+        className="h-1 bg-[#6463b1] dark:bg-[#8584cc] mt-4 rounded-full"
         initial={{ width: "180px", opacity: 0.85 }}
         animate={{
           width: collapsed ? "96px" : "200px",
@@ -161,7 +161,7 @@ function ParticleField() {
     let pts: P[] = [];
 
     const color = () =>
-      getComputedStyle(document.documentElement).getPropertyValue("--primary").trim() || "#38bdf8";
+      getComputedStyle(document.documentElement).getPropertyValue("--primary").trim() || "#6463b1";
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -209,7 +209,7 @@ function ParticleField() {
           }
         }
         ctx.globalAlpha = 0.78;
-        ctx.fillStyle = i % 7 === 0 ? "#fbbf24" : i % 3 === 0 ? "#a7f3d0" : c;
+        ctx.fillStyle = i % 7 === 0 ? "#eceed6" : i % 3 === 0 ? "#b0c59c" : c;
         ctx.beginPath();
         ctx.arc(p.x, p.y, i % 7 === 0 ? 2 : 1.6, 0, Math.PI * 2);
         ctx.fill();
@@ -277,7 +277,7 @@ export function Hero() {
         <HeroNameMorph />
 
         <p className="text-base sm:text-xl md:text-2xl font-medium text-muted-foreground min-h-[2lh]">
-          <span className="text-[#fbbf24] font-bold">&gt;</span> <Typewriter words={roles} />
+          <span className="text-[#52519e] dark:text-[#b0c59c] font-bold">&gt;</span> <Typewriter words={roles} />
         </p>
 
         <motion.div
@@ -297,7 +297,7 @@ export function Hero() {
             align="center"
             side="bottom"
             sideOffset={8}
-            triggerClassName="group w-auto inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border border-border bg-card hover:border-primary transition-all cursor-pointer select-none outline-hidden data-popup-open:border-primary data-popup-open:text-primary"
+            triggerClassName="group w-auto inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border border-border/60 bg-card/45 backdrop-blur-md hover:border-primary/40 hover:-translate-y-0.5 shadow-sm hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_24px_rgba(0,0,0,0.25)] transition-all duration-300 cursor-pointer select-none outline-hidden data-popup-open:border-primary/40 data-popup-open:text-primary data-popup-open:bg-card/70"
           >
             <DocCaseStudyIllustration className="w-4 h-4" />
             <span>{t("hero.resume")}</span>

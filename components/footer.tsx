@@ -358,8 +358,8 @@ export function Footer() {
                         <svg className="w-full h-full overflow-visible" viewBox="0 0 500 150">
                           <defs>
                             <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.25" />
-                              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.0" />
+                              <stop offset="0%" stopColor="#6463b1" stopOpacity="0.28" />
+                              <stop offset="100%" stopColor="#6463b1" stopOpacity="0.0" />
                             </linearGradient>
                           </defs>
 
@@ -371,7 +371,7 @@ export function Footer() {
                           <path
                             d={linePath}
                             fill="none"
-                            stroke="#3b82f6"
+                            stroke="#6463b1"
                             strokeWidth="2.5"
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -423,7 +423,7 @@ export function Footer() {
                     </div>
                     <div className="w-full h-2 bg-muted border border-border/40 rounded-full overflow-hidden flex">
                       <div className="bg-primary h-full rounded-l-full" style={{ width: "58%" }} />
-                      <div className="bg-sky-400 h-full rounded-r-full" style={{ width: "42%" }} />
+                      <div className="bg-[#52519e] dark:bg-[#9493d9] h-full rounded-r-full" style={{ width: "42%" }} />
                     </div>
                   </div>
 

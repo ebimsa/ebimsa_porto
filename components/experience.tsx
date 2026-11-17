@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ExternalLink, ImageIcon, X, ChevronLeft, ChevronRight } from "lucide-react";
 import {
@@ -72,8 +72,45 @@ function Experience3DCard({
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const tiltRef = useRef<HTMLDivElement>(null);
+  const backScrollRef = useRef<HTMLDivElement>(null);
   const [flipped, setFlipped] = useState(false);
+  const [scrollInfo, setScrollInfo] = useState({
+    canScroll: false,
+    thumbHeight: 40,
+    thumbTop: 0,
+    atBottom: false,
+  });
   const prefersReducedMotion = useReducedMotion();
+
+  const updateScrollInfo = useCallback(() => {
+    const el = backScrollRef.current;
+    if (!el) return;
+    const { scrollTop, scrollHeight, clientHeight } = el;
+    const canScroll = scrollHeight > clientHeight + 2;
+    if (!canScroll) {
+      setScrollInfo((prev) =>
+        prev.canScroll
+          ? { canScroll: false, thumbHeight: 100, thumbTop: 0, atBottom: true }
+          : prev
+      );
+      return;
+    }
+    const thumbHeight = Math.max((clientHeight / scrollHeight) * 100, 18);
+    const maxScroll = scrollHeight - clientHeight;
+    const scrollFraction = maxScroll > 0 ? scrollTop / maxScroll : 0;
+    const thumbTop = scrollFraction * (100 - thumbHeight);
+    const atBottom = scrollTop + clientHeight >= scrollHeight - 6;
+    setScrollInfo({ canScroll: true, thumbHeight, thumbTop, atBottom });
+  }, []);
+
+  useEffect(() => {
+    const raf = requestAnimationFrame(updateScrollInfo);
+    window.addEventListener("resize", updateScrollInfo);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", updateScrollInfo);
+    };
+  }, [flipped, isId, updateScrollInfo]);
 
   const { scrollYProgress } = useScroll({
     target: cardRef,
@@ -141,9 +178,9 @@ function Experience3DCard({
     >
       {/* Center 3D Holographic Node on the Timeline Spine */}
       <div className="  absolute left-0 md:left-1/2 top-8 md:top-1/2 -translate-y-1/2 md:-translate-x-1/2 z-20 flex items-center justify-center">
-        <div className="relative flex items-center justify-center w-9 h-9 rounded-xl border border-[#38bdf8] bg-[#1e293b] shadow-[0_0_20px_rgba(56,189,248,0.35)]">
-          <span className="absolute inset-0 rounded-xl bg-[#38bdf8]/15 animate-ping opacity-40" />
-          <span className="relative text-[11px] font-black text-[#fbbf24]">
+        <div className="relative flex items-center justify-center w-9 h-9 rounded-xl border border-[#8584cc] bg-[#1e1f2e] shadow-[0_0_20px_rgba(100,99,177,0.35)]">
+          <span className="absolute inset-0 rounded-xl bg-[#6463b1]/20 animate-ping opacity-40" />
+          <span className="relative text-[11px] font-black text-[#b0c59c]">
             {entry.index}
           </span>
         </div>
@@ -196,7 +233,12 @@ function Experience3DCard({
             )}
           >
             {/* ================= FRONT FACE ================= */}
-            <div className="absolute inset-0 w-full h-full rounded-2xl border border-border group-hover:border-primary bg-card p-5 sm:p-6 transition-colors duration-300 flex flex-col justify-between [backface-visibility:hidden]">
+            <div
+              className={cn(
+                "relative w-full min-h-[300px] sm:min-h-[310px] rounded-xl md:rounded-2xl border border-border/60 group-hover:border-primary/40 bg-card/45 backdrop-blur-md p-5 sm:p-6 squircle-lg shadow-sm group-hover:-translate-y-1.5 group-hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:group-hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 flex flex-col justify-between gap-4 [backface-visibility:hidden]",
+                flipped && "pointer-events-none"
+              )}
+            >
               {/* Top Meta & Role Header */}
               <div className="relative z-10 space-y-3.5">
                 <div className="flex items-center justify-between gap-2 flex-wrap">
@@ -260,8 +302,18 @@ function Experience3DCard({
             </div>
 
             {/* ================= BACK FACE (ROTATED 180 DEG) ================= */}
-            <div className="absolute inset-0 w-full h-full rounded-2xl border border-primary bg-card p-5 sm:p-6 flex flex-col justify-between [backface-visibility:hidden] [transform:rotateY(180deg)]">
-              <div className="space-y-3 overflow-y-auto no-scrollbar pr-1">
+            <div
+              className={cn(
+                "absolute inset-0 w-full h-full overflow-hidden rounded-xl md:rounded-2xl border border-primary/40 bg-card/45 backdrop-blur-md p-5 sm:p-6 squircle-lg shadow-sm flex flex-col justify-between [backface-visibility:hidden] [transform:rotateY(180deg)]",
+                !flipped && "pointer-events-none"
+              )}
+            >
+              <div className="relative min-h-0 flex-1 flex gap-1.5">
+                <div
+                  ref={backScrollRef}
+                  onScroll={updateScrollInfo}
+                  className="min-h-0 flex-1 space-y-3 overflow-y-auto no-scrollbar pr-1"
+                >
                 <div className="flex items-center justify-between gap-2 border-b border-border/60 pb-2.5">
                   <div className="flex items-center gap-2 min-w-0">
                     <EntryIllustration id={entry.id} className="w-4 h-4 shrink-0" />
@@ -310,9 +362,34 @@ function Experience3DCard({
                     ))}
                   </div>
                 )}
+                </div>
+
+                {/* Visible custom scrollbar track on the right side when scrollable */}
+                {scrollInfo.canScroll && (
+                  <div
+                    aria-hidden="true"
+                    className="w-1 shrink-0 rounded-full bg-border/50 relative my-0.5 overflow-hidden"
+                  >
+                    <div
+                      className="absolute inset-x-0 rounded-full bg-primary/80 transition-[top] duration-75"
+                      style={{
+                        height: `${scrollInfo.thumbHeight}%`,
+                        top: `${scrollInfo.thumbTop}%`,
+                      }}
+                    />
+                  </div>
+                )}
+
+                {/* Subtle bottom fade to cue scrollable content below */}
+                {scrollInfo.canScroll && !scrollInfo.atBottom && (
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-x-0 bottom-0 right-2.5 h-8 bg-gradient-to-t from-card via-card/75 to-transparent"
+                  />
+                )}
               </div>
 
-              <div className="pt-3 border-t border-border/50 flex items-center justify-between gap-2 text-[11px] font-bold text-primary">
+              <div className="shrink-0 pt-3 border-t border-border/50 flex items-center justify-between gap-2 text-[11px] font-bold text-primary">
                 <span className="inline-flex items-center gap-1.5 hover:underline">
                   <Flip3DIllustration className="w-4 h-4" />
                   <span>{t("experience.flipToFront")}</span>
@@ -429,7 +506,7 @@ export function Experience() {
           <div className="absolute left-[17px] md:left-1/2 top-4 bottom-4 w-[2px] md:-translate-x-1/2 bg-border rounded-full overflow-hidden">
             <motion.div
               style={{ scaleY: smoothProgress }}
-              className="w-full h-full bg-[#38bdf8] origin-top"
+              className="w-full h-full bg-[#52519e] dark:bg-[#9493d9] origin-top"
             />
           </div>
 

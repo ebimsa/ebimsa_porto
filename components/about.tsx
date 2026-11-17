@@ -170,7 +170,7 @@ export function About() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-50px" }}
-                  className="group relative p-3 sm:p-6 rounded-xl sm:rounded-2xl border border-border bg-card hover:-translate-y-1.5 hover:border-primary/60 transition-all duration-300 transform-gpu will-change-transform squircle-lg flex flex-col justify-between min-h-[140px] sm:min-h-[220px]"
+                  className="group relative p-3 sm:p-6 rounded-xl sm:rounded-2xl border border-border/60 bg-card/45 backdrop-blur-md hover:-translate-y-1.5 hover:border-primary/40 shadow-sm hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 transform-gpu will-change-transform squircle-lg flex flex-col justify-between min-h-[140px] sm:min-h-[220px]"
                 >
                   <div className="space-y-2 sm:space-y-4">
                     <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-md sm:rounded-xl bg-muted border border-border flex items-center justify-center group-hover:border-primary/25 transition-all duration-300 squircle-sm">

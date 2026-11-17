@@ -37,7 +37,7 @@ function ProjectArchitectureBlueprint({
     return (
       <div className="w-full h-full p-3 sm:p-4 flex flex-col justify-between bg-card text-foreground select-none">
         <div className="flex items-center justify-between border-b border-border/80 pb-2 text-[10px]">
-          <span className="text-[#38bdf8] font-bold">TOPOLOGY :: SAIDATA</span>
+          <span className="text-[#52519e] dark:text-[#9493d9] font-bold">TOPOLOGY :: SAIDATA</span>
           <span className="text-muted-foreground text-[9px]">CAS 2.0 SSO</span>
         </div>
         <div className="grid grid-cols-3 gap-1.5 sm:gap-2 py-2 text-center">
@@ -46,9 +46,9 @@ function ProjectArchitectureBlueprint({
             <span className="text-[10px] font-bold text-foreground">React 19</span>
             <span className="text-[8px] text-muted-foreground">Inertia / Vite</span>
           </div>
-          <div className="p-2 rounded-lg border border-[#38bdf8]/60 bg-muted/60 flex flex-col items-center justify-center gap-1">
+          <div className="p-2 rounded-lg border border-[#8584cc]/60 bg-muted/60 flex flex-col items-center justify-center gap-1">
             <ServerRackIllustration className="w-4 h-4" />
-            <span className="text-[10px] font-bold text-[#38bdf8]">Laravel 12</span>
+            <span className="text-[10px] font-bold text-[#52519e] dark:text-[#9493d9]">Laravel 12</span>
             <span className="text-[8px] text-muted-foreground">Octane RoadRunner</span>
           </div>
           <div className="p-2 rounded-lg border border-border bg-muted/60 flex flex-col items-center justify-center gap-1">
@@ -61,7 +61,7 @@ function ProjectArchitectureBlueprint({
           <span className="text-muted-foreground">
             {isId ? "Alur Pengesahan" : "Workflow"}
           </span>
-          <span className="font-bold text-[#fbbf24] text-[9px] sm:text-[10px]">
+          <span className="font-bold text-[#4d6639] dark:text-[#b0c59c] text-[9px] sm:text-[10px]">
             {isId ? "Multi-Stage + QR Verifikasi" : "Multi-Stage + QR Signed"}
           </span>
         </div>
@@ -73,7 +73,7 @@ function ProjectArchitectureBlueprint({
     return (
       <div className="w-full h-full p-3 sm:p-4 flex flex-col justify-between bg-card text-foreground select-none">
         <div className="flex items-center justify-between border-b border-border/80 pb-2 text-[10px]">
-          <span className="text-[#38bdf8] font-bold">TOPOLOGY :: RASI</span>
+          <span className="text-[#52519e] dark:text-[#9493d9] font-bold">TOPOLOGY :: RASI</span>
           <span className="text-muted-foreground text-[9px]">Hackathon UI</span>
         </div>
         <div className="grid grid-cols-3 gap-1.5 sm:gap-2 py-2 text-center">
@@ -82,9 +82,9 @@ function ProjectArchitectureBlueprint({
             <span className="text-[10px] font-bold text-foreground">Next.js</span>
             <span className="text-[8px] text-muted-foreground">App Router</span>
           </div>
-          <div className="p-2 rounded-lg border border-[#38bdf8]/60 bg-muted/60 flex flex-col items-center justify-center gap-1">
+          <div className="p-2 rounded-lg border border-[#8584cc]/60 bg-muted/60 flex flex-col items-center justify-center gap-1">
             <ServerRackIllustration className="w-4 h-4" />
-            <span className="text-[10px] font-bold text-[#38bdf8]">TypeScript</span>
+            <span className="text-[10px] font-bold text-[#52519e] dark:text-[#9493d9]">TypeScript</span>
             <span className="text-[8px] text-muted-foreground">Adaptive UI</span>
           </div>
           <div className="p-2 rounded-lg border border-border bg-muted/60 flex flex-col items-center justify-center gap-1">
@@ -97,7 +97,7 @@ function ProjectArchitectureBlueprint({
           <span className="text-muted-foreground">
             {isId ? "Fokus Riset" : "Research Flow"}
           </span>
-          <span className="font-bold text-[#a7f3d0] text-[9px] sm:text-[10px]">
+          <span className="font-bold text-[#4d6639] dark:text-[#b0c59c] text-[9px] sm:text-[10px]">
             {isId ? "4 Tahap + Radar Pasar" : "4-Stage + Market Radar"}
           </span>
         </div>
@@ -109,8 +109,8 @@ function ProjectArchitectureBlueprint({
     return (
       <div className="w-full h-full p-3 sm:p-4 flex flex-col justify-between bg-card text-foreground select-none">
         <div className="flex items-center justify-between border-b border-border/80 pb-2 text-[10px]">
-          <span className="text-[#38bdf8] font-bold">TOPOLOGY :: RESQ-NET</span>
-          <span className="text-[#fbbf24] text-[9px] font-bold">PIMNAS 39</span>
+          <span className="text-[#52519e] dark:text-[#9493d9] font-bold">TOPOLOGY :: RESQ-NET</span>
+          <span className="text-[#4d6639] dark:text-[#b0c59c] text-[9px] font-bold">PIMNAS 39</span>
         </div>
         <div className="grid grid-cols-3 gap-1.5 sm:gap-2 py-2 text-center">
           <div className="p-2 rounded-lg border border-border bg-muted/60 flex flex-col items-center justify-center gap-1">
@@ -118,9 +118,9 @@ function ProjectArchitectureBlueprint({
             <span className="text-[10px] font-bold text-foreground">ESP32</span>
             <span className="text-[8px] text-muted-foreground">WiFi Sniffing</span>
           </div>
-          <div className="p-2 rounded-lg border border-[#38bdf8]/60 bg-muted/60 flex flex-col items-center justify-center gap-1">
+          <div className="p-2 rounded-lg border border-[#8584cc]/60 bg-muted/60 flex flex-col items-center justify-center gap-1">
             <DatabaseCylinderIllustration className="w-4 h-4" />
-            <span className="text-[10px] font-bold text-[#38bdf8]">LoRa Mesh</span>
+            <span className="text-[10px] font-bold text-[#52519e] dark:text-[#9493d9]">LoRa Mesh</span>
             <span className="text-[8px] text-muted-foreground">Binary Protocol</span>
           </div>
           <div className="p-2 rounded-lg border border-border bg-muted/60 flex flex-col items-center justify-center gap-1">
@@ -133,7 +133,7 @@ function ProjectArchitectureBlueprint({
           <span className="text-muted-foreground">
             {isId ? "Konektivitas" : "Connectivity"}
           </span>
-          <span className="font-bold text-[#fbbf24] text-[9px] sm:text-[10px]">
+          <span className="font-bold text-[#4d6639] dark:text-[#b0c59c] text-[9px] sm:text-[10px]">
             {isId ? "Zero-Internet Multi-Hop" : "Zero-Internet Multi-Hop"}
           </span>
         </div>
@@ -144,7 +144,7 @@ function ProjectArchitectureBlueprint({
   return (
     <div className="w-full h-full p-3 sm:p-4 flex flex-col justify-between bg-card text-foreground select-none">
       <div className="flex items-center justify-between border-b border-border/80 pb-2 text-[10px]">
-        <span className="text-[#38bdf8] font-bold">TOPOLOGY :: DORIPAY</span>
+        <span className="text-[#52519e] dark:text-[#9493d9] font-bold">TOPOLOGY :: DORIPAY</span>
         <span className="text-muted-foreground text-[9px]">ACID Ledger</span>
       </div>
       <div className="grid grid-cols-3 gap-1.5 sm:gap-2 py-2 text-center">
@@ -153,9 +153,9 @@ function ProjectArchitectureBlueprint({
           <span className="text-[10px] font-bold text-foreground">Svelte UI</span>
           <span className="text-[8px] text-muted-foreground">Reactive Stores</span>
         </div>
-        <div className="p-2 rounded-lg border border-[#38bdf8]/60 bg-muted/60 flex flex-col items-center justify-center gap-1">
+        <div className="p-2 rounded-lg border border-[#8584cc]/60 bg-muted/60 flex flex-col items-center justify-center gap-1">
           <ServerRackIllustration className="w-4 h-4" />
-          <span className="text-[10px] font-bold text-[#38bdf8]">Go Fiber</span>
+          <span className="text-[10px] font-bold text-[#52519e] dark:text-[#9493d9]">Go Fiber</span>
           <span className="text-[8px] text-muted-foreground">Clean Architecture</span>
         </div>
         <div className="p-2 rounded-lg border border-border bg-muted/60 flex flex-col items-center justify-center gap-1">
@@ -168,7 +168,7 @@ function ProjectArchitectureBlueprint({
         <span className="text-muted-foreground">
           {isId ? "Integritas Saldo" : "Balance Guard"}
         </span>
-        <span className="font-bold text-[#a7f3d0] text-[9px] sm:text-[10px]">
+        <span className="font-bold text-[#4d6639] dark:text-[#b0c59c] text-[9px] sm:text-[10px]">
           {isId ? "Idempotensi & Anti Double-Spend" : "Idempotency & Anti Double-Spend"}
         </span>
       </div>
@@ -220,27 +220,26 @@ function Project3DCard({
           transform: "rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg))",
         }}
         className={cn(
-          "group relative flex flex-col justify-between bg-card rounded-2xl border-2 border-border hover:border-[#38bdf8] p-5 sm:p-6",
-          "shadow-[0_10px_0_#cbd5e1] dark:shadow-[0_10px_0_#0f172a]",
-          "hover:shadow-[0_14px_0_#38bdf8] dark:hover:shadow-[0_14px_0_#0284c7]",
-          "transition-all duration-200 ease-out cursor-pointer select-none [transform-style:preserve-3d]",
-          "will-change-transform h-full space-y-5"
+          "group relative flex flex-col justify-between bg-card/45 backdrop-blur-md rounded-xl md:rounded-2xl border border-border/60 hover:border-primary/40 p-3.5 sm:p-6 squircle-lg",
+          "shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)]",
+          "transition-all duration-500 ease-out cursor-pointer select-none [transform-style:preserve-3d]",
+          "transform-gpu will-change-transform h-full space-y-3 sm:space-y-5"
         )}
       >
         {/* ================= LAYER 1: 3D TOP CONSOLE HEADER ================= */}
         <div
           style={{ transform: "translateZ(26px)" }}
-          className="flex items-center justify-between gap-3 border-b border-border/80 pb-3"
+          className="flex items-center justify-between gap-2 sm:gap-3 border-b border-border/80 pb-2 sm:pb-3"
         >
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-primary">
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-primary">
               {project.category}
             </span>
           </div>
 
-          <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
-            <span className="w-2 h-2 rounded-full bg-[#a7f3d0] animate-pulse" />
-            <span className="truncate max-w-[150px] sm:max-w-[200px]">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-[9px] sm:text-[10px] text-muted-foreground">
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#b0c59c] animate-pulse" />
+            <span className="truncate max-w-[120px] sm:max-w-[200px]">
               {project.demoUrl.replace("https://", "")}
             </span>
           </div>
@@ -249,27 +248,27 @@ function Project3DCard({
         {/* ================= LAYER 2: 3D STAGE SCREEN (DUAL VIEW 3D REVOLVING STAGE) ================= */}
         <div
           style={{ transform: "translateZ(38px)" }}
-          className="relative w-full rounded-xl border-2 border-border/90 bg-muted/60 p-2 sm:p-2.5 flex flex-col gap-2 [transform-style:preserve-3d]"
+          className="relative w-full rounded-xl border border-border/80 bg-muted/60 p-1.5 sm:p-2.5 flex flex-col gap-1.5 sm:gap-2 [transform-style:preserve-3d]"
         >
           {/* Top Stage Bar */}
-          <div className="flex items-center justify-between px-1.5 py-0.5 select-none">
+          <div className="flex items-center justify-between px-1 sm:px-1.5 py-0.5 select-none">
             {/* Window control dots */}
-            <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#38bdf8]" />
-              <span className="w-2.5 h-2.5 rounded-full bg-[#a7f3d0]" />
-              <span className="w-2.5 h-2.5 rounded-full bg-[#fbbf24]" />
+            <div className="flex items-center gap-1 sm:gap-1.5">
+              <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#8584cc]" />
+              <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#b0c59c]" />
+              <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#b0c59c]" />
             </div>
 
             {/* Segmented 3D View Switcher with Animated Pill */}
             <div
-              className="flex items-center gap-1 p-0.5 rounded-lg bg-card border border-border shadow-2xs"
+              className="flex items-center gap-0.5 sm:gap-1 p-0.5 rounded-lg bg-card border border-border shadow-2xs"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 type="button"
                 onClick={() => setViewMode("ui")}
                 className={cn(
-                  "relative inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-bold transition-colors cursor-pointer select-none",
+                  "relative inline-flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[9px] sm:text-[10px] font-bold transition-colors cursor-pointer select-none",
                   viewMode === "ui"
                     ? "text-white"
                     : "text-muted-foreground hover:text-foreground"
@@ -278,7 +277,7 @@ function Project3DCard({
                 {viewMode === "ui" && (
                   <motion.span
                     layoutId={`view-tab-pill-${project.id}`}
-                    className="absolute inset-0 rounded-md bg-[#0284c7] shadow-xs"
+                    className="absolute inset-0 rounded-md bg-[#4e4d96] shadow-xs"
                     transition={{ type: "spring", stiffness: 380, damping: 28 }}
                   />
                 )}
@@ -292,16 +291,16 @@ function Project3DCard({
                 type="button"
                 onClick={() => setViewMode("arch")}
                 className={cn(
-                  "relative inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-bold transition-colors cursor-pointer select-none",
+                  "relative inline-flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[9px] sm:text-[10px] font-bold transition-colors cursor-pointer select-none",
                   viewMode === "arch"
-                    ? "text-[#38bdf8]"
+                    ? "text-[#52519e] dark:text-[#9493d9]"
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 {viewMode === "arch" && (
                   <motion.span
                     layoutId={`view-tab-pill-${project.id}`}
-                    className="absolute inset-0 rounded-md bg-[#1e293b] border border-[#38bdf8] shadow-xs"
+                    className="absolute inset-0 rounded-md bg-[#1e1f2e] border border-[#8584cc] shadow-xs"
                     transition={{ type: "spring", stiffness: 380, damping: 28 }}
                   />
                 )}
@@ -315,7 +314,7 @@ function Project3DCard({
 
           {/* 3D Flipping Screen Stage Wrapper */}
           <div
-            className="relative w-full aspect-video [perspective:1200px]"
+            className="relative w-full aspect-[16/10] sm:aspect-video [perspective:1200px]"
             onClick={(e) => {
               e.stopPropagation();
               setViewMode((prev) => (prev === "ui" ? "arch" : "ui"));
@@ -355,14 +354,14 @@ function Project3DCard({
                 )}
 
                 {/* Corner Quick Tag */}
-                <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[#1e293b]/85 border border-[#38bdf8]/40 text-[9px] font-bold text-[#e0f2fe] backdrop-blur-xs select-none">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8] animate-pulse" />
+                <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[#1e1f2e]/85 border border-[#8584cc]/40 text-[9px] font-bold text-[#eceed6] backdrop-blur-xs select-none">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#8584cc] animate-pulse" />
                   <span>{isId ? "Tinjauan Langsung" : "Live Interface"}</span>
                 </div>
               </div>
 
               {/* ===== BACK FACE: ARCHITECTURE BLUEPRINT (180 DEG) ===== */}
-              <div className="absolute inset-0 w-full h-full rounded-xl overflow-hidden border border-[#38bdf8]/70 bg-card [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-inner">
+              <div className="absolute inset-0 w-full h-full rounded-xl overflow-hidden border border-[#8584cc]/70 bg-card [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-inner">
                 <ProjectArchitectureBlueprint
                   projectId={project.id}
                   isId={isId}
@@ -375,10 +374,10 @@ function Project3DCard({
         {/* ================= LAYER 3: 3D TITLE & SPECS NARRATIVE ================= */}
         <div
           style={{ transform: "translateZ(30px)" }}
-          className="space-y-2"
+          className="space-y-1.5 sm:space-y-2"
         >
           <div className="flex items-center justify-between gap-2">
-            <h3 className="text-xl sm:text-2xl font-black tracking-tight text-foreground group-hover:text-primary transition-colors">
+            <h3 className="text-lg sm:text-2xl font-black tracking-tight text-foreground group-hover:text-primary transition-colors">
               {project.title}
             </h3>
           </div>
@@ -391,9 +390,9 @@ function Project3DCard({
         {/* ================= LAYER 4: 3D FLOATING TECH BADGES ================= */}
         <div
           style={{ transform: "translateZ(46px)" }}
-          className="pt-1"
+          className="pt-0.5 sm:pt-1"
         >
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-1 sm:gap-1.5">
             {project.tags.slice(0, 5).map((tag) => (
               <TechBadge key={tag} name={tag} size="xs" />
             ))}
@@ -408,7 +407,7 @@ function Project3DCard({
         {/* ================= LAYER 5: 3D ACTION FOOTER ================= */}
         <div
           style={{ transform: "translateZ(26px)" }}
-          className="pt-3 border-t border-border/80 flex items-center justify-between gap-3 text-xs font-bold"
+          className="pt-2.5 sm:pt-3 border-t border-border/80 flex items-center justify-between gap-2 sm:gap-3 text-[11px] sm:text-xs font-bold"
         >
           <Link
             href={`/projects/${project.id}`}
@@ -434,10 +433,10 @@ export function Projects() {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className="py-24 relative border-t border-border/40 bg-background">
+    <section id="projects" className="py-14 sm:py-24 relative border-t border-border/40 bg-background">
       <div className="max-w-6xl mx-auto px-4 md:px-6">
         {/* Header */}
-        <div className="mb-14">
+        <div className="mb-8 sm:mb-14">
           <SectionHeading
             title={t("projects.heading")}
             subtitle={t("projects.subheading")}
@@ -445,7 +444,7 @@ export function Projects() {
         </div>
 
         {/* Projects 3D Decks Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 max-w-5xl mx-auto">
           {PROJECTS_DATA.map((project) => (
             <Project3DCard
               key={project.id}
@@ -465,7 +464,7 @@ export function Projects() {
                 animate={{ opacity: 0.7 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setActiveProject(null)}
-                className="fixed inset-0 bg-[#0f172a]/75 z-50 backdrop-blur-xs"
+                className="fixed inset-0 bg-[#14151f]/75 z-50 backdrop-blur-xs"
               />
 
               {/* Scrollable details container */}
@@ -476,43 +475,42 @@ export function Projects() {
                   exit={{ opacity: 0, scale: 0.94, y: 14 }}
                   transition={{ type: "spring", stiffness: 300, damping: 28 }}
                   className={cn(
-                    "relative w-full max-w-4xl bg-card border-2 border-border hover:border-[#38bdf8] rounded-2xl overflow-hidden my-4 focus:outline-none flex flex-col max-h-[92vh] md:max-h-[88vh]",
-                    "shadow-[0_16px_0_#cbd5e1,0_25px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_16px_0_#0f172a,0_25px_50px_rgba(0,0,0,0.6)]",
-                    "transition-all duration-300"
+                    "relative w-full max-w-[94vw] sm:max-w-4xl bg-card/95 backdrop-blur-md border border-border/80 hover:border-primary/40 rounded-xl sm:rounded-2xl overflow-hidden my-2 sm:my-4 focus:outline-none flex flex-col max-h-[84vh] sm:max-h-[88vh]",
+                    "shadow-2xl transition-all duration-300"
                   )}
                   tabIndex={-1}
                 >
                   {/* Top Window HUD Bar */}
-                  <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b-2 border-border bg-muted/70 select-none">
-                    <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-between px-3.5 sm:px-6 py-2.5 sm:py-3 border-b border-border bg-muted/70 select-none">
+                    <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                       {/* Window dots */}
-                      <div className="flex items-center gap-1.5">
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#38bdf8]" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#a7f3d0]" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#fbbf24]" />
+                      <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
+                        <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#8584cc]" />
+                        <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#b0c59c]" />
+                        <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#b0c59c]" />
                       </div>
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-primary">
+                      <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-primary truncate">
                         {activeProject.category} :: {activeProject.title}
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                       <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] text-muted-foreground">
-                        <span className="w-2 h-2 rounded-full bg-[#a7f3d0] animate-pulse" />
+                        <span className="w-2 h-2 rounded-full bg-[#b0c59c] animate-pulse" />
                         {activeProject.demoUrl.replace("https://", "")}
                       </span>
                       <button
                         onClick={() => setActiveProject(null)}
-                        className="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                        className="p-1 sm:p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                         aria-label="Close details"
                       >
-                        <CloseIconIllustration className="w-4 h-4" />
+                        <CloseIconIllustration className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       </button>
                     </div>
                   </div>
 
                   {/* Header Cover Banner */}
-                  <div className="relative w-full aspect-video md:max-h-[300px] bg-black/90 overflow-hidden flex items-center justify-center shrink-0 border-b border-border">
+                  <div className="relative w-full aspect-video max-h-[175px] sm:max-h-[260px] md:max-h-[300px] bg-black/90 overflow-hidden flex items-center justify-center shrink-0 border-b border-border">
                     {activeProject.videoUrl ? (
                       <video
                         controls
@@ -539,15 +537,15 @@ export function Projects() {
                   </div>
 
                   {/* Project Title Block */}
-                  <div className="px-6 py-4 sm:px-8 border-b border-border bg-card/60 shrink-0 flex items-center justify-between gap-4">
-                    <div>
-                      <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-foreground">
+                  <div className="px-4 py-3 sm:px-8 sm:py-4 border-b border-border bg-card/60 shrink-0 flex items-center justify-between gap-3 sm:gap-4">
+                    <div className="min-w-0">
+                      <h2 className="text-lg sm:text-3xl font-black tracking-tight text-foreground truncate">
                         {activeProject.title}
                       </h2>
                     </div>
                     <Link
                       href={`/projects/${activeProject.id}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
+                      className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-primary hover:underline shrink-0"
                     >
                       <DocCaseStudyIllustration className="w-3.5 h-3.5" />
                       <span>{t("projects.readCaseStudy")}</span>
@@ -555,17 +553,17 @@ export function Projects() {
                   </div>
 
                   {/* Content details scroll block */}
-                  <div className="p-6 sm:p-8 pt-4 space-y-7 overflow-y-auto no-scrollbar flex-1 font-sans">
+                  <div className="p-4 sm:p-8 pt-3 sm:pt-4 space-y-4 sm:space-y-7 overflow-y-auto no-scrollbar flex-1 font-sans">
                     {/* Headline Tagline */}
-                    <p className="text-base sm:text-lg font-bold tracking-tight text-foreground leading-snug">
+                    <p className="text-sm sm:text-lg font-bold tracking-tight text-foreground leading-snug">
                       {lang === "id" ? activeProject.taglineId : activeProject.tagline}
                     </p>
 
                     {/* Overview & Quick Specs Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 border-t border-border pt-6">
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-8 border-t border-border pt-4 sm:pt-6">
                       {/* Left: Deep Dive sections */}
-                      <div className="md:col-span-8 space-y-6">
-                        <div className="space-y-2 p-4 rounded-xl border border-border bg-muted/40">
+                      <div className="md:col-span-8 space-y-4 sm:space-y-6">
+                        <div className="space-y-1.5 sm:space-y-2 p-3 sm:p-4 rounded-xl border border-border bg-muted/40">
                           <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-foreground">
                             <CompassIllustration className="w-4 h-4" />
                             {t("projects.overview")}
@@ -628,7 +626,7 @@ export function Projects() {
                               </p>
                             </div>
                             <div className="bg-muted/50 p-4 rounded-xl border border-border space-y-1">
-                              <span className="text-[11px] font-bold text-[#fbbf24] block">
+                              <span className="text-[11px] font-bold text-[#4d6639] dark:text-[#b0c59c] block">
                                 {t("projects.keyTakeaway")}
                               </span>
                               <p className="text-xs text-muted-foreground leading-relaxed">
@@ -640,8 +638,8 @@ export function Projects() {
                       </div>
 
                       {/* Right Side: Tech Stack list & Links */}
-                      <div className="md:col-span-4 space-y-5">
-                        <div className="space-y-3 p-5 rounded-xl border-2 border-border bg-card">
+                      <div className="md:col-span-4 space-y-3.5 sm:space-y-5">
+                        <div className="space-y-2.5 sm:space-y-3 p-3.5 sm:p-5 rounded-xl border border-border bg-card/60">
                           <h4 className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                             {t("projects.techStack")}
                           </h4>
@@ -653,19 +651,19 @@ export function Projects() {
                         </div>
 
                         {/* Demo/Case Study Actions */}
-                        <div className="flex flex-col gap-2.5">
+                        <div className="flex flex-col gap-2 sm:gap-2.5">
                           <a
                             href={activeProject.demoUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl btn-logo-glossy font-semibold text-sm"
+                            className="flex items-center justify-center gap-2 w-full py-2.5 sm:py-3 rounded-xl btn-logo-glossy font-semibold text-xs sm:text-sm"
                           >
                             <ExternalLinkIllustration className="w-4 h-4" />
                             <span>{t("projects.liveDemo")}</span>
                           </a>
                           <Link
                             href={`/projects/${activeProject.id}`}
-                            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border-2 border-border bg-card hover:border-[#38bdf8] font-semibold text-sm text-foreground transition-colors shadow-xs"
+                            className="flex items-center justify-center gap-2 w-full py-2.5 sm:py-3 rounded-xl border border-border bg-card/60 hover:border-primary/40 font-semibold text-xs sm:text-sm text-foreground transition-colors shadow-xs"
                           >
                             <DocCaseStudyIllustration className="w-4 h-4" />
                             <span>{t("projects.readCaseStudy")}</span>

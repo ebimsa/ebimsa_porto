@@ -53,16 +53,15 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* Unified Icon Palette Tokens (Teaching Assistant & Database Palette) */
-  --color-brand-slate: #1e293b;
-  --color-brand-blue-deep: #0284c7;
-  --color-brand-blue: #0ea5e9;
-  --color-brand-cyan: #38bdf8;
-  --color-brand-ice: #e0f2fe;
-  --color-brand-mint: #a7f3d0;
-  --color-brand-gold: #fbbf24;
-  --color-brand-blue-glow: rgba(56, 189, 248, 0.18);
-  --color-brand-blue-glow-hover: rgba(56, 189, 248, 0.34);
+  /* Unified Palette Tokens (#6463B1 Indigo + #ECEED6 Cream + #B0C59C Sage) */
+  --color-brand-slate: #1e1f2e;
+  --color-brand-indigo-deep: #4e4d96;
+  --color-brand-indigo: #6463b1;
+  --color-brand-indigo-light: #8584cc;
+  --color-brand-cream: #eceed6;
+  --color-brand-sage: #b0c59c;
+  --color-brand-indigo-glow: rgba(100, 99, 177, 0.18);
+  --color-brand-indigo-glow-hover: rgba(100, 99, 177, 0.34);
 
   /* Animation overrides or extensions */
   --animate-float: float 6s ease-in-out infinite;
@@ -79,87 +78,86 @@
   }
   @keyframes glow {
     from {
-      box-shadow: 0 0 10px rgba(56, 189, 248, 0.14), 0 0 20px rgba(14, 165, 233, 0.08);
+      box-shadow: 0 0 10px rgba(100, 99, 177, 0.16), 0 0 20px rgba(176, 197, 156, 0.1);
     }
     to {
-      box-shadow: 0 0 22px rgba(56, 189, 248, 0.32), 0 0 38px rgba(251, 191, 36, 0.12);
+      box-shadow: 0 0 22px rgba(100, 99, 177, 0.32), 0 0 38px rgba(176, 197, 156, 0.18);
     }
   }
 }
 
 /*
- * LIGHT MODE — Unified Icon Palette
- * Putih Tulang Cenderung Abu (#F5F5F7) + Deep Sky (#0284C7 / #0EA5E9) + Dark Slate (#1E293B) + Gold (#FBBF24)
+ * LIGHT MODE — #6463B1 (Indigo) + #ECEED6 (Warm Cream) + #B0C59C (Sage Green)
+ * Contrast-optimized for WCAG AA readability
  */
 :root {
   --font-geist-mono: var(--font-plus-jakarta-sans);
-  --background: #f5f5f7; /* Putih tulang cenderung abu (Bone white / Cool light gray) */
-  --foreground: #0f172a; /* Deep Slate */
+  --background: #eceed6; /* Warm Cream / Pale Sage-Ivory */
+  --foreground: #1e1f2e; /* Deep Charcoal-Indigo */
 
-  --card: #ffffff;
-  --card-foreground: #1e293b;
+  --card: #fafbf5;
+  --card-foreground: #1e1f2e;
 
-  --popover: #ffffff;
-  --popover-foreground: #1e293b;
+  --popover: #fafbf5;
+  --popover-foreground: #1e1f2e;
 
-  --primary: #0284c7; /* Deep Sky Blue */
+  --primary: #52519e; /* Contrast-optimized Brand Indigo (~5.8:1 on #ECEED6) */
   --primary-foreground: #ffffff;
 
-  --secondary: #e9ecef; /* Neutral soft gray highlight */
-  --secondary-foreground: #0f172a;
+  --secondary: #b0c59c; /* Muted Sage Green */
+  --secondary-foreground: #1e1f2e;
 
-  --muted: #e9ecef; /* Bone-gray container */
-  --muted-foreground: #475569;
+  --muted: #dfe3c5; /* Soft Cream-Sage Container */
+  --muted-foreground: #3f4254;
 
-  --accent: #fbbf24; /* Warm Gold Tassel Accent */
-  --accent-foreground: #1e293b;
+  --accent: #b0c59c; /* Sage Green Accent */
+  --accent-foreground: #1e1f2e;
 
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
 
-  --border: rgba(15, 23, 42, 0.12); /* Clean neutral border */
-  --input: rgba(15, 23, 42, 0.16);
-  --ring: #0ea5e9;
+  --border: rgba(82, 81, 158, 0.28); /* Crisp Indigo-tinted border */
+  --input: rgba(82, 81, 158, 0.34);
+  --ring: #52519e;
 
   --radius: 0.75rem;
 
-  --grid-color: rgba(15, 23, 42, 0.04);
+  --grid-color: rgba(82, 81, 158, 0.06);
 }
 
 /*
- * DARK MODE — Unified Icon Palette
- * Deep Slate (#0F172A) + Structural Slate Card (#1E293B) + Sky Cyan Rim (#38BDF8 / #0EA5E9) + Mint (#A7F3D0) & Gold (#FBBF24)
+ * DARK MODE — Deep Charcoal-Indigo (#14151F) + #6463B1 (Indigo) + #ECEED6 (Cream) + #B0C59C (Sage Green)
  */
 .dark {
-  --background: #0f172a; /* Deep Slate Canvas */
-  --foreground: #e0f2fe; /* Soft Ice White */
+  --background: #14151f; /* Deep Charcoal-Indigo Canvas */
+  --foreground: #eceed6; /* Warm Cream Text */
 
-  --card: #1e293b; /* Exact Structural Dark Slate from GradCapIllustration */
-  --card-foreground: #f0f9ff;
+  --card: #1d1e2c; /* Elevated Indigo-Slate Card */
+  --card-foreground: #eceed6;
 
-  --popover: #1e293b;
-  --popover-foreground: #f0f9ff;
+  --popover: #1d1e2c;
+  --popover-foreground: #eceed6;
 
-  --primary: #38bdf8; /* Bright Sky Cyan from Icon Rim/Top */
-  --primary-foreground: #0f172a;
+  --primary: #9493d9; /* Luminous Periwinkle-Indigo (~6.6:1 on #14151F) */
+  --primary-foreground: #14151f;
 
-  --secondary: #0284c7; /* Deep Sky Blue from DatabaseCylinderIllustration */
-  --secondary-foreground: #e0f2fe;
+  --secondary: #6463b1; /* Brand Indigo */
+  --secondary-foreground: #eceed6;
 
-  --muted: #162238; /* Rich Slate-Sky Muted Surface */
-  --muted-foreground: #94a3b8;
+  --muted: #242638; /* Muted Indigo-Slate Surface */
+  --muted-foreground: #b7caa4; /* Crisp Sage Green Muted Text */
 
-  --accent: #fbbf24; /* Warm Gold Accent from GradCapIllustration */
-  --accent-foreground: #0f172a;
+  --accent: #b0c59c; /* Muted Sage Green Accent */
+  --accent-foreground: #14151f;
 
   --destructive: #ef4444;
-  --destructive-foreground: #f0f9ff;
+  --destructive-foreground: #eceed6;
 
-  --border: rgba(56, 189, 248, 0.24); /* Crisp #38BDF8 Sky Cyan Rim */
-  --input: rgba(56, 189, 248, 0.28);
-  --ring: #38bdf8;
+  --border: rgba(176, 197, 156, 0.28); /* Crisp Sage Rim */
+  --input: rgba(176, 197, 156, 0.32);
+  --ring: #9493d9;
 
-  --grid-color: rgba(56, 189, 248, 0.05);
+  --grid-color: rgba(176, 197, 156, 0.05);
 }
 
 @layer base {
@@ -224,36 +222,36 @@
 /* Solid Flat Icon-Palette Styles (No Gradients) */
 
 .bg-logo-gradient {
-  background-color: #0ea5e9;
+  background-color: #6463b1;
 }
 
 .text-logo-gradient {
-  color: #38bdf8;
+  color: #9493d9;
 }
 
 :root:not(.dark) .text-logo-gradient {
-  color: #0284c7;
+  color: #52519e;
 }
 
 .btn-logo-glossy {
-  background-color: #0284c7;
+  background-color: #52519e;
   color: #ffffff !important;
-  border: 1.5px solid #38bdf8;
-  box-shadow: 0 2px 0 #1e293b;
+  border: 1.5px solid #6463b1;
+  box-shadow: 0 2px 0 #1e1f2e;
   transition: all 0.2s ease;
 }
 
 .dark .btn-logo-glossy {
-  background-color: #0ea5e9;
-  color: #0f172a !important;
-  border: 1.5px solid #38bdf8;
-  box-shadow: 0 2px 0 #0284c7;
+  background-color: #6463b1;
+  color: #eceed6 !important;
+  border: 1.5px solid #b0c59c;
+  box-shadow: 0 2px 0 #4e4d96;
 }
 
 .btn-logo-glossy:hover {
-  background-color: #38bdf8;
-  color: #0f172a !important;
-  border-color: #fbbf24;
+  background-color: #b0c59c;
+  color: #14151f !important;
+  border-color: #eceed6;
   transform: translateY(-1px);
 }
 

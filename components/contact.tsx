@@ -155,9 +155,9 @@ export function Contact() {
 
   const getAvatarColor = (guestName: string) => {
     const colors = [
-      "bg-[#0284c7]",
-      "bg-[#0ea5e9]",
-      "bg-[#1e293b] border border-[#38bdf8]",
+      "bg-[#4e4d96]",
+      "bg-[#6463b1]",
+      "bg-[#1e1f2e] border border-[#b0c59c]",
     ];
     let sum = 0;
     for (let i = 0; i < guestName.length; i++) {
