@@ -21,7 +21,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "ebimsa | Computer Science Graduate",
-  description: "Portofolio resmi Enggal Bima Sakti — Full Stack Developer dari Bandar Lampung. Lihat proyek, pengalaman, dan hubungi langsung.",
+  description: "Portofolio resmi Enggal Bima Sakti, Full Stack Developer dari Bandar Lampung. Lihat proyek, pengalaman, dan hubungi langsung.",
   keywords: [
     "Ebimsa",
     "Enggal Bima Sakti",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     locale: "id_ID",
     url: siteUrl,
     title: "ebimsa | Software Engineer",
-    description: "Portofolio resmi Enggal Bima Sakti (Ebimsa) — Software Engineer dan Full Stack Developer dari Bandar Lampung. Lihat proyek, pengalaman, dan hubungi langsung.",
+    description: "Portofolio resmi Enggal Bima Sakti (Ebimsa), Software Engineer dan Full Stack Developer dari Bandar Lampung. Lihat proyek, pengalaman, dan hubungi langsung.",
     siteName: "ebimsa",
     images: [
       {
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "ebimsa | Software Engineer",
-    description: "Portofolio resmi Enggal Bima Sakti (Ebimsa) — Software Engineer dan Full Stack Developer dari Bandar Lampung. Lihat proyek, pengalaman, dan hubungi langsung.",
+    description: "Portofolio resmi Enggal Bima Sakti (Ebimsa), Software Engineer dan Full Stack Developer dari Bandar Lampung. Lihat proyek, pengalaman, dan hubungi langsung.",
     images: ["/og-image.jpg"],
   },
   icons: {

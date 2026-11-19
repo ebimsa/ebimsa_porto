@@ -63,13 +63,13 @@ export const EXPERIENCE_ENTRIES: ExperienceEntry[] = [
     photos: [
       {
         src: "/pimnas-1.jpg",
-        captionEn: "Universitas Lampung Delegation — Favorite Award PKM-KC 2 at PIMNAS 39",
-        captionId: "Tim Universitas Lampung — Juara Favorit PKM-KC 2 pada PIMNAS ke-39",
+        captionEn: "Universitas Lampung Delegation, Favorite Award PKM-KC 2 at PIMNAS 39",
+        captionId: "Tim Universitas Lampung, Juara Favorit PKM-KC 2 pada PIMNAS ke-39",
       },
       {
         src: "/pimnas-2.jpg",
-        captionEn: "Closing Ceremony & Awarding Stage — PIMNAS 39 (2026)",
-        captionId: "Panggung Closing Ceremony & Awarding — PIMNAS ke-39 Tahun 2026",
+        captionEn: "Closing Ceremony & Awarding Stage, PIMNAS 39 (2026)",
+        captionId: "Panggung Closing Ceremony & Awarding PIMNAS ke-39 Tahun 2026",
       },
     ],
     link: {

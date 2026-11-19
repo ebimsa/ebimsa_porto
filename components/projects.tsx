@@ -251,7 +251,7 @@ function Project3DCard({
           transform: "rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg))",
         }}
         className={cn(
-          "group relative flex flex-col justify-between bg-card/45 backdrop-blur-md rounded-xl md:rounded-2xl border border-border/60 hover:border-primary/40 p-3.5 sm:p-6 squircle-lg",
+          "group relative flex flex-col justify-between bg-card/80 dark:bg-card/45 backdrop-blur-md rounded-xl md:rounded-2xl border border-border/60 hover:border-primary/40 p-3.5 sm:p-6 squircle-lg",
           "shadow-sm hover:-translate-y-1.5 hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)]",
           "transition-all duration-500 ease-out cursor-pointer select-none [transform-style:preserve-3d]",
           "transform-gpu will-change-transform h-full space-y-3 sm:space-y-5"

@@ -95,10 +95,10 @@
   --background: #eceed6; /* Warm Cream / Pale Sage-Ivory */
   --foreground: #1e1f2e; /* Deep Charcoal-Indigo */
 
-  --card: #fafbf5;
+  --card: #ffffff;
   --card-foreground: #1e1f2e;
 
-  --popover: #fafbf5;
+  --popover: #ffffff;
   --popover-foreground: #1e1f2e;
 
   --primary: #52519e; /* Contrast-optimized Brand Indigo (~5.8:1 on #ECEED6) */

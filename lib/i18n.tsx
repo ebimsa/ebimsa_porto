@@ -27,7 +27,7 @@ const dict: Record<Lang, Record<string, string>> = {
     "about.heading": "How I build",
     "about.subheading": "Full-Stack Engineering Focus",
     "about.p1":
-      "I'm a Computer Science graduate (GPA 3.67, With Honors) from the University of Lampung and a Favorite Award winner at PIMNAS 39 (2026). I build end-to-end web applications in production—pairing responsive frontends (React, Next.js, Svelte, TypeScript, Tailwind CSS) with reliable backends (Go, Laravel, PostgreSQL).",
+      "I'm a Computer Science graduate (GPA 3.67, With Honors) from the University of Lampung and a Favorite Award winner at PIMNAS 39 (2026). I build end-to-end web applications in production, pairing responsive frontends (React, Next.js, Svelte, TypeScript, Tailwind CSS) with reliable backends (Go, Laravel, PostgreSQL).",
     "about.p2":
       "I built Saidata (Universitas Lampung's e-ULT portal), DoriPay (an idempotent Go + Svelte PPOB platform), RASI (a structured Indonesian stock research web app), and the software & Command Center for ResQ-NET, an off-grid LoRa Mesh SAR communication system.",
     "about.stat.projects": "Featured Projects",
@@ -78,7 +78,7 @@ const dict: Record<Lang, Record<string, string>> = {
     "experience.label": "Experience",
     "experience.heading": "Experience & Organizations",
     "experience.subheading":
-      "Explore my 3D timeline—tilt cards with your cursor and flip any card in 3D to inspect full responsibilities.",
+      "Explore my 3D timeline. Tilt cards with your cursor and flip any card in 3D to inspect full responsibilities.",
     "experience.filterAll": "All",
     "experience.filterAchievement": "Awards",
     "experience.filterWork": "Internship",
@@ -141,7 +141,7 @@ const dict: Record<Lang, Record<string, string>> = {
     "about.heading": "Cara saya membangun",
     "about.subheading": "Fokus Rekayasa Full-Stack",
     "about.p1":
-      "Saya lulusan S1 Ilmu Komputer Universitas Lampung (IPK 3.67, Pujian) serta peraih Juara Favorit PIMNAS ke-39 Tahun 2026. Saya membangun aplikasi web full-stack di lingkungan production—memadukan frontend responsif (React, Next.js, Svelte, TypeScript, Tailwind CSS) dengan backend andal (Go, Laravel, PostgreSQL).",
+      "Saya lulusan S1 Ilmu Komputer Universitas Lampung (IPK 3.67, Pujian) serta peraih Juara Favorit PIMNAS ke-39 Tahun 2026. Saya membangun aplikasi web full-stack di lingkungan production, memadukan frontend responsif (React, Next.js, Svelte, TypeScript, Tailwind CSS) dengan backend andal (Go, Laravel, PostgreSQL).",
     "about.p2":
       "Saya membangun Saidata (portal e-ULT Universitas Lampung), DoriPay (platform PPOB Go + Svelte yang idempoten), RASI (aplikasi web riset saham Indonesia), serta protokol komunikasi dan Dashboard Command Center untuk ResQ-NET pada ajang PIMNAS ke-39.",
     "about.stat.projects": "Proyek Pilihan",
@@ -192,7 +192,7 @@ const dict: Record<Lang, Record<string, string>> = {
     "experience.label": "Pengalaman",
     "experience.heading": "Pengalaman & Organisasi",
     "experience.subheading":
-      "Telusuri linimasa 3D—arahkan kursor untuk efek tilt 3D dan balik kartu untuk membaca rincian tanggung jawab.",
+      "Telusuri linimasa 3D. Arahkan kursor untuk efek tilt 3D dan balik kartu untuk membaca rincian tanggung jawab.",
     "experience.filterAll": "Semua",
     "experience.filterAchievement": "Penghargaan",
     "experience.filterWork": "Magang",

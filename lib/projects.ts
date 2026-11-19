@@ -75,9 +75,9 @@ export const PROJECTS_DATA: Project[] = [
     lessonsId:
       "Menguasai arsitektur PHP stateful (Octane), protokol single sign-on CAS token, dan optimasi indeks pada dataset JSONB berukuran besar.",
     results:
-      "TODO_ANGKA — Replace with verified metrics (e.g. number of campus divisions onboarded, service types automated, or JSONB query latency before vs. after GIN indexing).",
+      "TODO_ANGKA: Replace with verified metrics (e.g. number of campus divisions onboarded, service types automated, or JSONB query latency before vs. after GIN indexing).",
     resultsId:
-      "TODO_ANGKA — Ganti dengan metrik terverifikasi (mis. jumlah unit/divisi kampus, jenis layanan yang diotomasi, atau perbandingan waktu query JSONB sebelum dan sesudah GIN index).",
+      "TODO_ANGKA: Ganti dengan metrik terverifikasi (mis. jumlah unit/divisi kampus, jenis layanan yang diotomasi, atau perbandingan waktu query JSONB sebelum dan sesudah GIN index).",
     githubUrl: "https://github.com/enggalbima/saidata",
     demoUrl: "https://saidata.unila.ac.id",
     videoUrl: "/saidata.mp4",
@@ -127,9 +127,9 @@ export const PROJECTS_DATA: Project[] = [
     lessonsId:
       "Mendalami rekayasa buku besar finansial yang aman, sinkronisasi state Svelte stores, dan integrasi endpoint API payment gateway eksternal.",
     results:
-      "TODO_ANGKA — Replace with local load-test or production metrics (e.g. 0 double-spend across N concurrent wallet deduction requests, or number of digital product SKUs supported).",
+      "TODO_ANGKA: Replace with local load-test or production metrics (e.g. 0 double-spend across N concurrent wallet deduction requests, or number of digital product SKUs supported).",
     resultsId:
-      "TODO_ANGKA — Ganti dengan hasil tes beban lokal atau metrik produksi (mis. 0 double-spend pada N request pemotongan saldo paralel, atau jumlah produk digital yang didukung).",
+      "TODO_ANGKA: Ganti dengan hasil tes beban lokal atau metrik produksi (mis. 0 double-spend pada N request pemotongan saldo paralel, atau jumlah produk digital yang didukung).",
     githubUrl: "https://github.com/enggalbima/doripay",
     demoUrl: "https://doripay.com",
     videoUrl: "/doripay.mp4",

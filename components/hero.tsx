@@ -297,7 +297,7 @@ export function Hero() {
             align="center"
             side="bottom"
             sideOffset={8}
-            triggerClassName="group w-auto inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border border-border/60 bg-card/45 backdrop-blur-md hover:border-primary/40 hover:-translate-y-0.5 shadow-sm hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_24px_rgba(0,0,0,0.25)] transition-all duration-300 cursor-pointer select-none outline-hidden data-popup-open:border-primary/40 data-popup-open:text-primary data-popup-open:bg-card/70"
+            triggerClassName="group w-auto inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border border-border/60 bg-card/80 dark:bg-card/45 backdrop-blur-md hover:border-primary/40 hover:-translate-y-0.5 shadow-sm hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_24px_rgba(0,0,0,0.25)] transition-all duration-300 cursor-pointer select-none outline-hidden data-popup-open:border-primary/40 data-popup-open:text-primary data-popup-open:bg-card/90 dark:data-popup-open:bg-card/70"
           >
             <DocCaseStudyIllustration className="w-4 h-4" />
             <span>{t("hero.resume")}</span>

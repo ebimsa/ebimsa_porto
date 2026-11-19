@@ -235,7 +235,7 @@ function Experience3DCard({
             {/* ================= FRONT FACE ================= */}
             <div
               className={cn(
-                "relative w-full min-h-[300px] sm:min-h-[310px] rounded-xl md:rounded-2xl border border-border/60 group-hover:border-primary/40 bg-card/45 backdrop-blur-md p-5 sm:p-6 squircle-lg shadow-sm group-hover:-translate-y-1.5 group-hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:group-hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 flex flex-col justify-between gap-4 [backface-visibility:hidden]",
+                "relative w-full min-h-[300px] sm:min-h-[310px] rounded-xl md:rounded-2xl border border-border/60 group-hover:border-primary/40 bg-card/80 dark:bg-card/45 backdrop-blur-md p-5 sm:p-6 squircle-lg shadow-sm group-hover:-translate-y-1.5 group-hover:shadow-[0_20px_35px_rgba(0,0,0,0.08)] dark:group-hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] transition-all duration-500 flex flex-col justify-between gap-4 [backface-visibility:hidden]",
                 flipped && "pointer-events-none"
               )}
             >
@@ -304,7 +304,7 @@ function Experience3DCard({
             {/* ================= BACK FACE (ROTATED 180 DEG) ================= */}
             <div
               className={cn(
-                "absolute inset-0 w-full h-full overflow-hidden rounded-xl md:rounded-2xl border border-primary/40 bg-card/45 backdrop-blur-md p-5 sm:p-6 squircle-lg shadow-sm flex flex-col justify-between [backface-visibility:hidden] [transform:rotateY(180deg)]",
+                "absolute inset-0 w-full h-full overflow-hidden rounded-xl md:rounded-2xl border border-primary/40 bg-card/80 dark:bg-card/45 backdrop-blur-md p-5 sm:p-6 squircle-lg shadow-sm flex flex-col justify-between [backface-visibility:hidden] [transform:rotateY(180deg)]",
                 !flipped && "pointer-events-none"
               )}
             >
@@ -318,7 +318,7 @@ function Experience3DCard({
                   <div className="flex items-center gap-2 min-w-0">
                     <EntryIllustration id={entry.id} className="w-4 h-4 shrink-0" />
                     <h4 className="text-xs sm:text-sm font-extrabold text-foreground truncate">
-                      {role} — {entry.organization}
+                      {role} · {entry.organization}
                     </h4>
                   </div>
                   <span className="text-[10px] font-bold text-primary shrink-0">
